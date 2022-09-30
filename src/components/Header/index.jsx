@@ -29,6 +29,7 @@ const pages = [
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  //eslint-disable-next-line
   const [isLogged, setIsLogged] = React.useState(false)
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
