@@ -96,7 +96,7 @@ const ResponsiveAppBar = () => {
                 sx={{ my: 2, color: "white", display: "block" , textTransform: "capitalize"}}
                 
               >
-                {page}
+                <Typography color='black'>{page}</Typography>
               </Button>
             ))}
           </Box>
