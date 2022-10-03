@@ -1443,6 +1443,7 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+
 "@mui/base@5.0.0-alpha.99":
   version "5.0.0-alpha.99"
   resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.99.tgz#52589c72b6bf69e016e5811292529d60f81537ad"
