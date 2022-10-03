@@ -1,6 +1,6 @@
 import React from "react";
-import Cover from "../components/Cover";
-import LastNews from "../components/news/LastNews";
+import Cover from "../../components/Cover";
+import LastNews from "../../components/news/LastNews";
 
 const Home = () => {
   return (

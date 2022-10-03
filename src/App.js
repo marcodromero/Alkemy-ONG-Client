@@ -1,11 +1,16 @@
-import React from "react";
-import Home from "./pages/Home";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './routes/public/Home';
+import New from "./routes/public/New"
 
 
 export default function App() {
   return (
-    <>
-      <Home />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/news' element={<New />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
