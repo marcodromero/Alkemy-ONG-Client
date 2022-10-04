@@ -1,10 +1,12 @@
+import { Box } from "@mui/material";
 import React from "react";
+import Slider from "../../components/Slider";
 
 const New = () => {
   return (
-    <div>
-      <h2>News</h2>
-    </div>
+    <Box>
+      <Slider/>
+    </Box>
   );
 };
 
