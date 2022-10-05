@@ -1,10 +1,15 @@
 import React from "react";
+import Cover from "../../components/Cover";
+import LastNews from "../../components/news/LastNews";
 
 const Home = () => {
   return (
-    <div>
-      <h2>Home</h2>
-    </div>
+    <>
+      {/*header*/}
+      <Cover />
+      {/*slider*/}
+      <LastNews />
+    </>
   );
 };
 

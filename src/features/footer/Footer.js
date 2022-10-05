@@ -1,7 +1,14 @@
 import React from 'react';
-import styles from './Footer.module.css';
+import {
+    Container,
+    Link,
+    Typography,
+    Divider,
+    Box,
+    Stack
+}from "@mui/material";
 
-export function Footer({/*data*/}){
+export function Footer(){
     const data = {
         title: "ONG",
         description: "Description",
@@ -12,34 +19,34 @@ export function Footer({/*data*/}){
     };
 
     return(
-        <footer>
-            <section className={styles.logo}>
-                <hr className={styles.logo__bar}/>
-                    <div className={styles.logo__container}>
-                        <img className={styles.logo__image} src = {data.image} alt ="logo" />
-                        <h4 className={styles.logo__title}>{data.title}</h4>
-                    </div>
-                <hr className={styles.logo__bar}/>
-            </section>
-            <section className={styles.links}>
-                <ul>
-                    <li className = {styles.links__item}><a href ="#">Inicio</a></li>
-                    <li className = {styles.links__item}><a href ="#">Nosotros</a></li>
-                    <li className = {styles.links__item}><a href ="#">Novedades</a></li>
-                    <li className = {styles.links__item}><a href ="#">Testimonios</a></li>
-                    <li className = {styles.links__item}><a href ="#">Contacto</a></li>
-                    <li className = {styles.links__item}><a href ="#">Contribuye</a></li>
-                </ul>
-            </section>
-            <hr/>
-            <section className={styles.social}>
-                <ul>
-                    <li className = {styles.social__item}><a href ="https://www.facebook.com"><img className={styles.social__image} src={data.facebook} alt ="logo facebook"/></a></li>
-                    <li className = {styles.social__item}><a href ="https://www.linkedin.com"><img className={styles.social__image} src={data.linkedin} alt ="logo linkedin"/></a></li>
-                    <li className = {styles.social__item}><a href ="https://www.instagram.com"><img className={styles.social__image} src={data.instagram} alt ="logo instagram"/></a></li>
-                </ul>
-                <p className={styles.social__credits}>2022 by Alkemy. All Rights Reserved.</p>
-            </section>
-        </footer>
+            <Container  sx = {{backgroundColor: "#C0C0C0", display: "flex", flexDirection: "column", mt: "auto", height: "450px"}} maxWidth ={false}>
+                <Box sx = {{mt: 2}}>
+                    <Divider>
+                        <Box>
+                            <Box component ="img" sx = {{width: 80, height: 80, mx: 6}} src = {data.image} alt ="logo"/>
+                            <Typography variant = "h6" sx= {{fontSize: 18}}>{data.title}</Typography>
+                        </Box>
+                    </Divider>
+                </Box>
+                <Box sx = {{mt: 4, mb: 5, flexWrap: "wrap"}} display="flex" justifyContent="center" alignItems="center" >
+                    <Link underline ="none" sx = {{mx: 2, mb: 2, color: "black", zIndex: 1000}} href ="#"><Typography>Inicio</Typography></Link>
+                    <Link underline ="none" sx = {{mx: 2, mb: 2, color: "black", zIndex: 1000}} href ="#"><Typography>Nosotros</Typography></Link>
+                    <Link underline ="none" sx = {{mx: 2, mb: 2, color: "black", zIndex: 1000}} href ="#"><Typography>Novedades</Typography></Link>
+                    <Link underline ="none" sx = {{mx: 2, mb: 2, color: "black", zIndex: 1000}} href ="#"><Typography>Testimonios</Typography></Link>
+                    <Link underline ="none" sx = {{mx: 2, mb: 2, color: "black", zIndex: 1000}} href ="#"><Typography>Contacto</Typography></Link>
+                    <Link underline ="none" sx = {{mx: 2, mb: 2, color: "black", zIndex: 1000}} href ="#"><Typography>Contribuye</Typography></Link>
+                </Box>
+                <Divider/>
+                <Box sx = {{mt: 5,}} >
+                    <Stack >
+                        <Box display="flex" justifyContent="center" alignItems="flex-start">
+                            <Link sx = {{mx: 2}} href ="https://www.facebook.com"><Box component ="img" sx = {{width: 44, height: 44, }}  src={data.facebook} alt ="facebook"/></Link>
+                            <Link sx = {{mx: 2}} href ="https://www.linkedin.com"><Box component ="img" sx = {{width: 44, height: 44, }}  src={data.linkedin} alt ="linkedin"/></Link>
+                            <Link sx = {{mx: 2}} href ="https://www.instagram.com"><Box component ="img" sx = {{width: 44, height: 44, }}  src={data.facebook} alt ="instagram"/></Link>
+                        </Box>
+                        <Typography sx = {{mt: 1, textAlign: "center"}}>2022 by Alkemy. All Rights Reserved.</Typography>
+                    </Stack>
+                </Box>
+            </Container>   
     );
 }
