@@ -1,8 +1,8 @@
 .header-links {
     text-decoration: none;
     color: black;
-    &:hover{
-        color: #26abe2;
-    }
 }
 
+.header:hover{
+    color: #26abe2;
+}

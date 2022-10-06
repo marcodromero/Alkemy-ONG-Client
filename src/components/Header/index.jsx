@@ -18,7 +18,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ProfileButton from "./ProfileButton";
 import LoginRegister from "./LoginRegister";
 import { Link } from "react-router-dom";
-import './Header.scss'
+import './Header.css'
 const data = [
   {text : "Inicio", route: "/"},
   {text : "Nosotros", route: "/about"},
@@ -75,8 +75,8 @@ const ResponsiveAppBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {data.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}  sx={{textTransform: "capitalize" }}>
+              {data.map((page, index) => (
+                <MenuItem key={index} onClick={handleCloseNavMenu}  sx={{textTransform: "capitalize" }}>
                   <Typography textAlign="center">
                     <Link className="header-links" to={page.route}>{page.text}</Link>
                   </Typography>
