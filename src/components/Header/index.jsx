@@ -17,14 +17,15 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import ProfileButton from "./ProfileButton";
 import LoginRegister from "./LoginRegister";
-
-const pages = [
-  "Inicio",
-  "Nosotros",
-  "Novedades",
-  "Testimonios",
-  "Contacto",
-  "Contribuye",
+import { Link } from "react-router-dom";
+import './Header.scss'
+const data = [
+  {text : "Inicio", route: "/"},
+  {text : "Nosotros", route: "/about"},
+  {text : "Novedades", route: "/news"},
+  {text : "Testimonios", route: "/testimonials"},
+  {text : "Contacto", route: "/contact"},
+  {text : "Contribuye", route: "/help"}
 ];
 
 const ResponsiveAppBar = () => {
@@ -74,9 +75,11 @@ const ResponsiveAppBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
+              {data.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}  sx={{textTransform: "capitalize" }}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">
+                    <Link className="header-links" to={page.route}>{page.text}</Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -88,15 +91,17 @@ const ResponsiveAppBar = () => {
             }}
           />
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: 'center'}}>
-            {pages.map((page) => (
+            {data.map((page) => (
               <Button
               
-                key={page}
+                key={page.text}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" , textTransform: "capitalize"}}
                 
               >
-                <Typography color='black'>{page}</Typography>
+                <Typography color='black'>
+                  <Link className="header-links" to={page.route}>{page.text}</Link>
+                </Typography>
               </Button>
             ))}
           </Box>
