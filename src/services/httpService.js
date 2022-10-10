@@ -14,5 +14,7 @@ axios.interceptors.request.use(
 
 export default {
     get: axios.get,
-    post: axios.post
+    post: axios.post,
+    put: axios.put,
+    delete: axios.delete
 }
