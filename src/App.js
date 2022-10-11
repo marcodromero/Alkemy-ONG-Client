@@ -7,6 +7,8 @@ import Layout from './components/Layout'
 import Contact from "./routes/public/Contact";
 import DetailNew from "./routes/public/DetailNew";
 
+import DetailNew from "./routes/public/DetailNew";
+
 import Login from "./routes/public/Login";
 import Register from "./routes/public/Register";
 let theme = createTheme({
