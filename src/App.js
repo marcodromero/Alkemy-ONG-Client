@@ -6,6 +6,7 @@ import New from "./routes/public/New";
 import Layout from './components/Layout'
 import Contact from "./routes/public/Contact";
 import Login from "./routes/public/Login";
+import Register from "./routes/public/Register";
 let theme = createTheme({
   palette: {
     primary: {
@@ -39,6 +40,9 @@ export default function App() {
           </Route>
           <Route path="/login" element={<Layout />}>
             <Route index element={<Login />} />
+          </Route>
+          <Route path="/register" element={<Layout />}>
+            <Route index element={<Register />} />
           </Route>
         </Routes>
       </BrowserRouter>
