@@ -1,5 +1,4 @@
-import { Box } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState} from "react";
 import { 
   CardActionArea,
   Link,
@@ -11,28 +10,27 @@ import {
   Typography,
   Button,
 } from '@mui/material';
-
+import axios from '../../services/httpService';
 
 export default function New(){
   const url = "http://localhost:3000/news/";
-  
-  const data = [{
-    id: 1,
-    name: "Novedad1",
-    image: "https://www.gestion.org/wp-content/uploads/2019/03/crear-una-ong-paso-a-paso-999x600.jpg"
-  },
-  {
-    id: 2,
-    name: "Novedad2",
-    image: "https://www.gestion.org/wp-content/uploads/2019/03/crear-una-ong-paso-a-paso-999x600.jpg"
+  const [data, setData] = useState(null);
+
+  async function getData(){
+    const res = await axios.get('/news');
+    setData(res.data);
   }
-];
+
+  useEffect(()=>{
+    getData()}
+    ,[]);
+  
   return(
     <Container fluid = "sm"  >
       <Stack  sx={{ maxWidth: 684, mx:"auto" }} direction = "column" alignItems ="Center" justifyContent ="center" spacing = {4}>
         <Typography variant = "h4" sx = {{mt: 3}}>Novedades</Typography>
-        {data.map(element => (
-            <Link href= {url+element.id}>
+        {data?.map(element => (
+            <Link key = {element.id} href= {url+element.id}>
               <Card sx={{ maxWidth: 684 }}>
                 <CardActionArea>
                   <CardMedia
