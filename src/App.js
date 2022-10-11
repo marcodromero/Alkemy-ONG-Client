@@ -5,6 +5,8 @@ import Home from "./routes/public/Home";
 import New from "./routes/public/New";
 import Layout from './components/Layout'
 import Contact from "./routes/public/Contact";
+import DetailNew from "./routes/public/DetailNew";
+
 import Login from "./routes/public/Login";
 import Register from "./routes/public/Register";
 let theme = createTheme({
@@ -34,6 +36,9 @@ export default function App() {
           </Route>
           <Route path="/news" element={<Layout />}>
             <Route index element={<New />} />
+          </Route>
+          <Route path="/news/:id" element={<Layout />}>
+            <Route index element={<DetailNew />} />
           </Route>
           <Route path="/contact" element={<Layout />}>
             <Route index element={<Contact />} />

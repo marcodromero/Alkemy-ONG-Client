@@ -8,6 +8,9 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import httpService from "../../services/httpService";
+import { alert } from "../../features/alert/Alert";
+
 const Contact = () => {
   const initialState = {
     name: "",
@@ -21,24 +24,29 @@ const Contact = () => {
   const { name, email, message } = contact;
   const matches = useMediaQuery("(min-width:600px)");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!name.trim()) {
-      setError("name");
-      setErrorMessage("Este campo es obligatorio");
-      return;
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      if (!name.trim()) {
+        setError("name");
+        setErrorMessage("Este campo es obligatorio");
+        return;
+      }
+      if (!email.trim()) {
+        setError("email");
+        setErrorMessage("Este campo es obligatorio");
+        return;
+      }
+      if (!message.trim()) {
+        setError("message");
+        setErrorMessage("Este campo es obligatorio");
+        return;
+      }
+      await httpService.post("/contacts", contact);
+      alert("Exitoso!", "Se ha enviado tu consulta 😎", "success");
+    } catch (error) {
+      alert("Error!", error.message, "error");
     }
-    if (!email.trim()) {
-      setError("email");
-      setErrorMessage("Este campo es obligatorio");
-      return;
-    }
-    if (!message.trim()) {
-      setError("message");
-      setErrorMessage("Este campo es obligatorio");
-      return;
-    }
-    //Realizar petición http
   };
 
   const handleChange = (e) => {
