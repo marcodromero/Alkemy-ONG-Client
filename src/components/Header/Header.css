@@ -1,8 +1,32 @@
 .header-links {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
-.header:hover{
-    color: #26abe2;
+.header:hover {
+  color: #26abe2;
+}
+
+.header-links {
+  position: relative;
+}
+
+.header-links::before {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: #26abe2;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+}
+
+.header-links:hover:before {
+  width: 100%;
+}
+
+.header-links.active:before {
+  width: 100%;
 }

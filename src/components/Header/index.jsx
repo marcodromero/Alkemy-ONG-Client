@@ -17,21 +17,21 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import ProfileButton from "./ProfileButton";
 import LoginRegister from "./LoginRegister";
-import { Link } from "react-router-dom";
-import './Header.css'
+import { Link, NavLink } from "react-router-dom";
+import "./Header.css";
 const data = [
-  {text : "Inicio", route: "/"},
-  {text : "Nosotros", route: "/about"},
-  {text : "Novedades", route: "/news"},
-  {text : "Testimonios", route: "/testimonials"},
-  {text : "Contacto", route: "/contact"},
-  {text : "Contribuye", route: "/help"}
+  { text: "Inicio", route: "/" },
+  { text: "Nosotros", route: "/about" },
+  { text: "Novedades", route: "/news" },
+  { text: "Testimonios", route: "/testimonials" },
+  { text: "Contacto", route: "/contact" },
+  { text: "Contribuye", route: "/help" },
 ];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   //eslint-disable-next-line
-  const [isLogged, setIsLogged] = React.useState(false)
+  const [isLogged, setIsLogged] = React.useState(false);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -76,9 +76,15 @@ const ResponsiveAppBar = () => {
               }}
             >
               {data.map((page, index) => (
-                <MenuItem key={index} onClick={handleCloseNavMenu}  sx={{textTransform: "capitalize" }}>
+                <MenuItem
+                  key={index}
+                  onClick={handleCloseNavMenu}
+                  sx={{ textTransform: "capitalize" }}
+                >
                   <Typography textAlign="center">
-                    <Link className="header-links" to={page.route}>{page.text}</Link>
+                    <NavLink className="header-links" to={page.route} end>
+                      {page.text}
+                    </NavLink>
                   </Typography>
                 </MenuItem>
               ))}
@@ -90,23 +96,34 @@ const ResponsiveAppBar = () => {
               flexGrow: 1,
             }}
           />
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: 'center'}}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+            }}
+          >
             {data.map((page) => (
               <Button
-              
                 key={page.text}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" , textTransform: "capitalize"}}
-                
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  textTransform: "capitalize",
+                }}
               >
-                <Typography color='black'>
-                  <Link className="header-links" to={page.route}>{page.text}</Link>
+                <Typography color="black">
+                  <NavLink className="header-links" to={page.route} end>
+                    {page.text}
+                  </NavLink>
                 </Typography>
               </Button>
             ))}
           </Box>
-            
-            {isLogged ? <ProfileButton/> : <LoginRegister/>}
+
+          {isLogged ? <ProfileButton /> : <LoginRegister />}
         </Toolbar>
       </Container>
     </AppBar>
