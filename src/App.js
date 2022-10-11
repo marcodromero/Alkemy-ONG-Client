@@ -7,6 +7,10 @@ import Layout from './components/Layout'
 import Contact from "./routes/public/Contact";
 import DetailNew from "./routes/public/DetailNew";
 
+import DetailNew from "./routes/public/DetailNew";
+
+import Login from "./routes/public/Login";
+import Register from "./routes/public/Register";
 let theme = createTheme({
   palette: {
     primary: {
@@ -40,6 +44,12 @@ export default function App() {
           </Route>
           <Route path="/contact" element={<Layout />}>
             <Route index element={<Contact />} />
+          </Route>
+          <Route path="/login" element={<Layout />}>
+            <Route index element={<Login />} />
+          </Route>
+          <Route path="/register" element={<Layout />}>
+            <Route index element={<Register />} />
           </Route>
         </Routes>
       </BrowserRouter>
