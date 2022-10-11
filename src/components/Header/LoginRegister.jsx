@@ -74,9 +74,8 @@ export default function LoginRegister() {
           }}
         >
           {pages.map((page) => (
-            <Link sx={linkNoDecoration} href={page.route}>
+            <Link key={page.text} sx={linkNoDecoration} href={page.route}>
               <MenuItem
-                key={page.text}
                 onClick={handleCloseNavMenu}
                 sx={{ textTransform: "capitalize" }}
               >
