@@ -12,7 +12,7 @@ import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import AccountTreeRoundedIcon from "@mui/icons-material/AccountTreeRounded";
 import Person2RoundedIcon from "@mui/icons-material/Person2Rounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
-import { Button } from "@mui/material";
+import { Button, Link } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -27,6 +27,7 @@ const textFiles = [
   {
     title: "Actividades",
     logo: <PlaylistAddCheckIcon sx={{ fontSize: "50px" }} />,
+    route: '/backoffice/activities'
   },
   { title: "Categorias", logo: <ReorderIcon sx={{ fontSize: "50px" }} /> },
   { title: "Testimonios", logo: <MessageIcon sx={{ fontSize: "50px" }} /> },
@@ -50,7 +51,7 @@ export default function ResponsiveGrid() {
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 2, sm: 2, md: 8 }}
       >
-        {textFiles.map(({ title, logo }, index) => (
+        {textFiles.map(({ title, logo, route }, index) => (
           <Grid item xs={8} sm={4} md={2} sx={{}} key={index}>
             <Item
               sx={{
@@ -92,7 +93,7 @@ export default function ResponsiveGrid() {
                   padding: "0px",
                 }}
               >
-                Ir
+                <Link href={route}>Ir</Link>
               </Button>
             </Item>
           </Grid>
