@@ -7,10 +7,10 @@ import Layout from './components/Layout'
 import Contact from "./routes/public/Contact";
 import DetailNew from "./routes/public/DetailNew";
 
-import DetailNew from "./routes/public/DetailNew";
-
 import Login from "./routes/public/Login";
 import Register from "./routes/public/Register";
+import FullWidthLayout from "./components/Layout/FullWidthLayout";
+import BackOffice from "./routes/private/BackOffice";
 let theme = createTheme({
   palette: {
     primary: {
@@ -36,6 +36,9 @@ export default function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
           </Route>
+          <Route path="/admin" element={<Layout />}>
+            <Route index element={<BackOffice />} />
+          </Route>
           <Route path="/news" element={<Layout />}>
             <Route index element={<New />} />
           </Route>
@@ -48,7 +51,7 @@ export default function App() {
           <Route path="/login" element={<Layout />}>
             <Route index element={<Login />} />
           </Route>
-          <Route path="/register" element={<Layout />}>
+          <Route path="/register" element={<FullWidthLayout />}>
             <Route index element={<Register />} />
           </Route>
         </Routes>
