@@ -11,6 +11,9 @@ import Login from "./routes/public/Login";
 import Register from "./routes/public/Register";
 import FullWidthLayout from "./components/Layout/FullWidthLayout";
 import BackOffice from "./routes/private/BackOffice";
+import Activities from "./routes/public/Activities";
+import ActivityDetails from "./components/Activities/ActivityDetails";
+import NotFound from "./routes/public/NotFound";
 let theme = createTheme({
   palette: {
     primary: {
@@ -36,8 +39,14 @@ export default function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
           </Route>
-          <Route path="/admin" element={<Layout />}>
+          <Route path="/backoffice" element={<Layout />}>
             <Route index element={<BackOffice />} />
+          </Route>
+          <Route path="/backoffice/activities" element={<Layout />}>
+            <Route index element={<Activities />} />
+          </Route>
+          <Route path="/backoffice/activities/:id" element={<Layout />}>
+            <Route index element={<ActivityDetails />} />
           </Route>
           <Route path="/news" element={<Layout />}>
             <Route index element={<New />} />
@@ -53,6 +62,9 @@ export default function App() {
           </Route>
           <Route path="/register" element={<FullWidthLayout />}>
             <Route index element={<Register />} />
+          </Route>
+          <Route path="/404" element={<Layout />}>
+            <Route index element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
