@@ -15,14 +15,16 @@ const Contact = () => {
   const initialState = {
     name: "",
     email: "",
+    phone: "",
     message: "",
   };
   const [contact, setContact] = useState(initialState);
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState("");
 
-  const { name, email, message } = contact;
-  const matches = useMediaQuery("(min-width:600px)");
+  const { name, email, phone, message } = contact;
+  const widthMatches = useMediaQuery("(min-width:600px)");
+  const heightMatches = useMediaQuery("(min-height:600px)");
 
   const handleSubmit = async (e) => {
     try {
@@ -37,13 +39,19 @@ const Contact = () => {
         setErrorMessage("Este campo es obligatorio");
         return;
       }
+      if (!phone.trim()) {
+        setError("phone");
+        setErrorMessage("Este campo es obligatorio");
+        return;
+      }
       if (!message.trim()) {
         setError("message");
         setErrorMessage("Este campo es obligatorio");
         return;
       }
       await httpService.post("/contacts", contact);
-      alert("Exitoso!", "Se ha enviado tu consulta 😎", "success");
+      alert("Exitoso!", "Se ha enviado tu consulta", "success");
+      setContact(initialState);
     } catch (error) {
       alert("Error!", error.message, "error");
     }
@@ -69,7 +77,7 @@ const Contact = () => {
       component="form"
       noValidate
       sx={{
-        paddingTop: 5,
+        paddingTop: heightMatches ? 5 : 2,
       }}
       onSubmit={handleSubmit}
     >
@@ -83,7 +91,7 @@ const Contact = () => {
           xs={12}
           md={7}
           sx={{
-            marginTop: 5,
+            marginTop: heightMatches ? 5 : 2,
           }}
         >
           <TextField
@@ -100,7 +108,7 @@ const Contact = () => {
             helperText={error === "name" && errorMessage}
             value={name}
             onChange={handleChange}
-            size={matches ? "medium" : "small"}
+            size={widthMatches ? "medium" : "small"}
           />
           <TextField
             required
@@ -116,7 +124,23 @@ const Contact = () => {
             helperText={error === "email" && errorMessage}
             value={email}
             onChange={handleChange}
-            size={matches ? "medium" : "small"}
+            size={widthMatches ? "medium" : "small"}
+          />
+          <TextField
+            required
+            fullWidth
+            error={error === "phone" ? true : false}
+            label="Teléfono"
+            variant="outlined"
+            sx={{
+              marginBottom: 3,
+            }}
+            color="neutral"
+            name="phone"
+            helperText={error === "phone" && errorMessage}
+            value={phone}
+            onChange={handleChange}
+            size={widthMatches ? "medium" : "small"}
           />
           <TextField
             required
@@ -124,7 +148,7 @@ const Contact = () => {
             error={error === "message" ? true : false}
             label="Escribe tu consulta..."
             multiline
-            rows={matches ? 7 : 4}
+            rows={widthMatches ? 7 : 4}
             variant="outlined"
             sx={{
               marginBottom: 3,
@@ -134,7 +158,7 @@ const Contact = () => {
             helperText={error === "message" && errorMessage}
             value={message}
             onChange={handleChange}
-            size={matches ? "medium" : "small"}
+            size={widthMatches ? "medium" : "small"}
           />
           <Button
             variant="contained"

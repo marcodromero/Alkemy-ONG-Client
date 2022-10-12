@@ -42,7 +42,7 @@ const ResponsiveAppBar = () => {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="false">
         <Toolbar disableGutters>
           <Logo sx={{ display: { xs: "none", md: "block" } }} />
 
