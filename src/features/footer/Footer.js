@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Container,
     Link,
@@ -7,19 +7,30 @@ import {
     Box,
     Stack
 }from "@mui/material";
+import httpService from '../../services/httpService';
 
-export function Footer(){
-    const data = {
-        title: "ONG",
-        description: "Description",
-        image: "https://image.shutterstock.com/image-vector/foundation-logo-ngo-child-education-260nw-1899054808.jpg",
-        facebook: "https://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Microphone-icon.png",
-        instagram: "https://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Microphone-icon.png",
-        linkedin: "https://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Microphone-icon.png"
-    };
-
+export default function Footer(){
+    const [data, setData] = useState({});
+    useEffect(() => {
+        (async()=> {
+            try{
+                const res = await httpService.get('/organizations')
+                setData(res.data)
+            }catch(e) {
+                console.error(e)
+            }
+        })()
+    })
+    // const data = {
+    //     title: "ONG",
+    //     description: "Description",
+    //     image: "https://image.shutterstock.com/image-vector/foundation-logo-ngo-child-education-260nw-1899054808.jpg",
+    //     facebook: "https://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Microphone-icon.png",
+    //     instagram: "https://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Microphone-icon.png",
+    //     linkedin: "https://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Microphone-icon.png"
+    // };
     return(
-            <Container  sx = {{backgroundColor: "#C0C0C0", display: "flex", flexDirection: "column", mt: "auto", height: "450px"}} maxWidth ={false}>
+            <Container  sx = {{backgroundColor: "#C0C0C0", display: "flex", flexDirection: "column", height: "450px", mt: '1.5rem'}} maxWidth ={false}>
                 <Box sx = {{mt: 2}}>
                     <Divider>
                         <Box>
@@ -42,7 +53,7 @@ export function Footer(){
                         <Box display="flex" justifyContent="center" alignItems="flex-start">
                             <Link sx = {{mx: 2}} href ="https://www.facebook.com"><Box component ="img" sx = {{width: 44, height: 44, }}  src={data.facebook} alt ="facebook"/></Link>
                             <Link sx = {{mx: 2}} href ="https://www.linkedin.com"><Box component ="img" sx = {{width: 44, height: 44, }}  src={data.linkedin} alt ="linkedin"/></Link>
-                            <Link sx = {{mx: 2}} href ="https://www.instagram.com"><Box component ="img" sx = {{width: 44, height: 44, }}  src={data.facebook} alt ="instagram"/></Link>
+                            <Link sx = {{mx: 2}} href ="https://www.instagram.com"><Box component ="img" sx = {{width: 44, height: 44, }}  src={data.instagram} alt ="instagram"/></Link>
                         </Box>
                         <Typography sx = {{mt: 1, textAlign: "center"}}>2022 by Alkemy. All Rights Reserved.</Typography>
                     </Stack>
