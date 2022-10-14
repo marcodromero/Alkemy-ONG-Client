@@ -14,6 +14,7 @@ import BackOffice from "./routes/private/BackOffice";
 import Activities from "./routes/public/Activities";
 import ActivityDetails from "./components/Activities/ActivityDetails";
 import NotFound from "./routes/public/NotFound";
+import About from "./routes/public/About";
 let theme = createTheme({
   palette: {
     primary: {
@@ -62,6 +63,9 @@ export default function App() {
           </Route>
           <Route path="/register" element={<FullWidthLayout />}>
             <Route index element={<Register />} />
+          </Route>
+          <Route path="/about" element={<Layout />}>
+            <Route index element={<About />} />
           </Route>
           <Route path="/404" element={<Layout />}>
             <Route index element={<NotFound />} />
