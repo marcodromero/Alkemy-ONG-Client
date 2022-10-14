@@ -14,8 +14,15 @@ import BackOffice from "./routes/private/BackOffice";
 import Activities from "./routes/public/Activities";
 import ActivityDetails from "./components/Activities/ActivityDetails";
 import NotFound from "./routes/public/NotFound";
+
+
+import SetActivity from "./routes/private/SetActivity";
+
+
 import About from "./routes/public/About";
+
 import Testimonials from "./routes/public/Testimonials";
+
 let theme = createTheme({
   palette: {
     primary: {
@@ -51,6 +58,12 @@ export default function App() {
           <Route path="/backoffice/activities" element={<Layout />}>
             <Route index element={<Activities />} />
           </Route>
+          <Route path="/backoffice/activities/create" element={<Layout />}>
+            <Route index element={<SetActivity />} />
+          </Route>
+          <Route path="/backoffice/activities/edit/:id" element={<Layout />}>
+            <Route index element={<SetActivity />} />
+          </Route>
           <Route path="/backoffice/activities/:id" element={<Layout />}>
             <Route index element={<ActivityDetails />} />
           </Route>
@@ -63,7 +76,7 @@ export default function App() {
           <Route path="/contact" element={<Layout />}>
             <Route index element={<Contact />} />
           </Route>
-          <Route path="/login" element={<Layout />}>
+          <Route path="/login" element={<FullWidthLayout />}>
             <Route index element={<Login />} />
           </Route>
           <Route path="/register" element={<FullWidthLayout />}>
