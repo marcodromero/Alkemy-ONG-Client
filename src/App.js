@@ -18,6 +18,9 @@ import NotFound from "./routes/public/NotFound";
 
 import SetActivity from "./routes/private/SetActivity";
 
+import Users from "./routes/private/Users";
+
+
 
 import About from "./routes/public/About";
 
@@ -66,6 +69,9 @@ export default function App() {
           </Route>
           <Route path="/backoffice/activities/:id" element={<Layout />}>
             <Route index element={<ActivityDetails />} />
+          </Route>
+          <Route path="/backoffice/users" element={<Layout />}>
+            <Route index element={<Users />} />
           </Route>
           <Route path="/news" element={<Layout />}>
             <Route index element={<New />} />
