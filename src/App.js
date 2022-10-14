@@ -15,8 +15,12 @@ import Activities from "./routes/public/Activities";
 import ActivityDetails from "./components/Activities/ActivityDetails";
 import NotFound from "./routes/public/NotFound";
 
+
 import SetActivity from "./routes/private/SetActivity";
 import Users from "./routes/private/Users";
+
+
+import About from "./routes/public/About";
 
 import Testimonials from "./routes/public/Testimonials";
 
@@ -81,6 +85,9 @@ export default function App() {
           </Route>
           <Route path="/register" element={<FullWidthLayout />}>
             <Route index element={<Register />} />
+          </Route>
+          <Route path="/about" element={<Layout />}>
+            <Route index element={<About />} />
           </Route>
           <Route path="/testimonials" element={<Layout />}>
             <Route index element={<Testimonials />} />
