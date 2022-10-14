@@ -1,5 +1,5 @@
 import { Delete, Edit } from "@mui/icons-material";
-import { Button, TableCell, TableRow } from "@mui/material";
+import { Link, TableCell, TableRow } from "@mui/material";
 import React from "react";
 
 export default function UserTableItem({ firstName, lastName, email, id }) {
@@ -9,12 +9,12 @@ export default function UserTableItem({ firstName, lastName, email, id }) {
       <TableCell>{lastName}</TableCell>
       <TableCell>{email}</TableCell>
       <TableCell>
-        <Button color='secondary'>
+        <Link href={`/backoffice/users/${id}`} color='secondary'>
           <Edit />
-        </Button>
-        <Button color='secondary'>
+        </Link>
+        <Link color='secondary'>
           <Delete />
-        </Button>
+        </Link>
       </TableCell>
     </TableRow>
   );
