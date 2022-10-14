@@ -14,8 +14,12 @@ import BackOffice from "./routes/private/BackOffice";
 import Activities from "./routes/public/Activities";
 import ActivityDetails from "./components/Activities/ActivityDetails";
 import NotFound from "./routes/public/NotFound";
+
 import SetActivity from "./routes/private/SetActivity";
 import Users from "./routes/private/Users";
+
+import Testimonials from "./routes/public/Testimonials";
+
 let theme = createTheme({
   palette: {
     primary: {
@@ -26,6 +30,10 @@ let theme = createTheme({
     },
     neutral: {
       main: colors.grey[400]
+    },
+    danger: {
+      main: colors.red[500],
+      dark: colors.red[700]
     }
   }
 })
@@ -73,6 +81,9 @@ export default function App() {
           </Route>
           <Route path="/register" element={<FullWidthLayout />}>
             <Route index element={<Register />} />
+          </Route>
+          <Route path="/testimonials" element={<Layout />}>
+            <Route index element={<Testimonials />} />
           </Route>
           <Route path="/404" element={<Layout />}>
             <Route index element={<NotFound />} />
