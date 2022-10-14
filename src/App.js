@@ -15,6 +15,7 @@ import Activities from "./routes/public/Activities";
 import ActivityDetails from "./components/Activities/ActivityDetails";
 import NotFound from "./routes/public/NotFound";
 import Testimonials from "./routes/public/Testimonials";
+import Testimonial from "./routes/private/Testimonial";
 let theme = createTheme({
   palette: {
     primary: {
@@ -46,6 +47,9 @@ export default function App() {
           </Route>
           <Route path="/backoffice" element={<Layout />}>
             <Route index element={<BackOffice />} />
+          </Route>
+          <Route path="/backoffice/testimonials" element={<Layout />}>
+            <Route index element={<Testimonial />} />
           </Route>
           <Route path="/backoffice/activities" element={<Layout />}>
             <Route index element={<Activities />} />
