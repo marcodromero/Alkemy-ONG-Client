@@ -15,6 +15,7 @@ import Activities from "./routes/public/Activities";
 import ActivityDetails from "./components/Activities/ActivityDetails";
 import NotFound from "./routes/public/NotFound";
 import SetActivity from "./routes/private/SetActivity";
+import Users from "./routes/private/Users";
 let theme = createTheme({
   palette: {
     primary: {
@@ -54,6 +55,9 @@ export default function App() {
           </Route>
           <Route path="/backoffice/activities/:id" element={<Layout />}>
             <Route index element={<ActivityDetails />} />
+          </Route>
+          <Route path="/backoffice/users" element={<Layout />}>
+            <Route index element={<Users />} />
           </Route>
           <Route path="/news" element={<Layout />}>
             <Route index element={<New />} />
