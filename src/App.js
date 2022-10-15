@@ -6,7 +6,7 @@ import New from "./routes/public/New";
 import Layout from './components/Layout'
 import Contact from "./routes/public/Contact";
 import DetailNew from "./routes/public/DetailNew";
-
+import EditUser from "./components/Users/EditUser";
 import Login from "./routes/public/Login";
 import Register from "./routes/public/Register";
 import FullWidthLayout from "./components/Layout/FullWidthLayout";
@@ -26,6 +26,7 @@ import About from "./routes/public/About";
 
 import Testimonials from "./routes/public/Testimonials";
 import Testimonial from "./routes/private/Testimonial";
+import Contacts from "./routes/private/Contacts";
 let theme = createTheme({
   palette: {
     primary: {
@@ -79,6 +80,9 @@ export default function App() {
 
           <Route path="/backoffice/users/:id" element={<Layout />}>
             <Route index element={<EditUser />} />
+          </Route>
+          <Route path="/backoffice/contacts" element={<Layout />}>
+            <Route index element={<Contacts />} />
           </Route>
           <Route path="/news" element={<Layout />}>
             <Route index element={<New />} />
