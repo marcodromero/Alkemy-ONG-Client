@@ -77,6 +77,7 @@ export default function Editor() {
     },
   });
   return (
+
     <Box
       sx={{
         maxWidth: "800px",
@@ -101,6 +102,11 @@ export default function Editor() {
         }}
       >
         Create a new activity
+      </Typography>
+      <Typography align="center" variant="h4" component='h1' sx={{
+        mb: '1.5rem'
+      }}>
+        {id ? 'Edit activity' : 'Create a new activity'}
       </Typography>
       <form onSubmit={formik.handleSubmit}>
         <TextField
