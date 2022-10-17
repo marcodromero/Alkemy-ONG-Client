@@ -93,16 +93,6 @@ export default function Editor() {
         icon={<CheckCircle />}
         show={sucess}
       />
-      <Typography
-        align="center"
-        variant="h4"
-        component="h1"
-        sx={{
-          mb: "1.5rem",
-        }}
-      >
-        Create a new activity
-      </Typography>
       <Typography align="center" variant="h4" component='h1' sx={{
         mb: '1.5rem'
       }}>
