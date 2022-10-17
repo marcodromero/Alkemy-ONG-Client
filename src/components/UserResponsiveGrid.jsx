@@ -23,32 +23,10 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const textFiles = [
-  { title: "Novedades", logo: <NewspaperIcon sx={{ fontSize: "50px" }} /> },
-  {
-    title: "Actividades",
-    logo: <PlaylistAddCheckIcon sx={{ fontSize: "50px" }} />,
-    route: '/backoffice/activities'
-  },
-  { title: "Categorias", logo: <ReorderIcon sx={{ fontSize: "50px" }} /> },
-  { title: "Testimonios", logo: <MessageIcon sx={{ fontSize: "50px" }} /> },
-  {
-    title: "Organizacion",
-    logo: <ApartmentRoundedIcon sx={{ fontSize: "50px" }} />,
-  },
-  {
-    title: "Slides",
-    logo: <AccountTreeRoundedIcon sx={{ fontSize: "50px" }} />,
-  },
-  { title: "Usuarios", logo: <Person2RoundedIcon sx={{ fontSize: "50px" }} /> },
-
-  { title: "Miembros", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} /> }, 
-  { title: "Contactos", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/contacts' },
-
   { title: "Perfil", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }}/>, route: '/profile' },
-
 ];
 
-export default function ResponsiveGrid() {
+export default function UserResponsiveGrid() {
   return (
     <Box sx={{ flexGrow: 1, width: "80%", margin: "auto", paddingTop: "5%" }}>
       <Grid
