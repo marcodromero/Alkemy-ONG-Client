@@ -20,15 +20,8 @@ export default function Footer(){
                 console.error(e)
             }
         })()
-    })
-    // const data = {
-    //     title: "ONG",
-    //     description: "Description",
-    //     image: "https://image.shutterstock.com/image-vector/foundation-logo-ngo-child-education-260nw-1899054808.jpg",
-    //     facebook: "https://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Microphone-icon.png",
-    //     instagram: "https://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Microphone-icon.png",
-    //     linkedin: "https://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Microphone-icon.png"
-    // };
+    }, [])
+   
     return(
             <Container  sx = {{backgroundColor: "#C0C0C0", display: "flex", flexDirection: "column", height: "450px", mt: '1.5rem'}} maxWidth ={false}>
                 <Box sx = {{mt: 2}}>
