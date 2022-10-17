@@ -71,7 +71,7 @@ export default function Editor() {
       <Typography align="center" variant="h4" component='h1' sx={{
         mb: '1.5rem'
       }}>
-        Create a new activity
+        {id ? 'Edit activity' : 'Create a new activity'}
       </Typography>
       <form onSubmit={formik.handleSubmit}>
         <TextField
