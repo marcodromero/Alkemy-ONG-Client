@@ -41,7 +41,8 @@ const textFiles = [
   },
   { title: "Usuarios", logo: <Person2RoundedIcon sx={{ fontSize: "50px" }} /> },
 
-  { title: "Miembros", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} /> }, 
+  { title: "Miembros", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} /> },
+  { title: "Perfil", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }}/>, route: '/profile' },
   { title: "Contactos", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/contacts' },
 
   { title: "Perfil", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }}/>, route: '/profile' },
