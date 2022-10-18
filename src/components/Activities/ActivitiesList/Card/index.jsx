@@ -1,16 +1,26 @@
 import { Delete, Edit } from '@mui/icons-material'
-import { Box, colors, Link, Typography } from '@mui/material'
+import { Box, Button, colors, Link, Typography } from '@mui/material'
 import React from 'react'
-
+import { DeleteAlert } from '../../../../features/alert/Alert'
+import httpService from '../../../../services/httpService'
 export default function ActivityCard({name, image, content , id}) {
+  const [showDeleteWarning, setShowDeleteWarning] = React.useState(false)
+  
+  const initDelete = () => {
+    setShowDeleteWarning(true)
+  }
   return (
-    <Link sx={{
-      textDecoration: 'none',
-      color: 'unset'
+    <>
+    <DeleteAlert
+    show={showDeleteWarning}
+    onConfirm={() => {
+      httpService.delete(`/activities/${id}`)
+      setShowDeleteWarning(false)
+      window.location.reload()
     }}
-      href={`${id}`}
-    >
-    
+    onCancel={() => setShowDeleteWarning(false)}
+    text='¿Esta seguro que desea eliminar esta actividad?'
+    />
     <Box sx={{
       margin: '1rem',
       '& .activity-card-img': {
@@ -19,14 +29,14 @@ export default function ActivityCard({name, image, content , id}) {
         objectFit: 'cover'
       }
     }}>
-      <Box sx={{
-        display: 'flex',
-        width: '100%',
-        justifyContent: 'flex-end',
+       <Box sx={{
+         display: 'flex',
+         width: '100%',
+         justifyContent: 'flex-end',
       }}>
         <Link 
         href={`activities/edit/${id}`}
-         sx={{
+        sx={{
           
           p: '.5rem',
           color: 'unset',
@@ -38,20 +48,27 @@ export default function ActivityCard({name, image, content , id}) {
         }} >
           <Edit/>
         </Link>
-        <Link 
-        href={'#'}
-         sx={{
-          p: '.5rem',
+        <Button 
+        onClick={() => initDelete()}
+        sx={{
+          pb: '.5rem',
           color: 'unset',
-          textDecoration: 'none',
           transition: '300ms ease-in-out',
           '&:hover': {
             color: colors.blue[500],
           }
         }} >
           <Delete/>
-        </Link>
+        </Button>
       </Box>
+       <Link sx={{
+         textDecoration: 'none',
+      color: 'unset'
+    }}
+    href={`${id}`}
+    >
+    
+     
       
         <img className="activity-card-img" src={image} alt={name} />
       
@@ -64,7 +81,8 @@ export default function ActivityCard({name, image, content , id}) {
         {content}
       </Typography>
       
-    </Box>
     </Link>
+    </Box>
+    </>
   )
 }
