@@ -29,4 +29,20 @@ export const alert = (title, text, icon) => {
     });
 }
 
+export function DeleteAlert({ title, text, show, onConfirm, onCancel}){
+    return (
+        <SweetAlert
+            type='warning'
+            title={title}
+            text={text}
+            show={show}
+            showCancelButton={true}
+            cancelButtonText="Cancelar"
+            confirmButtonText="Eliminar"
+            onConfirm={onConfirm}
+            onCancel={onCancel}
+        />
+    )
+}
+
 
