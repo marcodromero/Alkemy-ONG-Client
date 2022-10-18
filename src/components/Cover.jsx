@@ -15,6 +15,7 @@ export default function Cover() {
       <Card
         sx={{
           display: "flex",
+          boxSizing: 'border-box',
           border: "2px solid #FFFFFF",
         outline: "none",
           width: "100%",

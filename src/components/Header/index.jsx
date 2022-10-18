@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect} from 'react'
 import {
   AppBar,
   Box,
@@ -11,6 +11,7 @@ import {
   MenuItem,
 } from "@mui/material";
 
+import httpService from '../../services/httpService';
 import Logo from "./Logo";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -31,7 +32,7 @@ const data = [
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   //eslint-disable-next-line
-  const [isLogged, setIsLogged] = React.useState(false);
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -39,10 +40,32 @@ const ResponsiveAppBar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+  const [isLogged, setIsLogged] = React.useState(false);
+  const [user, setUser] = React.useState(null);
+  const [isAdmin, setIsAdmin] = React.useState(false);
+
+  const getData = React.useCallback(async () => {
+    try{
+      const response = await httpService.get('auth/me');
+      setUser(response.data.user);
+      setIsLogged(true);
+      if(response.data.user.roleId === 1){
+        setIsAdmin(true);
+      }
+      
+    }catch(e){
+      setIsLogged(false);
+      console.log(e);
+    }
+
+  }, []);
+  useEffect(() => {
+    getData();
+  }, [getData])
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar sx={{ mb: "1rem" }} position="static">
+      <Container maxWidth="false">
         <Toolbar disableGutters>
           <Logo sx={{ display: { xs: "none", md: "block" } }} />
 
@@ -123,7 +146,7 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
 
-          {isLogged ? <ProfileButton /> : <LoginRegister />}
+          {isLogged ? <ProfileButton admin={isAdmin} user={user}/> : <LoginRegister />}
         </Toolbar>
       </Container>
     </AppBar>

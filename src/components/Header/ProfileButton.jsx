@@ -6,9 +6,27 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import { Link } from '@mui/material';
+const adminSettings = [
 
-export default function ProfileButton() {
+  {
+    text: 'Backoffice',
+    route: '/backoffice'
+  }
+]
+const userSettings = [
+  {
+    text: 'Profile',
+    route: '/profile',
+  },
+  {
+    text: 'Logout',
+    route: '/logout'
+  }
+]
+// const userSettings = ["Profile", "Logout"];
+
+export default function ProfileButton({admin, user}) {
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
       };
@@ -20,7 +38,7 @@ export default function ProfileButton() {
     <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={user.image} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -39,11 +57,21 @@ export default function ProfileButton() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {admin && adminSettings.map((setting, i) => (
+                  <Link key={i} href={setting.route} sx={{color: 'black', textDecoration: 'none'}}>
+                <MenuItem  onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting.text}</Typography>
                 </MenuItem>
+                  </Link>
               ))}
+              {userSettings.map((setting, i) => (
+                  <Link key={i} href={setting.route} sx={{color: 'black', textDecoration: 'none'}}>
+                <MenuItem  onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting.text}</Typography>
+                </MenuItem>
+                  </Link>
+              ))}
+              
             </Menu>
           </Box>
   )

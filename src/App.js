@@ -7,10 +7,29 @@ import Layout from './components/Layout'
 import Contact from "./routes/public/Contact";
 import DetailNew from "./routes/public/DetailNew";
 import NewsForm from "./routes/private/NewsForm";
+
+import EditUser from './components/Users/EditUser'
+
 import Login from "./routes/public/Login";
 import Register from "./routes/public/Register";
 import FullWidthLayout from "./components/Layout/FullWidthLayout";
 import BackOffice from "./routes/private/BackOffice";
+import Activities from "./routes/public/Activities";
+import ActivityDetails from "./components/Activities/ActivityDetails";
+import NotFound from "./routes/public/NotFound";
+import News from "./routes/private/News";
+
+import SetActivity from "./routes/private/SetActivity";
+
+import Users from "./routes/private/Users";
+
+
+
+import About from "./routes/public/About";
+
+import Testimonials from "./routes/public/Testimonials";
+import Testimonial from "./routes/private/Testimonial";
+import Contacts from "./routes/private/Contacts";
 let theme = createTheme({
   palette: {
     primary: {
@@ -21,6 +40,10 @@ let theme = createTheme({
     },
     neutral: {
       main: colors.grey[400]
+    },
+    danger: {
+      main: colors.red[500],
+      dark: colors.red[700]
     }
   }
 })
@@ -45,6 +68,34 @@ export default function App() {
           <Route path="/backoffice/news-form/:id" element={<Layout />}>
             <Route index element={<NewsForm />} />
           </Route>
+          <Route path="/backoffice/testimonials" element={<Layout />}>
+            <Route index element={<Testimonial />} />
+          </Route>
+          <Route path="/backoffice/activities" element={<Layout />}>
+            <Route index element={<Activities />} />
+          </Route>
+          <Route path="/backoffice/activities/create" element={<Layout />}>
+            <Route index element={<SetActivity />} />
+          </Route>
+          <Route path="/backoffice/activities/edit/:id" element={<Layout />}>
+            <Route index element={<SetActivity />} />
+          </Route>
+          <Route path="/backoffice/activities/:id" element={<Layout />}>
+            <Route index element={<ActivityDetails />} />
+          </Route>
+          <Route path="/backoffice/news" element={<Layout />}>
+            <Route index element={<News />} />
+          </Route>
+          <Route path="/backoffice/users" element={<Layout />}>
+            <Route index element={<Users />} />
+          </Route>
+
+          <Route path="/backoffice/users/:id" element={<Layout />}>
+            <Route index element={<EditUser />} />
+          </Route>
+          <Route path="/backoffice/contacts" element={<Layout />}>
+            <Route index element={<Contacts />} />
+          </Route>
           <Route path="/news" element={<Layout />}>
             <Route index element={<New />} />
           </Route>
@@ -54,11 +105,20 @@ export default function App() {
           <Route path="/contact" element={<Layout />}>
             <Route index element={<Contact />} />
           </Route>
-          <Route path="/login" element={<Layout />}>
+          <Route path="/login" element={<FullWidthLayout />}>
             <Route index element={<Login />} />
           </Route>
           <Route path="/register" element={<FullWidthLayout />}>
             <Route index element={<Register />} />
+          </Route>
+          <Route path="/about" element={<Layout />}>
+            <Route index element={<About />} />
+          </Route>
+          <Route path="/testimonials" element={<Layout />}>
+            <Route index element={<Testimonials />} />
+          </Route>
+          <Route path="/404" element={<Layout />}>
+            <Route index element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
