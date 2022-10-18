@@ -1,5 +1,6 @@
 import { Delete, Edit } from '@mui/icons-material'
 import { Box, colors, Link, Typography } from '@mui/material'
+import parse from 'html-react-parser'
 import React from 'react'
 
 export default function ActivityCard({name, image, content , id}) {
@@ -8,7 +9,7 @@ export default function ActivityCard({name, image, content , id}) {
       textDecoration: 'none',
       color: 'unset'
     }}
-      href={`${id}`}
+      href={`/backoffice/activities/${id}`}
     >
     
     <Box sx={{
@@ -58,11 +59,11 @@ export default function ActivityCard({name, image, content , id}) {
       <Typography variant='h5' component='h3'>
         {name}
       </Typography>
-      <Typography
+      <Box
       sx={{wordWrap: 'break-word'}}
       >
-        {content}
-      </Typography>
+        {parse(content)}
+      </Box>
       
     </Box>
     </Link>
