@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Typography } from "@mui/material";
+import parser from 'html-react-parser'
 export default function ActivityWrapper({name, image, content}) {
   return (
     <Box>
@@ -15,12 +16,12 @@ export default function ActivityWrapper({name, image, content}) {
       <Typography variant="h4" component="h1" align="center">
         {name}
       </Typography>
-      <Typography component='p' sx={{
+      <Box sx={{
         maxWidth: '900px',
         m: '0 auto'
       }}>
-        {content}
-      </Typography>
+        {parser(content)}
+      </Box>
     </Box>
   )
 }
