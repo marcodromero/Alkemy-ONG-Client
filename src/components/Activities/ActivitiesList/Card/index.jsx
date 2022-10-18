@@ -1,4 +1,5 @@
-import { Box, Link, Typography } from '@mui/material'
+import { Delete, Edit } from '@mui/icons-material'
+import { Box, colors, Link, Typography } from '@mui/material'
 import React from 'react'
 
 export default function ActivityCard({name, image, content , id}) {
@@ -7,7 +8,7 @@ export default function ActivityCard({name, image, content , id}) {
       textDecoration: 'none',
       color: 'unset'
     }}
-      href={`activities/${id}`}
+      href={`${id}`}
     >
     
     <Box sx={{
@@ -18,6 +19,39 @@ export default function ActivityCard({name, image, content , id}) {
         objectFit: 'cover'
       }
     }}>
+      <Box sx={{
+        display: 'flex',
+        width: '100%',
+        justifyContent: 'flex-end',
+      }}>
+        <Link 
+        href={`activities/edit/${id}`}
+         sx={{
+          
+          p: '.5rem',
+          color: 'unset',
+          textDecoration: 'none',
+          transition: '300ms ease-in-out',
+          '&:hover': {
+            color: colors.blue[500],
+          }
+        }} >
+          <Edit/>
+        </Link>
+        <Link 
+        href={'#'}
+         sx={{
+          p: '.5rem',
+          color: 'unset',
+          textDecoration: 'none',
+          transition: '300ms ease-in-out',
+          '&:hover': {
+            color: colors.blue[500],
+          }
+        }} >
+          <Delete/>
+        </Link>
+      </Box>
       
         <img className="activity-card-img" src={image} alt={name} />
       
@@ -29,6 +63,7 @@ export default function ActivityCard({name, image, content , id}) {
       >
         {content}
       </Typography>
+      
     </Box>
     </Link>
   )
