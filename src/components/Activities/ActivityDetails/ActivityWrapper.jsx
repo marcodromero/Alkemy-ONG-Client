@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Typography } from "@mui/material";
+import parser from 'html-react-parser';
 export default function ActivityWrapper({name, image, content}) {
   return (
     <Box>
@@ -19,7 +20,7 @@ export default function ActivityWrapper({name, image, content}) {
         maxWidth: '900px',
         m: '0 auto'
       }}>
-        {content}
+        {parser(content)}
       </Typography>
     </Box>
   )

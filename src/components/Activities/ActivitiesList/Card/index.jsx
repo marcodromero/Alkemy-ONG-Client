@@ -2,6 +2,7 @@ import { Delete, Edit } from '@mui/icons-material'
 import { Box, Button, colors, Link, Typography } from '@mui/material'
 import React from 'react'
 import { DeleteAlert } from '../../../../features/alert/Alert'
+import parser from 'html-react-parser'
 import httpService from '../../../../services/httpService'
 export default function ActivityCard({name, image, content , id}) {
   const [showDeleteWarning, setShowDeleteWarning] = React.useState(false)
@@ -35,7 +36,7 @@ export default function ActivityCard({name, image, content , id}) {
          justifyContent: 'flex-end',
       }}>
         <Link 
-        href={`activities/edit/${id}`}
+        href={`/backoffice/activities/edit/${id}`}
         sx={{
           
           p: '.5rem',
@@ -65,7 +66,7 @@ export default function ActivityCard({name, image, content , id}) {
          textDecoration: 'none',
       color: 'unset'
     }}
-    href={`${id}`}
+    href={`/backoffice/activities/${id}`}
     >
     
      
@@ -75,11 +76,11 @@ export default function ActivityCard({name, image, content , id}) {
       <Typography variant='h5' component='h3'>
         {name}
       </Typography>
-      <Typography
+      <Box
       sx={{wordWrap: 'break-word'}}
       >
-        {content}
-      </Typography>
+        {parser(content)}
+      </Box>
       
     </Link>
     </Box>
