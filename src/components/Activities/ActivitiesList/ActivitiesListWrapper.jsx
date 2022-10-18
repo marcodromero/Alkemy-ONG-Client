@@ -1,5 +1,6 @@
 import { Add, Create } from '@mui/icons-material'
-import { Box, colors, Link } from '@mui/material'
+import { Box, Button, colors, Link } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add';
 import React from 'react'
 import Card from './Card'
 export default function ActivitiesListWrapper({data}) {
@@ -23,9 +24,9 @@ export default function ActivitiesListWrapper({data}) {
           }
         }}
         href="/backoffice/activities/create">
-          <Add sx={{
-            fontSize: '2rem',
-          }}/>
+          <Button variant="contained" color="success" endIcon={<AddIcon />}>
+              Agregar
+            </Button>
         </Link>
       </Box>
       <Box

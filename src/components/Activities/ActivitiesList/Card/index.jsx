@@ -1,6 +1,7 @@
 import { Delete, Edit } from '@mui/icons-material'
-import { Box, Button, colors, Link, Typography } from '@mui/material'
+import { Box, Button, colors, Link, Paper, Typography } from '@mui/material'
 import React from 'react'
+import AddIcon from '@mui/icons-material/Add';
 import { DeleteAlert } from '../../../../features/alert/Alert'
 import parser from 'html-react-parser'
 import httpService from '../../../../services/httpService'
@@ -22,8 +23,9 @@ export default function ActivityCard({name, image, content , id}) {
     onCancel={() => setShowDeleteWarning(false)}
     text='¿Esta seguro que desea eliminar esta actividad?'
     />
-    <Box sx={{
-      margin: '1rem',
+    <Paper elevation={4} sx={{
+      margin: '.5rem',
+      pb: '1rem',
       '& .activity-card-img': {
         width: '100%',
         aspectRatio: '3/2',
@@ -73,17 +75,25 @@ export default function ActivityCard({name, image, content , id}) {
       
         <img className="activity-card-img" src={image} alt={name} />
       
-      <Typography variant='h5' component='h3'>
+      <Typography
+      sx={{
+        pl: '.5rem',
+        pr: '.5rem',
+      }}
+       variant='h5' component='h3'>
         {name}
       </Typography>
       <Box
-      sx={{wordWrap: 'break-word'}}
+      sx={{wordWrap: 'break-word',
+      pl: '.5rem',
+      pr: '.5rem',
+    }}
       >
         {parser(content)}
       </Box>
       
     </Link>
-    </Box>
+    </Paper>
     </>
   )
 }
