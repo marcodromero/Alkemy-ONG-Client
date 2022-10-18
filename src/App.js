@@ -6,7 +6,7 @@ import New from "./routes/public/New";
 import Layout from './components/Layout'
 import Contact from "./routes/public/Contact";
 import DetailNew from "./routes/public/DetailNew";
-
+import NewsForm from "./routes/private/NewsForm";
 import Login from "./routes/public/Login";
 import Register from "./routes/public/Register";
 import FullWidthLayout from "./components/Layout/FullWidthLayout";
@@ -36,8 +36,14 @@ export default function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
           </Route>
-          <Route path="/admin" element={<Layout />}>
+          <Route path="/backoffice" element={<Layout />}>
             <Route index element={<BackOffice />} />
+          </Route>
+          <Route path="/backoffice/news-form" element={<Layout />}>
+            <Route index element={<NewsForm />} />
+          </Route>
+          <Route path="/backoffice/news-form/:id" element={<Layout />}>
+            <Route index element={<NewsForm />} />
           </Route>
           <Route path="/news" element={<Layout />}>
             <Route index element={<New />} />
