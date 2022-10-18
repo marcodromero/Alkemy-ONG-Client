@@ -12,6 +12,7 @@ import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import AccountTreeRoundedIcon from "@mui/icons-material/AccountTreeRounded";
 import Person2RoundedIcon from "@mui/icons-material/Person2Rounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
+import ContactsIcon from '@mui/icons-material/Contacts';
 import { Button, Link } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -23,14 +24,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const textFiles = [
-  { title: "Novedades", logo: <NewspaperIcon sx={{ fontSize: "50px" }} /> },
+  { title: "Perfil", logo: <Person2RoundedIcon sx={{ fontSize: "50px" }}/>, route: '/profile' },
+  { title: "Novedades", logo: <NewspaperIcon sx={{ fontSize: "50px" }} /> , route: '/backoffice/news' },
   {
     title: "Actividades",
     logo: <PlaylistAddCheckIcon sx={{ fontSize: "50px" }} />,
     route: '/backoffice/activities'
   },
   { title: "Categorias", logo: <ReorderIcon sx={{ fontSize: "50px" }} /> },
-  { title: "Testimonios", logo: <MessageIcon sx={{ fontSize: "50px" }} /> },
+  { title: "Testimonios", logo: <MessageIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/testimonials' },
   {
     title: "Organizacion",
     logo: <ApartmentRoundedIcon sx={{ fontSize: "50px" }} />,
@@ -39,14 +41,11 @@ const textFiles = [
     title: "Slides",
     logo: <AccountTreeRoundedIcon sx={{ fontSize: "50px" }} />,
   },
-  { title: "Usuarios", logo: <Person2RoundedIcon sx={{ fontSize: "50px" }} /> },
+  { title: "Usuarios", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/users' },
 
-  { title: "Miembros", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} /> },
-  { title: "Perfil", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }}/>, route: '/profile' },
-  { title: "Contactos", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/contacts' },
-
-  { title: "Perfil", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }}/>, route: '/profile' },
-
+  { title: "Miembros", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/members' },
+  
+  { title: "Contactos", logo: <ContactsIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/contacts' },
 ];
 
 export default function ResponsiveGrid() {
