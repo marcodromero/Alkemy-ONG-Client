@@ -3,23 +3,21 @@ import SweetAlert from 'sweetalert2-react';
 import Swal from "sweetalert2";
 
 
-export function Alert({ type, title, text, show , cb}) {
+export function Alert({ type, title, text, show, methodConfirm}) {
     return (
         <SweetAlert
             type={type}
             title={title}
             text={text}
             show={show}
-            onConfirm={() => {
-                cb()
-            }}
-
+            onConfirm= {methodConfirm}
         />
+
     );
 }
 
-export const alert = (title, text, icon ,cb) => {
-    Swal.fire({
+export const alert = (title, text, icon) => {
+   Swal.fire({
         title: `${title}`,
         toast: true,
         position: "top-end",
@@ -27,7 +25,7 @@ export const alert = (title, text, icon ,cb) => {
         timer: 3000,
         text: `${text}`,
         icon: `${icon}`,
-        showConfirmButton: false,
+        showConfirmButton: true,
     });
 }
 

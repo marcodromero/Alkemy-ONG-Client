@@ -16,7 +16,7 @@ import BackOffice from "./routes/private/BackOffice";
 import Activities from "./routes/public/Activities";
 import ActivityDetails from "./components/Activities/ActivityDetails";
 import NotFound from "./routes/public/NotFound";
-
+import News from "./routes/private/News";
 
 import SetActivity from "./routes/private/SetActivity";
 
@@ -75,6 +75,9 @@ export default function App() {
           </Route>
           <Route path="/backoffice/activities/:id" element={<Layout />}>
             <Route index element={<ActivityDetails />} />
+          </Route>
+          <Route path="/backoffice/news" element={<Layout />}>
+            <Route index element={<News />} />
           </Route>
           <Route path="/backoffice/users" element={<Layout />}>
             <Route index element={<Users />} />
