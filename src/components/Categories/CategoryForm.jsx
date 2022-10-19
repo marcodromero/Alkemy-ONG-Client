@@ -8,7 +8,7 @@ import httpService from "../../services/httpService";
 const validationSchema = yup.object({
   name: yup.string("Enter category name").required("Name is required"),
   description: yup
-    .string("Enter category description").min(10)
+    .string("Enter category description").min(10,"Please enter min 10 characters")
     .required("Description required"),
   
 });
