@@ -29,7 +29,7 @@ const textFiles = [
     logo: <PlaylistAddCheckIcon sx={{ fontSize: "50px" }} />,
     route: '/backoffice/activities'
   },
-  { title: "Categorias", logo: <ReorderIcon sx={{ fontSize: "50px" }} /> },
+  { title: "Categorias", logo: <ReorderIcon sx={{ fontSize: "50px" }} />,route:'/backoffice/categories' },
   { title: "Testimonios", logo: <MessageIcon sx={{ fontSize: "50px" }} /> },
   {
     title: "Organizacion",

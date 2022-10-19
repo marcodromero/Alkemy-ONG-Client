@@ -29,6 +29,7 @@ import About from "./routes/public/About";
 import Testimonials from "./routes/public/Testimonials";
 import Testimonial from "./routes/private/Testimonial";
 import Contacts from "./routes/private/Contacts";
+import Categorie from "./routes/private/Categorie";
 let theme = createTheme({
   palette: {
     primary: {
@@ -81,6 +82,9 @@ export default function App() {
           </Route>
           <Route path="/backoffice/users" element={<Layout />}>
             <Route index element={<Users />} />
+          </Route>
+          <Route path="/backoffice/categories" element={<Layout />}>
+            <Route index element={<Categorie />} />
           </Route>
 
           <Route path="/backoffice/users/:id" element={<Layout />}>
