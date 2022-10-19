@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import NewCard from "./NewCard";
+import { useNavigate } from "react-router-dom";
 
 const news = [
   {
@@ -23,6 +24,7 @@ const news = [
 ];
 
 const LastNews = () => {
+  const navigate = useNavigate()
   return (
     <>
       <Typography
@@ -39,6 +41,7 @@ const LastNews = () => {
       >
         Ultimas novedades
         <Button
+          onClick={() => navigate('/news')}
           variant="oultine"
           sx={{ textTransform: "capitalize", marginLeft: "auto" }}
         >
