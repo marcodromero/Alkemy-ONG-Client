@@ -8,9 +8,9 @@ import httpService from "../../services/httpService";
 const validationSchema = yup.object({
   name: yup.string("Enter category name").required("Name is required"),
   description: yup
-    .string("Enter category description")
+    .string("Enter category description").min(10)
     .required("Description required"),
-  image: yup.string("Enter URL image ").required("URL is required"),
+  
 });
 
 export default function CategoryForm({ categoryId }) {
