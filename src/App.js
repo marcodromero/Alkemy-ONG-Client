@@ -6,6 +6,7 @@ import New from "./routes/public/New";
 import Layout from './components/Layout'
 import Contact from "./routes/public/Contact";
 import DetailNew from "./routes/public/DetailNew";
+import NewsForm from "./routes/private/NewsForm";
 
 import EditUser from './components/Users/EditUser'
 
@@ -61,6 +62,12 @@ export default function App() {
           </Route>
           <Route path="/backoffice" element={<Layout />}>
             <Route index element={<BackOffice />} />
+          </Route>
+          <Route path="/backoffice/news-form" element={<Layout />}>
+            <Route index element={<NewsForm />} />
+          </Route>
+          <Route path="/backoffice/news-form/:id" element={<Layout />}>
+            <Route index element={<NewsForm />} />
           </Route>
           <Route path="/backoffice/testimonials" element={<Layout />}>
             <Route index element={<Testimonial />} />

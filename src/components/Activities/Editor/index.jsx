@@ -87,7 +87,7 @@ export default function Editor() {
     >
       <Alert
         type={"success"}
-        cb={handleAlertClick}
+        methodConfirm={handleAlertClick}
         title={"Sucess"}
         text={"Sucess"}
         icon={<CheckCircle />}
