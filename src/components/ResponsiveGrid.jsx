@@ -13,7 +13,8 @@ import AccountTreeRoundedIcon from "@mui/icons-material/AccountTreeRounded";
 import Person2RoundedIcon from "@mui/icons-material/Person2Rounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { Button, Link } from "@mui/material";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -90,6 +91,7 @@ export default function ResponsiveGrid() {
               >
                 {logo}
               </Box>
+              <Link to={route}>
               <Button
                 variant="contained"
                 sx={{
@@ -99,9 +101,9 @@ export default function ResponsiveGrid() {
                   height: "20px",
                   padding: "0px",
                 }}
-              >
-                <Link href={route}>Ir</Link>
+              >Ir
               </Button>
+                </Link>
             </Item>
           </Grid>
         ))}
