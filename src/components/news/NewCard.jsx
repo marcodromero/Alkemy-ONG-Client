@@ -3,30 +3,36 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { CardMedia } from "@mui/material";
+import { CardMedia, colors } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-
-
-export default function NewCard({  image }) {
+export default function NewCard({  image, name, content, id }) {
+  const navigate = useNavigate();
   return (
     <Card
+    elevation={8}
       sx={{
-        Width: "45%",
+        Width: "100%",
         Height: 233,
-        maxWidth: "45%",
+        maxWidth: "500px",
         maxHeight: 233,
         padding: "2%",
-        backgroundColor: "#7E9AFD",
-        border: "2px solid #0038FF",
+        mt: '1%',
+        mb: '1%',
         display: "flex",
         borderRadius: 5,
         alignItems: "center",
         justifyContent: "center",
+        '@media (max-width: 550px)': {
+          flexDirection: 'column',
+          height: '500px',
+          maxHeight: '500px',
+        }
       }}
     >
       <CardMedia
         component={"img"}
-        image={process.env.PUBLIC_URL + image}
+        image={image}
         alt="newImage"
         sx={{ width: 196, height: 201, borderRadius: 5 }}
       />
@@ -38,19 +44,25 @@ export default function NewCard({  image }) {
           height: 201,
         }}
       >
+        <Typography variant="h5">
+          {name}
+        </Typography>
         <Typography sx={{ fontSize: 12, color: "#000000" }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing
-          proin risus cursus elementum sed massa cras sapien placerat. Diam
-          integer congue id amet proin. Ullamcorper nibh sit vitae ac
+          {content}
         </Typography>
         <Button
+          onClick={() =>  navigate("news/"+id)}
           variant="contained"
           sx={{
             marginTop: "auto",
             width: "100%",
-            backgroundColor: "#0038FF",
+            backgroundColor: colors.lightBlue[500],
             color: "#FFFFFF",
             fontSize: 12,
+            '&:hover': {
+              backgroundColor: colors.lightBlue[700],
+              color: "#FFFFFF",
+            },
           }}
         >
           Ver Novedad

@@ -10,7 +10,6 @@ import {
   Paper,
   Typography,
   useMediaQuery,
-  tableCellClasses,
   Tooltip,
   IconButton,
   Box,
@@ -19,23 +18,14 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import CreateIcon from "@mui/icons-material/Create";
 import AddIcon from "@mui/icons-material/Add";
-import { styled } from "@mui/material/styles";
+import { StyledTableCell } from "../../features/styles";
 import Axios from "../../services/httpService";
 import Swal from "sweetalert2";
 
 export default function News(){
     const [news, setNews] = useState([]);
   
-    const StyledTableCell = styled(TableCell)(({ theme }) => ({
-      [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "#ffc168",
-        color: theme.palette.common.white,
-      },
-      [`&.${tableCellClasses.body}`]: {
-        fontSize: 14,
-      },
-    }));
-
+    
     const showAlert = (id)=>{
       Swal.fire({
         title: '¿Quieres eliminar la novedad?',
@@ -108,7 +98,9 @@ export default function News(){
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.image}</TableCell>
+                  <TableCell>
+                    <img src={row.image} alt={row.name} height="100px" />
+                  </TableCell>
                   <TableCell>{row.createdAt}</TableCell>
                   <TableCell>
                     <Tooltip title="Eliminar">
