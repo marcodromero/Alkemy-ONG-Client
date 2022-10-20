@@ -30,12 +30,13 @@ const Testimonials = () => {
   };
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" sx={{ marginBottom: widthMatches ? 10 : 8 }}>
       <Typography
         component="h2"
         variant="h4"
         sx={{ textAlign: "center" }}
-        mb={widthMatches ? 4 : 2}
+        mt={widthMatches ? 5 : 3}
+        mb={widthMatches ? 5 : 3}
       >
         Testimonios
       </Typography>
