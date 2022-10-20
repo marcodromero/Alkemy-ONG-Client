@@ -89,6 +89,7 @@ const About = () => {
               width: widthMatches ? 280 : 250,
               height: widthMatches ? 300 : 280,
               borderRadius: "8px",
+              objectFit: "cover"
             }}
           />
         </Grid>
