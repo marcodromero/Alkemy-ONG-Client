@@ -3,7 +3,6 @@ import { Box } from "@mui/material";
 
 import ResponsiveGrid from "../../components/ResponsiveGrid";
 
-
 const BackOffice = () => {
   
   return (
