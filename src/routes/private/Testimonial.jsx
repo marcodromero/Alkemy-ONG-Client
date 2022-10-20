@@ -53,6 +53,9 @@ const Testimonial = () => {
 
   const handleDelete = async (id) => {
     await httpService.delete(`/testimonials/${id}`);
+    setTestimonials(
+      testimonials.filter((testimonial) => testimonial.id !== id)
+    );
   };
 
   return (

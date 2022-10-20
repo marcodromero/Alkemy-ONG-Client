@@ -34,6 +34,7 @@ export default function ProfileButton({admin, user}) {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src={user?.image } />
+
               </IconButton>
             </Tooltip>
             <Menu
