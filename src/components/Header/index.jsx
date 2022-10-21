@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from "react";
 import {
   AppBar,
   Box,
@@ -11,7 +11,7 @@ import {
   MenuItem,
 } from "@mui/material";
 
-import httpService from '../../services/httpService';
+import httpService from "../../services/httpService";
 import Logo from "./Logo";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -26,7 +26,6 @@ const data = [
   { text: "Novedades", route: "/news" },
   { text: "Testimonios", route: "/testimonials" },
   { text: "Contacto", route: "/contact" },
-  { text: "Contribuye", route: "/help" },
 ];
 
 const ResponsiveAppBar = () => {
@@ -45,23 +44,21 @@ const ResponsiveAppBar = () => {
   const [isAdmin, setIsAdmin] = React.useState(false);
 
   const getData = React.useCallback(async () => {
-    try{
-      const response = await httpService.get('auth/me');
+    try {
+      const response = await httpService.get("auth/me");
       setUser(response.data.user);
       setIsLogged(true);
-      if(response.data.user.roleId === 1){
+      if (response.data.user.roleId === 1) {
         setIsAdmin(true);
       }
-      
-    }catch(e){
+    } catch (e) {
       setIsLogged(false);
       console.log(e);
     }
-
   }, []);
   useEffect(() => {
     getData();
-  }, [getData])
+  }, [getData]);
 
   return (
     <AppBar sx={{ mb: "1rem" }} position="static">
@@ -146,7 +143,11 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
 
-          {isLogged ? <ProfileButton admin={isAdmin} user={user}/> : <LoginRegister />}
+          {isLogged ? (
+            <ProfileButton admin={isAdmin} user={user} />
+          ) : (
+            <LoginRegister />
+          )}
         </Toolbar>
       </Container>
     </AppBar>
