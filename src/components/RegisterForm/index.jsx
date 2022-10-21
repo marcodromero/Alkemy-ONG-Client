@@ -1,9 +1,10 @@
-import { Box, TextField, Button, Typography, Link } from "@mui/material";
+import { Box, TextField, Button, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import httpService from "../../services/httpService";
+import {UserContext} from '../../context/UserProvider'
+import { useContext } from "react";
 const validationSchema = yup.object({
   name: yup.string("Enter your name").required("Name is required"),
   lastname: yup.string("Enter your lastname").required("Lastname is required"),
@@ -18,12 +19,9 @@ const validationSchema = yup.object({
 });
 
 export default function RegisterForm() {
+  const {register, user} = useContext(UserContext)
   const navigate = useNavigate()
-  useEffect(() => {
-    if (sessionStorage.getItem("token")) {
-        navigate('/')
-    }
-  });
+  useEffect(()=> {}, [user])
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -33,21 +31,8 @@ export default function RegisterForm() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values, actions) => {
-      try {
-        const req = await httpService.post("/auth/register", {
-            firstName: values.name,
-            lastName: values.lastname,
-            email: values.email,
-            password: values.password,            
-        });
-        // console.log(req.data)
-        sessionStorage.setItem("token", req.data.Authorization);
-      } catch (e) {
-            if(e.response.data === "User already exist"){
-                actions.setErrors({email: "This email is already registered"})
-            }
-            console.log(e.response.data, 'error');
-        }
+      await register(values, actions)
+      navigate('/')
     },
   });
   return (
