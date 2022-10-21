@@ -1,13 +1,14 @@
 import { Delete, Edit } from '@mui/icons-material'
-import { Box, Button, colors, Link, Paper, Typography } from '@mui/material'
+import { Box, Button, colors, Paper, Typography } from '@mui/material'
 import React from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import { DeleteAlert } from '../../../../features/alert/Alert'
 import parser from 'html-react-parser'
 import httpService from '../../../../services/httpService'
+import { Link, useNavigate } from 'react-router-dom';
 export default function ActivityCard({name, image, content , id}) {
   const [showDeleteWarning, setShowDeleteWarning] = React.useState(false)
-  
+  const navigate = useNavigate()
   const initDelete = () => {
     setShowDeleteWarning(true)
   }
@@ -18,7 +19,7 @@ export default function ActivityCard({name, image, content , id}) {
     onConfirm={() => {
       httpService.delete(`/activities/${id}`)
       setShowDeleteWarning(false)
-      window.location.reload()
+      navigate('/backoffice/activities')
     }}
     onCancel={() => setShowDeleteWarning(false)}
     text='¿Esta seguro que desea eliminar esta actividad?'
@@ -36,19 +37,12 @@ export default function ActivityCard({name, image, content , id}) {
          display: 'flex',
          width: '100%',
          justifyContent: 'flex-end',
-      }}>
-        <Link 
-        href={`/backoffice/activities/edit/${id}`}
-        sx={{
-          
-          p: '.5rem',
-          color: 'unset',
+         '& a' : {
           textDecoration: 'none',
-          transition: '300ms ease-in-out',
-          '&:hover': {
-            color: colors.blue[500],
-          }
-        }} >
+          color: 'unset'
+        }
+      }}>
+        <Link to={`/backoffice/activities/edit/${id}`} >
           <Edit/>
         </Link>
         <Button 
@@ -59,17 +53,14 @@ export default function ActivityCard({name, image, content , id}) {
           transition: '300ms ease-in-out',
           '&:hover': {
             color: colors.blue[500],
-          }
+          },
+          
+          
         }} >
           <Delete/>
         </Button>
       </Box>
-       <Link sx={{
-         textDecoration: 'none',
-      color: 'unset'
-    }}
-    href={`/backoffice/activities/${id}`}
-    >
+       <Link to={`/backoffice/activities/${id}`}>
     
      
       
