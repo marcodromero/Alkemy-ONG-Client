@@ -18,19 +18,20 @@ import Activities from "./routes/public/Activities";
 import ActivityDetails from "./components/Activities/ActivityDetails";
 import NotFound from "./routes/public/NotFound";
 import News from "./routes/private/News";
-
+import BackofficeLayout from './components/Layout/BackofficeLayout'
 import SetActivity from "./routes/private/SetActivity";
 
 import Users from "./routes/private/Users";
 
-
-
+import UserProvider from './context/UserProvider';
+import Auth from "./components/Auth";
 import About from "./routes/public/About";
 
 import Testimonials from "./routes/public/Testimonials";
 import Testimonial from "./routes/private/Testimonial";
 import Contacts from "./routes/private/Contacts";
-import Categories from "./routes/private/Categories";
+
+import Categorie from "./routes/private/Categorie";
 let theme = createTheme({
   palette: {
     primary: {
@@ -55,77 +56,78 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-          </Route>
-          <Route path="/backoffice" element={<Layout />}>
-            <Route index element={<BackOffice />} />
-          </Route>
-          <Route path="/backoffice/news-form" element={<Layout />}>
-            <Route index element={<NewsForm />} />
-          </Route>
-          <Route path="/backoffice/news-form/:id" element={<Layout />}>
-            <Route index element={<NewsForm />} />
-          </Route>
-          <Route path="/backoffice/testimonials" element={<Layout />}>
-            <Route index element={<Testimonial />} />
-          </Route>
-          <Route path="/backoffice/activities" element={<Layout />}>
-            <Route index element={<Activities />} />
-          </Route>
-          <Route path="/backoffice/activities/create" element={<Layout />}>
-            <Route index element={<SetActivity />} />
-          </Route>
-          <Route path="/backoffice/activities/edit/:id" element={<Layout />}>
-            <Route index element={<SetActivity />} />
-          </Route>
-          <Route path="/backoffice/activities/:id" element={<Layout />}>
-            <Route index element={<ActivityDetails />} />
-          </Route>
-          <Route path="/backoffice/news" element={<Layout />}>
-            <Route index element={<News />} />
-          </Route>
-          <Route path="/backoffice/categories" element={<Layout />}>
-            <Route index element={<Categories />} />
-          </Route>
-          <Route path="/backoffice/users" element={<Layout />}>
-            <Route index element={<Users />} />
-          </Route>
-          <Route path="/backoffice/users/:id" element={<Layout />}>
-            <Route index element={<EditUser />} />
-          </Route>
-          <Route path="/backoffice/contacts" element={<Layout />}>
-            <Route index element={<Contacts />} />
-          </Route>
-          <Route path="/news" element={<Layout />}>
-            <Route index element={<New />} />
-          </Route>
-          <Route path="/news/:id" element={<Layout />}>
-            <Route index element={<DetailNew />} />
-          </Route>
-          <Route path="/contact" element={<Layout />}>
-            <Route index element={<Contact />} />
-          </Route>
-          <Route path="/login" element={<FullWidthLayout />}>
-            <Route index element={<Login />} />
-          </Route>
-          <Route path="/register" element={<FullWidthLayout />}>
-            <Route index element={<Register />} />
-          </Route>
-          <Route path="/about" element={<Layout />}>
-            <Route index element={<About />} />
-          </Route>
-          <Route path="/testimonials" element={<Layout />}>
-            <Route index element={<Testimonials />} />
-          </Route>
-          <Route path="/404" element={<Layout />}>
-            <Route index element={<NotFound />} />
-          </Route>
-
-        </Routes>
-      </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+            </Route>
+            <Route path="/backoffice" element={<BackofficeLayout />}>
+              <Route index element={<Auth> <BackOffice /> </Auth>} />
+            </Route>
+            <Route path="/backoffice/news-form" element={<BackofficeLayout />}>
+              <Route index element={<Auth><NewsForm /></Auth>} />
+            </Route>
+            <Route path="/backoffice/news-form/:id" element={<BackofficeLayout />}>
+              <Route index element={<Auth><NewsForm /></Auth>} />
+            </Route>
+            <Route path="/backoffice/testimonials" element={<BackofficeLayout />}>
+              <Route index element={<Auth><Testimonial /></Auth>} />
+            </Route>
+            <Route path="/backoffice/activities" element={<BackofficeLayout />}>
+              <Route index element={<Auth><Activities /></Auth>} />
+            </Route>
+            <Route path="/backoffice/activities/create" element={<BackofficeLayout />}>
+              <Route index element={<Auth><SetActivity /></Auth>} />
+            </Route>
+            <Route path="/backoffice/activities/edit/:id" element={<BackofficeLayout />}>
+              <Route index element={<Auth><SetActivity /></Auth>} />
+            </Route>
+            <Route path="/backoffice/activities/:id" element={<BackofficeLayout />}>
+              <Route index element={<Auth><ActivityDetails /></Auth>} />
+            </Route>
+            <Route path="/backoffice/news" element={<BackofficeLayout />}>
+              <Route index element={<Auth><News /></Auth>} />
+            </Route>
+            <Route path="/backoffice/users" element={<BackofficeLayout />}>
+              <Route index element={<Auth><Users /></Auth>} />
+            </Route>
+            <Route path="/backoffice/users/:id" element={<BackofficeLayout />}>
+              <Route index element={<Auth><EditUser /></Auth>} />
+            </Route>
+            <Route path="/backoffice/contacts" element={<BackofficeLayout />}>
+              <Route index element={<Auth><Contacts /></Auth>} />
+            </Route>
+             <Route path="/news" element={<Layout />}>
+              <Route index element={<New />} />
+            </Route>
+            <Route path="/news/:id" element={<Layout />}>
+              <Route index element={<DetailNew />} />
+            </Route>
+            <Route path="/contact" element={<Layout />}>
+              <Route index element={<Contact />} />
+            </Route>
+            <Route path="/login" element={<FullWidthLayout />}>
+              <Route index element={<Login />} />
+            </Route>
+            <Route path="/register" element={<FullWidthLayout />}>
+              <Route index element={<Register />} />
+            </Route>
+            <Route path="/about" element={<Layout />}>
+              <Route index element={<About />} />
+            </Route>
+            <Route path="/testimonials" element={<Layout />}>
+              <Route index element={<Testimonials />} />
+            </Route>
+            <Route path="/404" element={<Layout />}>
+              <Route index element={<NotFound />} />
+            </Route>
+            <Route path="/backoffice/categories" element={<Layout />}>
+              <Route index element={<Auth><Categories /></Auth>} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </UserProvider>
     </ThemeProvider>
   );
 }

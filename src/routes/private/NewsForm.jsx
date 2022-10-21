@@ -9,12 +9,13 @@ import {
 } from '@mui/material';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from '../../services/httpService';
 import '@fontsource/poppins';
 import { createTheme } from '@mui/material/styles';
 import Swal from "sweetalert2";
 import { Error} from "@mui/icons-material";
+import { convertToBase64 } from "../../features/utils";
 
 export default function NewsForm(){
    const {id} = useParams();
@@ -23,6 +24,13 @@ export default function NewsForm(){
    const [image, setImage] = useState("");
    const [content, setContent] = useState("");
    const [showLengthError, setShowLengthError] = useState(true);
+   const navigate = useNavigate();
+   const handleFileChange = (e) => {
+    convertToBase64(e.target.files[0]).then((base64) => {
+        setImage(base64);
+        }  
+    );
+   }
 
    const nameChange = (event) => {
     setName(event.target.value);
@@ -45,7 +53,8 @@ export default function NewsForm(){
                 const res =  await axios.post(`/news`, {name: name, content: content, image: image});
                 if(res){
                 getData();
-                Swal.fire('Publicado', 'La novedad ha sido publicada.', 'success')
+                Swal.fire('Publicado', 'La novedad ha sido publicada.', 'success').then(() => navigate('/backoffice/news'))
+                
                 }else{
                 Swal.fire('Hubo un problema', 'La novedad no se pudo publicar.', 'error')
                 }
@@ -128,21 +137,20 @@ export default function NewsForm(){
                         fullWidth = {true}
                         sx = {{mb: "1.5rem"}}
                     />
-                    <TextField
-                        required
-                        id="outlined-name"
-                        label="Imagen"
-                        value={image}
-                        onChange = {imageChange}
-                        variant="outlined"
-                        autoComplete="off"
-                        InputLabelProps={{
-                            style: { color: '#000' },
+                    <Button variant="contained" component="label" onChange={handleFileChange}>
+                        Upload
+                        <input hidden accept="image/*" type="file" />
+                    </Button>
+                    <Box 
+                        sx={{
+                            '& img': {
+                                width: '100%',
+
+                            }
                         }}
-                        color = "secondary"
-                        fullWidth = {true}
-                        sx = {{mb: "1.5rem"}}
-                    />
+                    >
+                        <img src={image}/>
+                    </Box>
                 </ThemeProvider>
                 {showLengthError && 
                     <Box>

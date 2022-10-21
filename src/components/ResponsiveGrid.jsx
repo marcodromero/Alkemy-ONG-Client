@@ -13,7 +13,8 @@ import AccountTreeRoundedIcon from "@mui/icons-material/AccountTreeRounded";
 import Person2RoundedIcon from "@mui/icons-material/Person2Rounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { Button, Link } from "@mui/material";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -31,8 +32,12 @@ const textFiles = [
     logo: <PlaylistAddCheckIcon sx={{ fontSize: "50px" }} />,
     route: '/backoffice/activities'
   },
-  { title: "Categorias", logo: <ReorderIcon sx={{ fontSize: "50px" }} /> },
-  { title: "Testimonios", logo: <MessageIcon sx={{ fontSize: "50px" }} /> },
+
+
+  { title: "Categorias", logo: <ReorderIcon sx={{ fontSize: "50px" }} />,route:'/backoffice/categories' },
+  { title: "Testimonios", logo: <MessageIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/testimonials' },
+
+
   {
     title: "Organizacion",
     logo: <ApartmentRoundedIcon sx={{ fontSize: "50px" }} />,
@@ -88,6 +93,7 @@ export default function ResponsiveGrid() {
               >
                 {logo}
               </Box>
+              <Link to={route}>
               <Button
                 variant="contained"
                 sx={{
@@ -99,7 +105,7 @@ export default function ResponsiveGrid() {
                 }}
               >
                 <Link href={route}>Ir</Link>
-              </Button>n m
+              </Button>
             </Item>
           </Grid>
         ))}
