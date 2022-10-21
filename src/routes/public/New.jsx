@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import axios from "../../services/httpService";
 import { useNavigate } from "react-router-dom";
-
+import parse from "html-react-parser";
 export default function New() {
   const url = "http://localhost:3000/news/";
   const [data, setData] = useState(null);
@@ -64,7 +64,7 @@ export default function New() {
                       {element.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {element.content}
+                      {parse(element.content)}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
