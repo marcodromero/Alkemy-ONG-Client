@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import httpService from "../../services/httpService";
+import {UserContext} from '../../context/UserProvider'
+import { useContext } from "react";
 const validationSchema = yup.object({
   email: yup
     .string("Enter your email")
@@ -16,6 +18,7 @@ const validationSchema = yup.object({
 });
 
 export default function LoginForm() {
+  const {login} = useContext(UserContext)
   const navigate = useNavigate()
     useEffect(() => {
         if(sessionStorage.getItem('token')){
@@ -29,17 +32,8 @@ export default function LoginForm() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values, actions) => {
-      try {
-        const req = await httpService.post("/auth/login", values);
-        sessionStorage.setItem("token", req.data.Authorization);
-      } catch (e) {
-        console.log(e.response.data);
-        if (e.response.data === "Email not found") {
-          actions.setErrors({ email: "Email not found" });
-        } else {
-          actions.setErrors({ password: "Password is incorrect" });
-        }
-      }
+      await login(values, actions)
+      navigate('/')
     },
   });
   return (
