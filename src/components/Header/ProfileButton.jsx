@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const adminSettings = [
 
@@ -22,12 +22,17 @@ const userSettings = [
   }
 ]
 export default function ProfileButton({admin, user}) {
+  const navigate = useNavigate()
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
       };
       const handleCloseUserMenu = () => {
         setAnchorElUser(null);
       };
+      const logout = () => {
+        sessionStorage.clear()
+        window.location = '/'
+      }
       const [anchorElUser, setAnchorElUser] = React.useState(null);    
   return (
     <Box sx={{ flexGrow: 0 }}>
@@ -65,13 +70,9 @@ export default function ProfileButton({admin, user}) {
                 </MenuItem>
                   </Link>
               ))}
-              {userSettings.map((setting, i) => (
-                  <Link key={i} to={setting.route}>
-                <MenuItem  onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting.text}</Typography>
-                </MenuItem>
-                  </Link>
-              ))}
+              <MenuItem onClick={() => logout()}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
               
             </Menu>
           </Box>
