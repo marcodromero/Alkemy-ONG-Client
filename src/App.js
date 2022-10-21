@@ -98,7 +98,8 @@ export default function App() {
             <Route path="/backoffice/contacts" element={<BackofficeLayout />}>
               <Route index element={<Auth><Contacts /></Auth>} />
             </Route>
-             <Route path="/news" element={<Layout />}>
+
+            <Route path="/news" element={<Layout />}>
               <Route index element={<New />} />
             </Route>
             <Route path="/news/:id" element={<Layout />}>
