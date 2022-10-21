@@ -7,11 +7,12 @@ import { useFormik } from "formik";
 import httpService from "../../../services/httpService";
 import "./Editor.css";
 import { Alert } from "../../../features/alert/Alert";
-import { useParams } from "react-router-dom";
-import { CheckCircle, CopyAll, Error, ScheduleSendSharp } from "@mui/icons-material";
+import { useNavigate, useParams } from "react-router-dom";
+import { CheckCircle, Error,  } from "@mui/icons-material";
+import { convertToBase64 } from "../../../features/utils";
 const validationSchema = yup.object({
   name: yup.string("Enter activity name").required("Name is required"),
-  image: yup.string("Enter a image url").url("Enter a valid url"),
+  image: yup.string("Enter a image"),
   content: yup
     .string("This field can not be empty")
     .min(20, "Content needs to be at least 20 characters long")
@@ -19,13 +20,22 @@ const validationSchema = yup.object({
 });
 
 export default function Editor() {
+  const navigate = useNavigate()
   const handleAlertClick = () => {
-    window.location = "/backoffice/activities";
+    navigate("/backoffice/activities");
+  };
+  const handleFileChange = (e) => {
+    convertToBase64(e.target.files[0]).then((base64) => {
+      setImage(base64);
+      formik.setFieldValue("image", base64);
+    });
   };
   const [data, setData] = useState({});
   const [sucess, setSucess] = useState(false);
+  const [error, setError] = useState(false);
   const [showLengthError, setShowLengthError] = useState(false);
   const [edit, setEdit] = useState("CREATE");
+  const [image, setImage] = useState("");
   const { id } = useParams();
   useEffect(() => {
     if (id) {
@@ -33,6 +43,7 @@ export default function Editor() {
         try {
           const res = await httpService.get(`/activities/${id}`);
           setData(res.data);
+          setImage(res.data.image);
           setEdit("EDIT");
         } catch (e) {
           console.error(e);
@@ -50,7 +61,10 @@ export default function Editor() {
     validationSchema: validationSchema,
     onSubmit: async (values, actions) => {
       try {
-       
+        if(!image){
+          setError(true)
+          return
+        }
         if (id) {
           const res = await httpService.put(`/activities/${data.id}`, {
             name: values.name,
@@ -93,6 +107,14 @@ export default function Editor() {
         icon={<CheckCircle />}
         show={sucess}
       />
+      <Alert
+        type={"error"}
+        // methodConfirm={handleAlertClick}
+        title={"Error"}
+        text={"No se pudo realizar la petición"}
+        icon={<CheckCircle />}
+        show={error}
+      />
       <Typography align="center" variant="h4" component='h1' sx={{
         mb: '1.5rem'
       }}>
@@ -110,18 +132,24 @@ export default function Editor() {
           error={formik.touched.name && Boolean(formik.errors.name)}
           helperText={formik.touched.name && formik.errors.name}
         />
-
-        <TextField
-          sx={{ marginBottom: "1.5rem" }}
-          fullWidth
-          id="image"
-          name="image"
-          label="Image URL"
-          value={formik.values.image}
-          onChange={formik.handleChange}
-          error={formik.touched.image && Boolean(formik.errors.image)}
-          helperText={formik.touched.image && formik.errors.image}
-        />
+        <Box
+          sx={{
+            '& img': {
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              mb: '1.5rem'
+            }
+          }}
+        >
+          <Typography component='label'>Image: </Typography>
+          <Button variant="contained" component="label" onChange={handleFileChange} sx={{mb: '1.5rem'}}>
+            Upload
+           <input hidden accept="image/*" type="file" />
+          </Button>
+          {image && <Typography>Preview: </Typography>}
+          <img src={image}/>
+        </Box>
         {showLengthError && 
           <Box>
             <Typography

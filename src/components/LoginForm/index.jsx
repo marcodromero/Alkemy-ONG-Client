@@ -1,6 +1,7 @@
 import { Box, TextField, Button, Typography, Link } from "@mui/material";
 import {useFormik } from "formik";
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import httpService from "../../services/httpService";
 const validationSchema = yup.object({
@@ -15,9 +16,10 @@ const validationSchema = yup.object({
 });
 
 export default function LoginForm() {
+  const navigate = useNavigate()
     useEffect(() => {
         if(sessionStorage.getItem('token')){
-            window.location = '/'
+            navigate('/')
         }
     })
   const formik = useFormik({

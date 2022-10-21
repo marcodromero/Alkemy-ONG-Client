@@ -50,7 +50,7 @@ const Contact = () => {
         return;
       }
       await httpService.post("/contacts", contact);
-      alert("Exitoso!", "Se ha enviado tu consulta", "success");
+      alert("Exitoso!", "Se ha enviado tu consulta", "success", false);
       setContact(initialState);
     } catch (error) {
       alert("Error!", error.message, "error");
@@ -78,6 +78,7 @@ const Contact = () => {
       noValidate
       sx={{
         paddingTop: heightMatches ? 5 : 2,
+        marginBottom: heightMatches ? 12 : 5,
       }}
       onSubmit={handleSubmit}
     >

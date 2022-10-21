@@ -5,9 +5,11 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 import { width } from "@mui/system";
 
 export default function Cover() {
+  const navigate = useNavigate();
   return (
     <Card
       sx={{
@@ -47,7 +49,7 @@ export default function Cover() {
               fontSize: "46px",
               fontWeight: 600,
               width: { xs: "200%", md: "100%" },
-              textAlign:{xs:"center", md:"left"}
+              textAlign: { xs: "center", md: "left" },
             }}
           >
             Hola! Bienvenidx
@@ -73,16 +75,17 @@ export default function Cover() {
           </Typography>
           <Button
             variant="contained"
+            color="danger"
             sx={{
               backgroundColor: "#FF0000",
-              color: "#FFFFFF",
-              width: { xs: "100%", md: "40%" },
-              margin: { xs: "15px auto 5px 50%", md: "15px 0px 15px 0px" },
-              padding: "10px 0 10px 0",
+              color: "#fff",
+              width: "40%",
+              marginTop: 5,
               textTransform: "capitalize",
-              fontSize: { xs: 24, md: 22 },
-              borderRadius: 5,
+              fontSize: 24,
+              borderRadius: 2,
             }}
+            onClick={() => navigate("/contact")}
           >
             Contactanos
           </Button>

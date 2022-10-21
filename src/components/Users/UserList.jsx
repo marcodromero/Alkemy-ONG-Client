@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import httpService from "../../services/httpService";
 import UserTableItem from "./UserTableItem";
 
+import {StyledTableCell} from '../../features/styles'
 export default function UserList() {
   const [data, setData] = useState([{}]);
   useEffect(() => {
@@ -29,10 +30,10 @@ export default function UserList() {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Last name</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Actions</TableCell>
+            <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell>Last name</StyledTableCell>
+            <StyledTableCell>Email</StyledTableCell>
+            <StyledTableCell>Actions</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
