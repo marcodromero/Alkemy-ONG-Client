@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CardMedia, colors } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import parse from "html-react-parser";
 export default function NewCard({  image, name, content, id }) {
   const navigate = useNavigate();
   return (
@@ -33,6 +33,7 @@ export default function NewCard({  image, name, content, id }) {
       <CardMedia
         component={"img"}
         image={image}
+        src={image}
         alt="newImage"
         sx={{ width: 196, height: 201, borderRadius: 5 }}
       />
@@ -48,7 +49,7 @@ export default function NewCard({  image, name, content, id }) {
           {name}
         </Typography>
         <Typography sx={{ fontSize: 12, color: "#000000" }}>
-          {content}
+          {parse(content)}
         </Typography>
         <Button
           onClick={() =>  navigate("news/"+id)}
