@@ -92,7 +92,6 @@ export default function App() {
             <Route path="/backoffice/users" element={<BackofficeLayout />}>
               <Route index element={<Auth><Users /></Auth>} />
             </Route>
-
             <Route path="/backoffice/users/:id" element={<BackofficeLayout />}>
               <Route index element={<Auth><EditUser /></Auth>} />
             </Route>

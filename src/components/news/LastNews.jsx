@@ -16,6 +16,7 @@ const LastNews = () => {
       setNews(res.data)
     })();
   }, [])
+
   return (
     <>
       <Typography

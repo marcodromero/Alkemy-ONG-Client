@@ -33,8 +33,10 @@ const textFiles = [
     route: '/backoffice/activities'
   },
 
+
   { title: "Categorias", logo: <ReorderIcon sx={{ fontSize: "50px" }} />,route:'/backoffice/categories' },
   { title: "Testimonios", logo: <MessageIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/testimonials' },
+
 
   {
     title: "Organizacion",
@@ -101,9 +103,9 @@ export default function ResponsiveGrid() {
                   height: "20px",
                   padding: "0px",
                 }}
-              >Ir
+              >
+                <Link href={route}>Ir</Link>
               </Button>
-                </Link>
             </Item>
           </Grid>
         ))}
