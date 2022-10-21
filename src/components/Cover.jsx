@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { width } from "@mui/system";
 
 export default function Cover() {
   const navigate = useNavigate();
@@ -13,11 +14,12 @@ export default function Cover() {
     <Card
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         boxSizing: "border-box",
         border: "2px solid #FFFFFF",
         outline: "none",
         width: "100%",
-        height: "80vh",
+        height: "100%",
         paddingLeft: "9%",
         paddingRight: "9%",
       }}
@@ -42,7 +44,13 @@ export default function Cover() {
           <Typography
             component="div"
             variant="h2"
-            sx={{ color: "#000000", fontSize: "48px", fontWeight: 600 }}
+            sx={{
+              color: "#000000",
+              fontSize: "46px",
+              fontWeight: 600,
+              width: { xs: "200%", md: "100%" },
+              textAlign: { xs: "center", md: "left" },
+            }}
           >
             Hola! Bienvenidx
           </Typography>
@@ -52,9 +60,11 @@ export default function Cover() {
             sx={{
               marginTop: 2,
               color: "#000000",
-              fontSize: "20px",
+              fontSize: "24px",
               fontWeight: "ligth",
               lineHeight: 1.3,
+              width: { xs: "200%", md: "100%" },
+              textAlign: { xs: "justify", md: "left" },
             }}
           >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing
@@ -84,8 +94,8 @@ export default function Cover() {
       <CardMedia
         component="img"
         sx={{
-          width: "47%",
-          height: "90%",
+          width: { xs: "100%", md: "47%" },
+          height: "70vh",
           borderRadius: 5,
           marginTop: "auto",
           marginBottom: "auto",
