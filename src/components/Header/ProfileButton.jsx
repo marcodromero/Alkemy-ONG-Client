@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
@@ -7,7 +7,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import { Link, useNavigate } from 'react-router-dom';
-
+import { UserContext } from "../../context/UserProvider";
+import { useContext } from "react";
 const adminSettings = [
 
   {
@@ -15,13 +16,8 @@ const adminSettings = [
     route: '/backoffice'
   }
 ]
-const userSettings = [
-  {
-    text: 'Logout',
-    route: '/logout'
-  }
-]
-export default function ProfileButton({admin, user}) {
+export default function ProfileButton({}) {
+  const {user, isAdmin, logout} = useContext(UserContext)
   const navigate = useNavigate()
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -29,12 +25,14 @@ export default function ProfileButton({admin, user}) {
       const handleCloseUserMenu = () => {
         setAnchorElUser(null);
       };
-      const logout = () => {
-        sessionStorage.clear()
-        window.location = '/'
-      }
+      
+  useEffect(()=>{
+    
+  },[user])
+      
       const [anchorElUser, setAnchorElUser] = React.useState(null);    
   return (
+
     <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -63,7 +61,7 @@ export default function ProfileButton({admin, user}) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {admin && adminSettings.map((setting, i) => (
+              {isAdmin && adminSettings.map((setting, i) => (
                   <Link key={i} to={setting.route}>
                 <MenuItem  onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting.text}</Typography>
