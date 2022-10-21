@@ -99,7 +99,7 @@ export default function App() {
             <Route path="/backoffice/contacts" element={<BackofficeLayout />}>
               <Route index element={<Auth><Contacts /></Auth>} />
             </Route>
-            
+
             <Route path="/news" element={<Layout />}>
               <Route index element={<New />} />
             </Route>
@@ -124,7 +124,7 @@ export default function App() {
             <Route path="/404" element={<Layout />}>
               <Route index element={<NotFound />} />
             </Route>
-            <Route path="/backoffice/categories" element={<Layout />}>
+            <Route path="/backoffice/categories" element={<BackofficeLayout />}>
               <Route index element={<Auth><Categories /></Auth>} />
             </Route>
           </Routes>
