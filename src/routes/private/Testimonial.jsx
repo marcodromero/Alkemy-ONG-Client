@@ -18,18 +18,18 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CreateIcon from "@mui/icons-material/Create";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddIcon from "@mui/icons-material/Add";
 import { styled } from "@mui/material/styles";
 import httpService from "../../services/httpService";
 import { useNavigate } from "react-router-dom";
+import { alert } from "../../features/alert/Alert";
 
 const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "#ffc168",
+      backgroundColor: "#c2c2c2",
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -56,21 +56,11 @@ const Testimonial = () => {
     setTestimonials(
       testimonials.filter((testimonial) => testimonial.id !== id)
     );
+    alert("¡Exitoso!", "Se ha eliminado el testimonio", "success", false);
   };
 
   return (
     <Container maxWidth="xl">
-      <Box>
-        <Tooltip title="Atrás">
-          <IconButton size="small">
-            <ArrowBackIcon
-              color="#000"
-              fontSize="large"
-              onClick={() => navigate(-1)}
-            />
-          </IconButton>
-        </Tooltip>
-      </Box>
       <Box
         mb={widthMatches ? 6 : 3}
         mt={widthMatches ? 4 : 2}
