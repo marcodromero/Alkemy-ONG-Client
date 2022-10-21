@@ -3,17 +3,18 @@ import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
 import * as yup from "yup";
 import httpService from "../../services/httpService";
 const validationSchema = yup.object({
   name: yup.string("Enter category name").required("Name is required"),
   description: yup
-    .string("Enter category description").min(10,"Please enter min 10 characters")
+    .string("Enter category description")
+    .min(10, "Please enter min 10 characters")
     .required("Description required"),
-  
 });
 
-export default function CategoryForm({ categoryId }) {
+export default function CategoryForm({ categoryId, setModal }) {
   const navigate = useNavigate();
   console.log(categoryId);
 
@@ -74,9 +75,27 @@ export default function CategoryForm({ categoryId }) {
         border: "2px solid #172e5784",
         borderRadius: "16px",
         padding: "10px 50px 60px 50px",
-        boxShadow: "5px 5px 20px rgba(0,0,0,0.5)"
+        boxShadow: "5px 5px 20px rgba(0,0,0,0.5)",
+        position: "relative",
       }}
     >
+      <Button
+        variant="text"
+        sx={{
+          color: "#172e5784",
+          position: "absolute",
+          display: "flex",
+          fontSize: 20,
+          top: 20,
+          right: 20,
+          padding: 0,
+          ":hover": { color: "#FF0000", fontSize: 24 },
+        }}
+        onClick={()=>setModal(false)}
+      >
+        <CloseIcon sx={{ margin: 0 }} />
+      </Button>
+
       <form onSubmit={formik.handleSubmit}>
         <Typography
           color="secondary"
@@ -117,10 +136,20 @@ export default function CategoryForm({ categoryId }) {
           helperText={formik.touched.description && formik.errors.description}
         />
 
-        <Button color="secondary" variant="contained" fullWidth type="submit">
+        <Button color="success" variant="contained" fullWidth type="submit">
           {categoryId ? "Update" : "Create"}
         </Button>
       </form>
+      <Button
+        color="secondary"
+        variant="contained"
+        fullWidth
+        type="submit"
+        sx={{ marginTop: 2 }}
+        onClick={()=>setModal(false)}
+      >
+        Cancel
+      </Button>
     </Box>
   );
 }
