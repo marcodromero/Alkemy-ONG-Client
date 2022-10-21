@@ -21,8 +21,10 @@ import AddIcon from "@mui/icons-material/Add";
 import { StyledTableCell } from "../../features/styles";
 import Axios from "../../services/httpService";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function News(){
+  const navigate = useNavigate();
     const [news, setNews] = useState([]);
   
     
@@ -76,7 +78,7 @@ export default function News(){
             News
           </Typography>
           <Box>
-            <Button variant="contained" color="success" endIcon={<AddIcon />}>
+            <Button onClick={() => navigate('/backoffice/news-form')} variant="contained" color="success" endIcon={<AddIcon />}>
               Agregar
             </Button>
           </Box>
@@ -108,7 +110,7 @@ export default function News(){
                         <DeleteIcon color="danger" />
                       </IconButton>
                     </Tooltip>
-                    <Tooltip title="Actualizar">
+                    <Tooltip onClick={() => navigate('/backoffice/news-form/' + row.id)} title="Actualizar">
                       <IconButton>
                         <CreateIcon />
                       </IconButton>
