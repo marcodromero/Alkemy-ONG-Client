@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   CardActionArea,
-  Link,
   Container,
   Card,
   CardContent,
@@ -10,12 +9,12 @@ import {
   Button,
   Grid,
   useMediaQuery,
+  ButtonBase
 } from "@mui/material";
 import axios from "../../services/httpService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link } from "react-router-dom";
 import parse from "html-react-parser";
 export default function New() {
-  const url = "http://localhost:3000/news/";
   const [data, setData] = useState(null);
   const widthMatches = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
@@ -43,11 +42,13 @@ export default function New() {
         container
         rowSpacing={{ xs: 2, sm: 2, md: 3 }}
         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+       
       >
         {data?.map((element) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={element.id}>
-            <Link href={url + element.id}>
-              <Card sx={{ maxWidth: 345 }}>
+            
+              <Card sx={{ maxWidth: 345 , height: 415 , mx: "auto" }} >
+                <ButtonBase component ={Link} to={`/news/${element.id}`}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
@@ -55,7 +56,7 @@ export default function New() {
                     image={element.image}
                     alt={element.name}
                   />
-                  <CardContent>
+                  <CardContent >
                     <Typography
                       gutterBottom
                       variant="subtitle1"
@@ -63,13 +64,14 @@ export default function New() {
                     >
                       {element.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.primary" sx={{overflow: "hidden", textOverflow: "ellipsis", height: "98px"}} >
                       {parse(element.content)}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
+                </ButtonBase>
               </Card>
-            </Link>
+           
           </Grid>
         ))}
       </Grid>
