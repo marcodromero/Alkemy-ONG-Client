@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Button, Link } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import { Typography, Menu, IconButton, MenuItem } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 const pages = [
@@ -28,12 +29,12 @@ export default function LoginRegister() {
     <>
       <Box sx={{ display: { xs: "none", md: "flex" } }}>
         <Button sx={{ mr: 1 }} variant="contained">
-          <Link sx={{ textDecoration: "none", color: "black" }} href="/login">
+          <Link sx={{ textDecoration: "none", color: "black" }} to="/login">
             Login
           </Link>
         </Button>
         <Button variant="contained" color="success">
-          <Link sx={linkNoDecoration} href="/register">
+          <Link sx={linkNoDecoration} to="/register">
             Register
           </Link>
         </Button>
@@ -74,7 +75,7 @@ export default function LoginRegister() {
           }}
         >
           {pages.map((page) => (
-            <Link key={page.text} sx={linkNoDecoration} href={page.route}>
+            <Link key={page.text} sx={linkNoDecoration} to={page.route}>
               <MenuItem
                 onClick={handleCloseNavMenu}
                 sx={{ textTransform: "capitalize" }}
