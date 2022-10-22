@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Typography,
   Card,
@@ -14,12 +14,18 @@ import {
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import httpService from "../../services/httpService";
+import Modal from "../../components/Modal";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserProvider";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
+  const [open, setOpen] = useState(false);
+  const { user } = useContext(UserContext);
 
+  const handleOpen = () => setOpen(true);
   const widthMatches = useMediaQuery("(min-width:600px)");
-
+  const navigate = useNavigate();
   useEffect(() => {
     getData();
   }, []);
@@ -45,7 +51,7 @@ const Testimonials = () => {
         rowSpacing={{ xs: 2, sm: 2, md: 3 }}
         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
       >
-        {testimonials.map((testimonial) => (
+        {testimonials?.map((testimonial) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={testimonial.id}>
             <Card
               sx={{
@@ -79,10 +85,17 @@ const Testimonials = () => {
           type="submit"
           color="danger"
           sx={{ color: "#fff" }}
+          onClick={user ? handleOpen : () => navigate("/")}
         >
           ¡Agregar mi testimonio!
         </Button>
       </Box>
+      <Modal
+        open={open}
+        setOpen={setOpen}
+        setTestimonials={setTestimonials}
+        testimonials={testimonials}
+      />
     </Container>
   );
 };
