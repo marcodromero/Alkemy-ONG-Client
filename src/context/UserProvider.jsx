@@ -13,34 +13,34 @@ const UserProvider = ({ children }) => {
     sessionStorage.clear();
     setIsAdmin(false);
     setUser(null);
-  }
-  const register = async(values, actions) => {
+  };
+  const register = async (values, actions) => {
     try {
       const req = await httpService.post("/auth/register", {
-          firstName: values.name,
-          lastName: values.lastname,
-          email: values.email,
-          password: values.password,            
+        firstName: values.name,
+        lastName: values.lastname,
+        email: values.email,
+        password: values.password,
       });
-      setUser(req.data.user)
-      if(req.data.user.roleId === 1){
-        setIsAdmin(true)
+      setUser(req.data.user);
+      if (req.data.user.roleId === 1) {
+        setIsAdmin(true);
       }
     } catch (e) {
-          if(e.response.data === "User already exist"){
-              actions.setErrors({email: "This email is already registered"})
-          }
-          console.error(e.response.data, 'error');
+      if (e.response.data === "User already exist") {
+        actions.setErrors({ email: "This email is already registered" });
       }
-  }
+      console.error(e.response.data, "error");
+    }
+  };
   const login = async (values, actions) => {
     try {
       const req = await httpService.post("/auth/login", values);
       sessionStorage.setItem("token", req.data.Authorization);
-      if(req.data.user.roleId === 1){
-        setIsAdmin(true)
+      if (req.data.user.roleId === 1) {
+        setIsAdmin(true);
       }
-      setUser(req.data.user)
+      setUser(req.data.user);
     } catch (e) {
       console.log(e.response.data);
       if (e.response.data === "Email not found") {
@@ -49,14 +49,13 @@ const UserProvider = ({ children }) => {
         actions.setErrors({ password: "Password is incorrect" });
       }
     }
-  }
+  };
   const getData = async () => {
     try {
       const { data } = await httpService.get("/auth/me");
       if (data.user.roleId === 1) {
         setIsAdmin(true);
       }
-      console.log(data.user)
       setUser(data.user);
     } catch (e) {
       console.log(e);
@@ -72,7 +71,7 @@ const UserProvider = ({ children }) => {
         setUser,
         logout,
         login,
-        register
+        register,
       }}
     >
       {children}

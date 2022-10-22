@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { TextField, Button, Typography, Modal, Box } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import httpService from "../services/httpService";
 import { alert } from "../features/alert/Alert";
+import { UserContext } from "../context/UserProvider";
 
 const style = {
   position: "absolute",
@@ -16,10 +17,16 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({ open, setOpen }) {
+export default function BasicModal({
+  open,
+  setOpen,
+  setTestimonials,
+  testimonials,
+}) {
+  const { user } = useContext(UserContext);
   const initialState = {
-    name: "",
-    image: "",
+    name: `${user?.firstName} ${user?.lastName}`,
+    image: user?.image,
     content: "",
   };
 
@@ -37,9 +44,11 @@ export default function BasicModal({ open, setOpen }) {
         setErrorMessage("Este campo es obligatorio");
         return;
       }
-      await httpService.post("/testimonials", testimonial);
+      const res = await httpService.post("/testimonials", testimonial);
       alert("Exitoso!", "Se ha agregado tu testimonio", "success", false);
+      setTestimonials([...testimonials, res.data]);
       setTestimonial(initialState);
+      handleClose();
     } catch (error) {
       alert("Error!", error.message, "error", false);
     }
