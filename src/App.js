@@ -32,6 +32,7 @@ import Testimonial from "./routes/private/Testimonial";
 import Contacts from "./routes/private/Contacts";
 
 import Categories from "./routes/private/Categorie";
+import Organization from "./routes/private/Organization";
 let theme = createTheme({
   palette: {
     primary: {
@@ -125,6 +126,9 @@ export default function App() {
             </Route>
             <Route path="/backoffice/categories" element={<BackofficeLayout />}>
               <Route index element={<Auth><Categories /></Auth>} />
+            </Route>
+            <Route path="/backoffice/organization" element={<BackofficeLayout />}>
+              <Route index element={<Auth><Organization /></Auth>} />
             </Route>
           </Routes>
         </BrowserRouter>

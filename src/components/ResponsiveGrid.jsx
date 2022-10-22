@@ -41,6 +41,7 @@ const textFiles = [
   {
     title: "Organizacion",
     logo: <ApartmentRoundedIcon sx={{ fontSize: "50px" }} />,
+    route: '/backoffice/organization'
   },
   {
     title: "Slides",
@@ -106,6 +107,7 @@ export default function ResponsiveGrid() {
               >
                 <Link href={route}>Ir</Link>
               </Button>
+              </Link>
             </Item>
           </Grid>
         ))}
