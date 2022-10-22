@@ -3,6 +3,7 @@ import { Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Typography, Menu, IconButton, MenuItem } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
+import '@fontsource/poppins';
 const pages = [
   {
     text: "Login",
@@ -28,15 +29,11 @@ export default function LoginRegister() {
   return (
     <>
       <Box sx={{ display: { xs: "none", md: "flex" } }}>
-        <Button sx={{ mr: 1 }} variant="contained">
-          <Link sx={{ textDecoration: "none", color: "black" }} to="/login">
-            Login
-          </Link>
+        <Button  component ={Link} to= {"/login"} sx={{ mr: 1 , borderRadius: "20px", border: "1px solid #000", boxShadow: "none"}} variant="contained">
+            <Typography sx={{fontFamily: "Poppins, sans-serif"}}>Log in</Typography>
         </Button>
-        <Button variant="contained" color="success">
-          <Link sx={linkNoDecoration} to="/register">
-            Register
-          </Link>
+        <Button variant="contained" component ={Link} to= {"/register"} sx={{ mr: 1 , borderRadius: "20px", boxShadow: "none", backgroundColor: "#ff0000", color: "#fff"}}>
+          <Typography sx={{fontFamily: "Poppins, sans-serif"}}>Registrate</Typography>
         </Button>
       </Box>
       <Box

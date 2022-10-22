@@ -126,6 +126,9 @@ export default function App() {
             <Route path="/backoffice/categories" element={<BackofficeLayout />}>
               <Route index element={<Auth><Categories /></Auth>} />
             </Route>
+            <Route path="/activities" element={<Layout />}>
+              <Route index element={<Activities />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </UserProvider>
