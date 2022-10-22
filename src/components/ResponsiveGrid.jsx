@@ -44,6 +44,7 @@ const textFiles = [
   {
     title: "Organizacion",
     logo: <ApartmentRoundedIcon sx={{ fontSize: "50px" }} />,
+    route: '/backoffice/organization'
   },
   {
     title: "Slides",
