@@ -10,7 +10,8 @@ import {
   Button,
   MenuItem,
 } from "@mui/material";
-
+import {UserContext} from "../../context/UserProvider";
+import { useContext } from "react";
 import httpService from "../../services/httpService";
 import Logo from "./Logo";
 
@@ -31,7 +32,7 @@ const data = [
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   //eslint-disable-next-line
-
+  const {user, isAdmin  } = useContext(UserContext);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -39,27 +40,8 @@ const ResponsiveAppBar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const [isLogged, setIsLogged] = React.useState(false);
-  const [user, setUser] = React.useState(null);
-  const [isAdmin, setIsAdmin] = React.useState(false);
-
-  const getData = React.useCallback(async () => {
-    try {
-      const response = await httpService.get("auth/me");
-      setUser(response.data.user);
-      setIsLogged(true);
-      if (response.data.user.roleId === 1) {
-        setIsAdmin(true);
-      }
-    } catch (e) {
-      setIsLogged(false);
-      console.log(e);
-    }
-  }, []);
-  useEffect(() => {
-    getData();
-  }, [getData]);
-
+  useEffect(()=> {}, [user]) 
+console.log(user)
   return (
     <AppBar sx={{ mb: "1rem" }} position="static">
       <Container maxWidth="false">
@@ -143,7 +125,7 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
 
-          {isLogged ? (
+          {user ? (
             <ProfileButton admin={isAdmin} user={user} />
           ) : (
             <LoginRegister />

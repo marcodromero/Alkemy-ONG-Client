@@ -14,6 +14,25 @@ const UserProvider = ({ children }) => {
     setIsAdmin(false);
     setUser(null);
   }
+  const register = async(values, actions) => {
+    try {
+      const req = await httpService.post("/auth/register", {
+          firstName: values.name,
+          lastName: values.lastname,
+          email: values.email,
+          password: values.password,            
+      });
+      setUser(req.data.user)
+      if(req.data.user.roleId === 1){
+        setIsAdmin(true)
+      }
+    } catch (e) {
+          if(e.response.data === "User already exist"){
+              actions.setErrors({email: "This email is already registered"})
+          }
+          console.error(e.response.data, 'error');
+      }
+  }
   const login = async (values, actions) => {
     try {
       const req = await httpService.post("/auth/login", values);
@@ -52,7 +71,8 @@ const UserProvider = ({ children }) => {
         user,
         setUser,
         logout,
-        login
+        login,
+        register
       }}
     >
       {children}

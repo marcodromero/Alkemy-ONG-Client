@@ -105,7 +105,7 @@ export default function ResponsiveGrid() {
                   padding: "0px",
                 }}
               >
-                <Link href={route}>Ir</Link>
+                Ir
               </Button>
               </Link>
             </Item>
