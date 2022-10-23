@@ -1,57 +1,46 @@
-import { Box, Typography } from "@mui/material";
-import React from "react";
+import { Box } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import Slide from "./Slide";
-
-import Carousel from 'react-material-ui-carousel'
-
-const ipsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`;
-const images = [
-  { imageUrl: "https://via.placeholder.com/700x300", text: ipsum },
-  { imageUrl: "https://via.placeholder.com/700x300", text: ipsum },
-  { imageUrl: "https://via.placeholder.com/700x300", text: ipsum },
-];
-
-
+import httpService from "../../services/httpService";
+import Carousel from "react-material-ui-carousel";
+import { useMediaQuery } from "@mui/material";
 export default function Slider() {
-  // const [isHover, setIsHover] = React.useState(false)
-  // const [currentIndex, setCurrentIndex] = React.useState(0)
-  // const handleMouseEnter = () => {
-  //   setIsHover(true)
-    
-  // }
-  // const handleMouseLeave = () => {
-  //   setIsHover(false)
+  const [data, setData] = useState([]);
+  const widthMatches = useMediaQuery("(min-width:1150px)");
+  useEffect(() => {
+    getData();
+  }, []);
 
-  // }
+  const getData = async () => {
+    const res = await httpService.get("/slides");
+    setData(res.data);
+  };
 
   return (
     <Box
       sx={{
-        display: "flex",
+        display: widthMatches ? "flex" : "none",
         flexDirection: "column",
         alignItems: "center",
         p: 0,
-        maxWidth: '1200px',
+        maxWidth: "100%",
+        mb: 7,
       }}
     >
-      <Typography component="h1" variant="h2" sx={{ fontSize: "2.2rem" }}>
-        Novedades
-      </Typography>
       <Carousel
-      animation="slide"
-      navButtonsAlwaysVisible={true}
+        animation="slide"
+        navButtonsAlwaysVisible={true}
         sx={{
-          width: '100%',
-          height: 'auto'
+          width: "100%",
+          height: "auto",
         }}
       >
-      
-        {images.map((slide, index) => {
-          return  <Slide key={index} imageUrl={slide.imageUrl} text={slide.text} />
+        {data.map((slide, index) => {
+          return (
+            <Slide key={index} imageUrl={slide.imageUrl} text={slide.text} />
+          );
         })}
-        </Carousel>
-      
-      
+      </Carousel>
     </Box>
   );
 }
