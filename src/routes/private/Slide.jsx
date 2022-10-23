@@ -24,8 +24,8 @@ import httpService from "../../services/httpService";
 import { useNavigate } from "react-router-dom";
 import { alert } from "../../features/alert/Alert";
 
-const Testimonial = () => {
-  const [testimonials, setTestimonials] = useState([]);
+const Slide = () => {
+  const [slides, setSlides] = useState([]);
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -40,8 +40,8 @@ const Testimonial = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await httpService.get("/testimonials");
-        setTestimonials(res.data);
+        const res = await httpService.get("/slides");
+        setSlides(res.data);
       } catch (e) {
         console.log(e);
       }
@@ -52,11 +52,9 @@ const Testimonial = () => {
   const widthMatches = useMediaQuery("(min-width:600px)");
 
   const handleDelete = async (id) => {
-    await httpService.delete(`/testimonials/${id}`);
-    setTestimonials(
-      testimonials.filter((testimonial) => testimonial.id !== id)
-    );
-    alert("¡Exitoso!", "Se ha eliminado el testimonio", "success", false);
+    await httpService.delete(`/slides/${id}`);
+    setSlides(slides.filter((testimonial) => testimonial.id !== id));
+    alert("¡Exitoso!", "Se ha eliminado el slide", "success", false);
   };
 
   return (
@@ -71,14 +69,14 @@ const Testimonial = () => {
         }}
       >
         <Typography component="h2" variant="h4">
-          Testimonials
+          Slides
         </Typography>
         <Box>
           <Button
             variant="contained"
             color="success"
             endIcon={<AddIcon />}
-            onClick={() => navigate("/backoffice/testimonials/create")}
+            onClick={() => navigate("/backoffice/slides/create")}
           >
             Agregar
           </Button>
@@ -92,18 +90,27 @@ const Testimonial = () => {
           <TableHead>
             <TableRow>
               <StyledTableCell>ID</StyledTableCell>
-              <StyledTableCell>Nombre</StyledTableCell>
+              <StyledTableCell>Imagen</StyledTableCell>
+              <StyledTableCell>Texto</StyledTableCell>
               <StyledTableCell>Acciones</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {testimonials.map((row) => (
+            {slides.map((row) => (
               <TableRow
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell size="small">{row.id}</TableCell>
-                <TableCell size="small">{row.name}</TableCell>
+                <TableCell size="small">
+                  <Box
+                    component="img"
+                    src={row.imageUrl}
+                    alt={row.id}
+                    sx={{ height: 45, width: 60 }}
+                  />
+                </TableCell>
+                <TableCell size="small">{row.text}</TableCell>
                 <TableCell size="small">
                   <Tooltip title="Eliminar">
                     <IconButton onClick={() => handleDelete(row.id)}>
@@ -113,7 +120,7 @@ const Testimonial = () => {
                   <Tooltip title="Actualizar">
                     <IconButton
                       onClick={() =>
-                        navigate(`/backoffice/testimonials/edit/${row.id}`)
+                        navigate(`/backoffice/slides/edit/${row.id}`)
                       }
                     >
                       <CreateIcon />
@@ -129,4 +136,4 @@ const Testimonial = () => {
   );
 };
 
-export default Testimonial;
+export default Slide;

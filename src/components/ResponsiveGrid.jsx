@@ -44,10 +44,12 @@ const textFiles = [
   {
     title: "Organizacion",
     logo: <ApartmentRoundedIcon sx={{ fontSize: "50px" }} />,
+    route: "/backoffice/organization",
   },
   {
     title: "Slides",
     logo: <AccountTreeRoundedIcon sx={{ fontSize: "50px" }} />,
+    route: "/backoffice/slides",
   },
   {
     title: "Usuarios",
