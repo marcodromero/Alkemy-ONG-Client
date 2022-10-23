@@ -1,14 +1,15 @@
 import {
   Button,
+  ButtonBase,
   Card,
-  CardActions,
+  CardActionArea,
   CardContent,
   CardMedia,
   Grid,
   Typography,  
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import httpService from "../../services/httpService";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
@@ -36,37 +37,38 @@ export default function PublicActivities() {
     >
       {activities.map((activity) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={activity.id}>
-          <Card sx={{
-            height: 400,
-          }}> 
-            <CardMedia
-              component="img"
-              height="140"
-              image={activity.image}
-              alt={activity.name}
-            />
-            <CardContent sx={{
-                height: 160,
-            }}>
-              <Typography gutterBottom variant="h5" component="div">
-                {activity.name}
-              </Typography>
-              <Typography component='label' variant="body2" color="text.secondary">
-                {parse(activity.content)}
-              </Typography>
-            </CardContent>
-            <CardActions sx={{
-                height: 50,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-end',
-
-            }}>
-              <Button 
-                onClick={() => navigate('/activities/' + activity.id)}
-              size="small" color="secondary">Ver más</Button>
-            </CardActions>
-          </Card>
+          <Card sx={{ maxWidth: 345, height: 415, mx: "auto" }}>
+              <ButtonBase component={Link} to={`/news/${activity.id}`}>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    height="250"
+                    image={activity.image}
+                    alt={activity.name}
+                  />
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="subtitle1"
+                      component="div"
+                    >
+                      {activity.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.primary"
+                      sx={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        height: "98px",
+                      }}
+                    >
+                      {parse(activity.content)}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </ButtonBase>
+            </Card>
         </Grid>
       ))}
     </Grid>
