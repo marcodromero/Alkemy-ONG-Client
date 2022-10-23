@@ -38,7 +38,7 @@ export default function PublicActivities() {
       {activities.map((activity) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={activity.id}>
           <Card sx={{ maxWidth: 345, height: 415, mx: "auto" }}>
-              <ButtonBase component={Link} to={`/news/${activity.id}`}>
+              <ButtonBase component={Link} to={`/activities/${activity.id}`}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
