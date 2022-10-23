@@ -12,8 +12,9 @@ import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import AccountTreeRoundedIcon from "@mui/icons-material/AccountTreeRounded";
 import Person2RoundedIcon from "@mui/icons-material/Person2Rounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
-import ContactsIcon from '@mui/icons-material/Contacts';
-import { Button, Link } from "@mui/material";
+import ContactsIcon from "@mui/icons-material/Contacts";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -24,52 +25,72 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const textFiles = [
-  { title: "Perfil", logo: <Person2RoundedIcon sx={{ fontSize: "50px" }}/>, route: '/profile' },
-  { title: "Novedades", logo: <NewspaperIcon sx={{ fontSize: "50px" }} /> , route: '/backoffice/news' },
+  {
+    title: "Novedades",
+    logo: <NewspaperIcon sx={{ fontSize: "50px" }} />,
+    route: "/backoffice/news",
+  },
   {
     title: "Actividades",
     logo: <PlaylistAddCheckIcon sx={{ fontSize: "50px" }} />,
-    route: '/backoffice/activities'
+    route: "/backoffice/activities",
   },
-  { title: "Categorias", logo: <ReorderIcon sx={{ fontSize: "50px" }} /> },
-  { title: "Testimonios", logo: <MessageIcon sx={{ fontSize: "50px" }} /> },
+  {
+    title: "Testimonios",
+    logo: <MessageIcon sx={{ fontSize: "50px" }} />,
+    route: "/backoffice/testimonials",
+  },
+
   {
     title: "Organizacion",
     logo: <ApartmentRoundedIcon sx={{ fontSize: "50px" }} />,
+    route: "/backoffice/organization",
   },
   {
     title: "Slides",
     logo: <AccountTreeRoundedIcon sx={{ fontSize: "50px" }} />,
+    route: "/backoffice/slides",
   },
-  { title: "Usuarios", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/users' },
+  {
+    title: "Usuarios",
+    logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} />,
+    route: "/backoffice/users",
+  },
 
-  { title: "Miembros", logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/members' },
-  
-  { title: "Contactos", logo: <ContactsIcon sx={{ fontSize: "50px" }} />, route: '/backoffice/contacts' },
+  {
+    title: "Miembros",
+    logo: <PeopleRoundedIcon sx={{ fontSize: "50px" }} />,
+    route: "/backoffice/members",
+  },
+
+  {
+    title: "Contactos",
+    logo: <ContactsIcon sx={{ fontSize: "50px" }} />,
+    route: "/backoffice/contacts",
+  },
 ];
 
 export default function ResponsiveGrid() {
   return (
-    <Box sx={{ flexGrow: 1, width: "80%", margin: "auto", paddingTop: "5%" }}>
+    <Box sx={{ width: "100%", margin: "auto", paddingTop: "5%", mb: 13 }}>
       <Grid
         container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 2, sm: 2, md: 8 }}
+        columnSpacing={{ xs: 1, sm: 2, md: 3, lg: 7 }}
+        rowSpacing={{ xs: 2, sm: 2, md: 3, lg: 7 }}
       >
         {textFiles.map(({ title, logo, route }, index) => (
-          <Grid item xs={8} sm={4} md={2} sx={{}} key={index}>
+          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <Item
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                height: 150,
-                width: "60%",
+                height: 160,
               }}
             >
               <Typography
                 variant="body2"
-                sx={{ color: "#319795", fontSize: "20px" }}
+                sx={{ color: "#172F57", fontSize: "20px" }}
               >
                 {title}
               </Typography>
@@ -84,22 +105,26 @@ export default function ResponsiveGrid() {
                   justifyContent: "center",
                   alignItems: "center",
                   overflow: "hidden",
+                  color: "#8db9ca",
                 }}
               >
                 {logo}
               </Box>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#319795",
-                  cursor: "pointer",
-                  width: "10px",
-                  height: "20px",
-                  padding: "0px",
-                }}
-              >
-                <Link href={route}>Ir</Link>
-              </Button>
+              <Box component={Link} to={route} sx={{ textDecoration: "none" }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "#26ABE2",
+                    color: "#fff",
+                    cursor: "pointer",
+                    width: "10px",
+                    height: "20px",
+                    padding: "0px",
+                  }}
+                >
+                  Ir
+                </Button>
+              </Box>
             </Item>
           </Grid>
         ))}

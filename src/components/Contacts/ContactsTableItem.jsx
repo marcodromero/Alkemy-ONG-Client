@@ -1,13 +1,24 @@
-import { Delete, Edit } from "@mui/icons-material";
-import {
-
-  TableCell,
-  TableRow,
-} from "@mui/material";
+import { TableCell, TableRow } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
+import httpService from "../../services/httpService";
+import { Tooltip, IconButton } from "@mui/material";
+import { alert } from "../../features/alert/Alert";
+export default function ContactsTableItem({
+  name,
+  phone,
+  email,
+  message,
+  id,
+  data,
+  setData,
+}) {
+  const handleDelete = async (id) => {
+    await httpService.delete(`/contacts/${id}`);
+    setData(data.filter((contact) => contact.id !== id));
+    alert("¡Exitoso!", "Se ha eliminado el contacto", "success", false);
+  };
 
-export default function ContactsTableItem({name, phone, email, message, id}) {
   return (
     <TableRow>
       <TableCell>{name}</TableCell>
@@ -15,12 +26,11 @@ export default function ContactsTableItem({name, phone, email, message, id}) {
       <TableCell>{email}</TableCell>
       <TableCell>{message}</TableCell>
       <TableCell>
-        <Link href={`/backoffice/contacts/${id}`} color="secondary">
-          <Edit />
-        </Link>
-        <Link color="secondary">
-          <Delete />
-        </Link>
+        <Tooltip title="Eliminar">
+          <IconButton onClick={() => handleDelete(id)}>
+            <DeleteIcon color="danger" />
+          </IconButton>
+        </Tooltip>
       </TableCell>
     </TableRow>
   );

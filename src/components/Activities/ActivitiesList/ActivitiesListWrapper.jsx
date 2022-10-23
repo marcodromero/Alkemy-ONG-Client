@@ -1,43 +1,131 @@
-import { Add, Create } from '@mui/icons-material'
-import { Box, Button, colors, Link } from '@mui/material'
-import AddIcon from '@mui/icons-material/Add';
-import React from 'react'
-import Card from './Card'
-export default function ActivitiesListWrapper({data}) {
+import { Add, Create } from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  useMediaQuery,
+  Typography,
+  Container,
+  TableContainer,
+  Paper,
+  TableBody,
+  TableHead,
+  TableRow,
+  TableCell,
+  Table,
+  tableCellClasses,
+  Tooltip,
+  IconButton,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import CreateIcon from "@mui/icons-material/Create";
+import DeleteIcon from "@mui/icons-material/Delete";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import { alert } from "../../../features/alert/Alert";
+import httpService from "../../../services/httpService";
+
+export default function ActivitiesListWrapper({ data, setData }) {
+  const navigate = useNavigate();
+  const widthMatches = useMediaQuery("(min-width:600px)");
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: "#c2c2c2",
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const handleDelete = async (id) => {
+    await httpService.delete(`/activities/${id}`);
+    setData(data.filter((activity) => activity.id !== id));
+    alert("¡Exitoso!", "Se ha eliminado el testimonio", "success", false);
+  };
+
   return (
-    <Box>
-      <Box 
-      sx={{
-        display: 'flex',
-        width: '100%',
-        justifyContent: 'flex-end',
-      }}
-      >
-        <Link
+    <Container maxWidth="xl">
+      <Box
+        mb={widthMatches ? 6 : 3}
+        mt={widthMatches ? 4 : 2}
         sx={{
-          p: '.5rem',
-          color: 'unset',
-          textDecoration: 'none',
-          transition: '300ms ease-in-out',
-          '&:hover': {
-            color: colors.blue[500],
-          }
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
-        href="/backoffice/activities/create">
-          <Button variant="contained" color="success" endIcon={<AddIcon />}>
-              Agregar
-            </Button>
-        </Link>
+      >
+        <Typography component="h2" variant="h4">
+          Actividades
+        </Typography>
+        <Box>
+          <Button
+            variant="contained"
+            color="success"
+            endIcon={<AddIcon />}
+            onClick={() => navigate("/backoffice/activities/create")}
+          >
+            Agregar
+          </Button>
+        </Box>
       </Box>
       <Box
-          sx={{display: 'grid', gridTemplateColumns : 'repeat(auto-fit, minmax(300px, 1fr))'}}
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+        }}
       >
-          {
-              data.map((activity) => (
-                  <Card key={activity.id} name={activity.name} content={activity.content} image={activity.image} id={activity.id}  />
-              ) )
-          }
+        <TableContainer
+          component={Paper}
+          sx={{ marginBottom: widthMatches ? 19 : 10 }}
+        >
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>ID</StyledTableCell>
+                <StyledTableCell>Imagen</StyledTableCell>
+                <StyledTableCell>Nombre</StyledTableCell>
+                <StyledTableCell>Acciones</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((row) => (
+                <TableRow
+                  key={row.id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell size="small">{row.id}</TableCell>
+                  <TableCell size="small">
+                    <Box
+                      component="img"
+                      src={row.image}
+                      alt="activity"
+                      sx={{ height: 45, width: 60 }}
+                    />
+                  </TableCell>
+                  <TableCell size="small">{row.name}</TableCell>
+                  <TableCell size="small">
+                    <Tooltip title="Eliminar">
+                      <IconButton onClick={() => handleDelete(row.id)}>
+                        <DeleteIcon color="danger" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Actualizar">
+                      <IconButton
+                        onClick={() =>
+                          navigate(`/backoffice/activities/edit/${row.id}`)
+                        }
+                      >
+                        <CreateIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Box>
-    </Box>
-  )
+    </Container>
+  );
 }
