@@ -14,7 +14,7 @@ import '@fontsource/montserrat';
 import { Link } from "react-router-dom";
 
 export default function Footer(){
-    const [data, setData] = useState({});
+    const [data, setData] = useState("");
     useEffect(() => {
         (async()=> {
             try{
@@ -31,8 +31,8 @@ export default function Footer(){
                 <Box sx = {{mt: 2}}>
                     <Divider>
                         <Box>
-                            <Box component ="img" sx = {{width: 80, height: 80, mx: 6}} src = {data.image} alt ="logo"/>
-                            <Typography variant = "h6" sx= {{fontSize: 18, fontFamily: "Poppins, sans-serif"}}>{data.title}</Typography>
+                            <Box component ="img" sx = {{width: 80, height: 80, mx: 6}} src = {data?.image} alt ="logo"/>
+                            <Typography variant = "h6" sx= {{fontSize: 18, fontFamily: "Poppins, sans-serif"}}>{data?.title}</Typography>
                         </Box>
                     </Divider>
                 </Box>
@@ -48,9 +48,9 @@ export default function Footer(){
                 <Box sx = {{mt: 5,}} >
                     <Stack >
                         <Box display="flex" justifyContent="center" alignItems="flex-start">
-                            <MuLink sx = {{mx: 2, fontFamily: "Poppins, sans-serif"}} href ={data.facebookUrl}><Box component ="img" sx = {{width: 44, height: 44, }}  src={data.facebook} alt ="facebook"/></MuLink>
-                            <MuLink sx = {{mx: 2, fontFamily: "Poppins, sans-serif"}} href ={data.linkedinUrl}><Box component ="img" sx = {{width: 44, height: 44, }}  src={data.linkedin} alt ="linkedin"/></MuLink>
-                            <MuLink sx = {{mx: 2, fontFamily: "Poppins, sans-serif"}} href ={data.instagramUrl}><Box component ="img" sx = {{width: 44, height: 44, }}  src={data.instagram} alt ="instagram"/></MuLink>
+                            {data.facebook && <MuLink sx = {{mx: 2, fontFamily: "Poppins, sans-serif"}} href ={data?.facebookUrl}><Box component ="img" sx = {{width: 44, height: 44, }}  src={data?.facebook} /></MuLink> }
+                            {data.linkedin && <MuLink sx = {{mx: 2, fontFamily: "Poppins, sans-serif"}} href ={data?.linkedinUrl}><Box component ="img" sx = {{width: 44, height: 44, }}  src={data?.linkedin} /></MuLink> }
+                            {data.instagram && <MuLink sx = {{mx: 2, fontFamily: "Poppins, sans-serif"}} href ={data?.instagramUrl}><Box component ="img" sx = {{width: 44, height: 44, }}  src={data?.instagram} /></MuLink> }
                         </Box>
                         <Typography sx = {{mt: 1, textAlign: "center", fontFamily: "Montserrat, sans-serif" }}>2022 by Alkemy. All Rights Reserved.</Typography>
                     </Stack>

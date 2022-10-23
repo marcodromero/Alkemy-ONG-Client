@@ -13,6 +13,7 @@ import "@fontsource/mulish";
 import "@fontsource/poppins";
 import axios from "../../services/httpService";
 import { useNavigate, useParams } from "react-router-dom";
+import parse from "html-react-parser";
 
 export default function DetailNew() {
   const [data, setData] = useState(null);
@@ -32,7 +33,7 @@ export default function DetailNew() {
   return (
     <Container maxWidth="xl" sx={{ marginBottom: widthMatches ? 17 : 5 }}>
       {data ? (
-        <Box>
+        <Box maxWidth ="800px" sx={{mx:"auto"}}>
           <Typography
             component="h2"
             variant="h4"
@@ -42,9 +43,7 @@ export default function DetailNew() {
           >
             {data.name}
           </Typography>
-          <Typography paragraph={true} mb={widthMatches ? 5 : 3}>
-            {data.content}
-          </Typography>
+         
           <Box
             sx={{
               display: "flex",
@@ -53,21 +52,25 @@ export default function DetailNew() {
           >
             <Card
               sx={{
-                maxWidth: 290,
-                height: widthMatches ? 290 : 290,
+                maxWidth: "800px",
+                //height: widthMatches ? 290 : 290,
                 borderRadius: "8px",
               }}
             >
               <CardActionArea>
                 <CardMedia
                   component="img"
-                  height={widthMatches ? 290 : 290}
+                 // height={widthMatches ? 290 : 290}
                   image={data.image}
                   alt="new"
+                  sx={{width: "100%"}}
                 />
               </CardActionArea>
             </Card>
           </Box>
+          <Typography paragraph={true} mb={widthMatches ? 5 : 3} sx={{fontFamily:"Mulish,sans-serif", mt: "1.3rem"}}>
+            {parse(data.content)}
+          </Typography>
           <Button
             variant="contained"
             color="danger"
@@ -76,6 +79,7 @@ export default function DetailNew() {
           >
             Volver
           </Button>
+          
         </Box>
       ) : (
         <Button
