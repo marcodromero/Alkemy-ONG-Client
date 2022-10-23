@@ -23,43 +23,47 @@ import Axios from "../../services/httpService";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-export default function News(){
+export default function News() {
   const navigate = useNavigate();
-    const [news, setNews] = useState([]);
-  
-    
-    const showAlert = (id)=>{
-      Swal.fire({
-        title: '¿Quieres eliminar la novedad?',
-        icon: 'question',
-        showDenyButton: true,
-        confirmButtonText: 'Si',
-        denyButtonText: `No`,
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const res = await Axios.delete(`/news/${id}`);
-          if(res){
-            getData();
-            Swal.fire('Eliminado', 'La novedad ha sido eliminada.', 'success')
-          }else{
-            Swal.fire('Hubo un problema', 'La novedad no se pudo eliminar.', 'error')
-          }
-        } 
-      })
-    }
+  const [news, setNews] = useState([]);
 
-    useEffect(() => {
-      getData();
-    }, []);
-  
-    const getData = async () => {
-      const res = await Axios.get("/news");
-      setNews(res.data);
-    };
-  
-    const widthMatches = useMediaQuery("(min-width:600px)");
-  
-    return (<>
+  const showAlert = (id) => {
+    Swal.fire({
+      title: "¿Quieres eliminar la novedad?",
+      icon: "question",
+      showDenyButton: true,
+      confirmButtonText: "Si",
+      denyButtonText: `No`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await Axios.delete(`/news/${id}`);
+        if (res) {
+          getData();
+          Swal.fire("Eliminado", "La novedad ha sido eliminada.", "success");
+        } else {
+          Swal.fire(
+            "Hubo un problema",
+            "La novedad no se pudo eliminar.",
+            "error"
+          );
+        }
+      }
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const res = await Axios.get("/news");
+    setNews(res.data);
+  };
+
+  const widthMatches = useMediaQuery("(min-width:600px)");
+
+  return (
+    <>
       <Container maxWidth="xl">
         <Box
           component=""
@@ -75,10 +79,15 @@ export default function News(){
             mb={widthMatches ? 6 : 3}
             mt={widthMatches ? 5 : 3}
           >
-            News
+            Novedades
           </Typography>
           <Box>
-            <Button onClick={() => navigate('/backoffice/news-form')} variant="contained" color="success" endIcon={<AddIcon />}>
+            <Button
+              onClick={() => navigate("/backoffice/news-form")}
+              variant="contained"
+              color="success"
+              endIcon={<AddIcon />}
+            >
               Agregar
             </Button>
           </Box>
@@ -99,18 +108,32 @@ export default function News(){
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>
-                    <img src={row.image} alt={row.name} height="100px" />
+                  <TableCell size="small">{row.name}</TableCell>
+                  <TableCell size="small">
+                    <Box
+                      component="img"
+                      src={row.image}
+                      alt={row.name}
+                      sx={{ height: 45, width: 60 }}
+                    />
                   </TableCell>
-                  <TableCell>{row.createdAt}</TableCell>
-                  <TableCell>
+                  <TableCell size="small">{row.createdAt}</TableCell>
+                  <TableCell size="small">
                     <Tooltip title="Eliminar">
-                      <IconButton onClick = {()=>{showAlert(row.id)}}>
+                      <IconButton
+                        onClick={() => {
+                          showAlert(row.id);
+                        }}
+                      >
                         <DeleteIcon color="danger" />
                       </IconButton>
                     </Tooltip>
-                    <Tooltip onClick={() => navigate('/backoffice/news-form/' + row.id)} title="Actualizar">
+                    <Tooltip
+                      onClick={() =>
+                        navigate("/backoffice/news-form/" + row.id)
+                      }
+                      title="Actualizar"
+                    >
                       <IconButton>
                         <CreateIcon />
                       </IconButton>
@@ -122,7 +145,6 @@ export default function News(){
           </Table>
         </TableContainer>
       </Container>
-      </>
-    );
-  };
-  
+    </>
+  );
+}
