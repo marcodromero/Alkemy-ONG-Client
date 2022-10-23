@@ -70,6 +70,14 @@ export default function PublicActivities() {
         </Grid>
       ))}
     </Grid>
+    <Button
+        variant="contained"
+        color="danger"
+        sx={{mt: '1.5rem',color: "#fff" }}
+        onClick={() => navigate("/")}
+      >
+        Ir al inicio
+      </Button>
     </Box>
   );
 }
