@@ -6,10 +6,14 @@ import {
   TextField,
   Button,
   useMediaQuery,
+  Container,
+  ThemeProvider
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import httpService from "../../services/httpService";
 import { alert } from "../../features/alert/Alert";
+import "@fontsource/poppins";
+import { createTheme } from '@mui/material/styles';
 
 const Contact = () => {
   const initialState = {
@@ -72,106 +76,122 @@ const Contact = () => {
     }));
   };
 
-  return (
-    <Box
-      component="form"
-      noValidate
-      sx={{
-        paddingTop: heightMatches ? 5 : 2,
-        marginBottom: heightMatches ? 12 : 5,
-      }}
-      onSubmit={handleSubmit}
-    >
-      <Typography component="h2" variant="h4">
-        ¡Contactate con nosotros!
-      </Typography>
+  const theme = createTheme({
+    palette: {
+      secondary: {
+        main: "#000"
+      },
+    }});
 
-      <Grid container>
-        <Grid
-          item
-          xs={12}
-          md={7}
-          sx={{
-            marginTop: heightMatches ? 5 : 2,
-          }}
-        >
-          <TextField
-            required
-            fullWidth
-            error={error === "name" ? true : false}
-            label="Nombre y Apellido"
-            variant="outlined"
+  return (
+    <Container maxWidth="xl" sx={{ marginBottom: widthMatches ? 10 : 8 }}>
+      <Typography component="h2" variant="h4" mt={widthMatches ? 5 : 3}  mb={widthMatches ? 5 : 3} sx={{fontFamily: "Poppins, sans-serif", textAlign: "center", fontSize: "38px", fontWeight: "600"}}>
+          ¡Contactate con nosotros!
+        </Typography>
+     
+      <Box
+        component="form"
+        noValidate
+        sx={{
+          
+          marginBottom: heightMatches ? 12 : 5,
+      
+        }}
+        onSubmit={handleSubmit}
+      >
+
+        <Grid container sx={{display: "flex",
+          flexDirection: "column",
+          alignItems: "center",}}>
+          <Grid
+            item
+            xs={12}
+            md={7}
             sx={{
-              marginBottom: 3,
+             
             }}
-            color="neutral"
-            name="name"
-            helperText={error === "name" && errorMessage}
-            value={name}
-            onChange={handleChange}
-            size={widthMatches ? "medium" : "small"}
-          />
-          <TextField
-            required
-            fullWidth
-            error={error === "email" ? true : false}
-            label="Email"
-            variant="outlined"
-            sx={{
-              marginBottom: 3,
-            }}
-            color="neutral"
-            name="email"
-            helperText={error === "email" && errorMessage}
-            value={email}
-            onChange={handleChange}
-            size={widthMatches ? "medium" : "small"}
-          />
-          <TextField
-            required
-            fullWidth
-            error={error === "phone" ? true : false}
-            label="Teléfono"
-            variant="outlined"
-            sx={{
-              marginBottom: 3,
-            }}
-            color="neutral"
-            name="phone"
-            helperText={error === "phone" && errorMessage}
-            value={phone}
-            onChange={handleChange}
-            size={widthMatches ? "medium" : "small"}
-          />
-          <TextField
-            required
-            fullWidth
-            error={error === "message" ? true : false}
-            label="Escribe tu consulta..."
-            multiline
-            rows={widthMatches ? 7 : 4}
-            variant="outlined"
-            sx={{
-              marginBottom: 3,
-            }}
-            color="neutral"
-            name="message"
-            helperText={error === "message" && errorMessage}
-            value={message}
-            onChange={handleChange}
-            size={widthMatches ? "medium" : "small"}
-          />
-          <Button
-            variant="contained"
-            type="submit"
-            color="secondary"
-            endIcon={<SendIcon />}
           >
-            Enviar consulta
-          </Button>
+             <ThemeProvider theme={theme}>
+            <TextField
+              required
+              fullWidth
+              error={error === "name" ? true : false}
+              label="Nombre y Apellido"
+              variant="outlined"
+              sx={{
+                marginBottom: 3,
+              }}
+              color="secondary"
+              name="name"
+              helperText={error === "name" && errorMessage}
+              value={name}
+              onChange={handleChange}
+              size={widthMatches ? "medium" : "small"}
+            />
+            <TextField
+              required
+              fullWidth
+              error={error === "email" ? true : false}
+              label="Email"
+              variant="outlined"
+              sx={{
+                marginBottom: 3,
+              }}
+              color = "secondary"
+              name="email"
+              helperText={error === "email" && errorMessage}
+              value={email}
+              onChange={handleChange}
+              size={widthMatches ? "medium" : "small"}
+            />
+            <TextField
+              required
+              fullWidth
+              error={error === "phone" ? true : false}
+              label="Teléfono"
+              variant="outlined"
+              sx={{
+                marginBottom: 3,
+              }}
+              color = "secondary"
+              name="phone"
+              helperText={error === "phone" && errorMessage}
+              value={phone}
+              onChange={handleChange}
+              size={widthMatches ? "medium" : "small"}
+            />
+            <TextField
+              required
+              fullWidth
+              error={error === "message" ? true : false}
+              label="Escribe tu consulta..."
+              multiline
+              rows={widthMatches ? 7 : 4}
+              variant="outlined"
+              sx={{
+                marginBottom: 3,
+              }}
+              color = "secondary"
+              name="message"
+              helperText={error === "message" && errorMessage}
+              value={message}
+              onChange={handleChange}
+              size={widthMatches ? "medium" : "small"}
+            />
+             </ThemeProvider>
+            <Button
+              variant="contained"
+              type="submit"
+              color="secondary"
+              sx={{backgroundColor:"#ff0000", borderRadius: "20px", boxShadow:" 0px 4px 4px rgba(0, 0, 0, 0.25)", ':hover': {backgroundColor: "blue"}}}
+            >
+              Enviar consulta
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+     
+    </Container>
   );
 };
 
