@@ -34,6 +34,8 @@ import Contacts from "./routes/private/Contacts";
 import Categories from "./routes/private/Categorie";
 import Slide from "./routes/private/Slide";
 import Organization from "./routes/private/Organization";
+import PublicActivities from "./routes/public/PublicActivities";
+import PublicActivity from "./routes/public/PublicActivity";
 let theme = createTheme({
   palette: {
     primary: {
@@ -103,7 +105,6 @@ export default function App() {
             <Route path="/backoffice/contacts" element={<BackofficeLayout />}>
               <Route index element={<Auth><Contacts /></Auth>} />
             </Route>
-
             <Route path="/news" element={<Layout />}>
               <Route index element={<New />} />
             </Route>
@@ -124,6 +125,12 @@ export default function App() {
             </Route>
             <Route path="/testimonials" element={<Layout />}>
               <Route index element={<Testimonials />} />
+            </Route>
+            <Route path="/activities" element={<Layout />}>
+              <Route index element={<PublicActivities />} />
+            </Route>
+            <Route path="/activities/:id" element={<Layout />}>
+              <Route index element={<PublicActivity />} />
             </Route>
             <Route path="/404" element={<Layout />}>
               <Route index element={<NotFound />} />
