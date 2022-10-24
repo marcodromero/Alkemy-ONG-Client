@@ -42,23 +42,15 @@ const About = () => {
       </Typography>
       <Grid container mb={widthMatches ? 8 : 3} sx={{flexWrap: "wrap-reverse"}}>
         <Grid item xs={12} md={7} lg={8} >
-          <Typography component="h5" variant="h5" sx={{fontFamily: "Poppins, sans-serif", fontSize:"30px", fontWeight:"400"}}>
+          <Typography component="h5" variant="h5" sx={{fontFamily: "Poppins, sans-serif", fontSize:"30px", fontWeight:"600"}}>
             {members.length !== 0 && focusMember.name}
+          </Typography>
+          <Typography  variant="h5" sx={{fontFamily: "Poppins, sans-serif", fontSize:"30px", fontWeight:"400"}}>
+            {members.length !== 0 && focusMember.rol}
           </Typography>
       
           <Typography variant="subtitle2" mt={{ xs: 1, md: 2 , fontFamily: "Mulish, sans-serif", fontSize: "16px" }} >
-            {focusMember.description ||`Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, eius
-            asperiores. Ea beatae dolores reiciendis similique porro explicabo
-            sequi, tempore officiis facere assumenda distinctio recusandae sed
-            rerum maxime eius provident! Provident maiores reiciendis
-            perspiciatis deleniti nobis et placeat, doloremque, ratione autem
-            tenetur dignissimos magnam facere eum totam neque iusto
-            reprehenderit harum nostrum ut cupiditate! Dolorem, laudantium.
-            Distinctio vitae consectetur ipsum? Ratione est adipisci rerum
-            dolore rem, obcaecati eligendi provident eaque quia quam, quas
-            velit. Corrupti pariatur explicabo temporibus quo architecto
-            veritatis tenetur adipisci quas, saepe incidunt ducimus ratione
-            molestias sed. Quos error dolorem officiis distinctio.`}
+            {focusMember.description ||" "}
           </Typography>
           <Button
             onClick={() => navigate("/contact")}
