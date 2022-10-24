@@ -16,12 +16,12 @@ export function Alert({ type, title, text, show, methodConfirm }) {
 }
 export const alertUpdateSucess = (type, cb) => {
 
-
+    
     Swal.fire(
         "Actualizado",
         `La ${type} ha sido actualizada.`,
         "success"
-      ).then((result) => result.isConfirmed && cb());
+      ).then(cb);
 }
 export const alertUpdateError = (type) => {
 
@@ -36,7 +36,7 @@ export const alertCreateSucess = (type, cb) => {
         "Publicado",
         `La ${type} ha sido publicada.`,
         "success"
-      ).then((result) => result.isConfirmed && cb());
+      ).then(cb);
 }
 
 export const alertCreateError = (type) => {
@@ -47,11 +47,12 @@ export const alertCreateError = (type) => {
         )
 }
 export const alertDeleteSucess = (type, cb) => {
+    
     Swal.fire(
         "Eliminado",
         `La ${type} ha sido eliminada.`,
         "success"
-        ).then((result) => result.isConfirmed && cb());
+        ).then(cb);
 }
 export const alertDeleteError = (type) => {
     Swal.fire(

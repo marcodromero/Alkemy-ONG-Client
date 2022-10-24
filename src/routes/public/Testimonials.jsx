@@ -85,7 +85,7 @@ const Testimonials = () => {
           type="submit"
           color="danger"
           sx={{ color: "#fff" }}
-          onClick={user ? handleOpen : () => navigate("/")}
+          onClick={user ? handleOpen : () => navigate("/login")}
         >
           ¡Agregar mi testimonio!
         </Button>
