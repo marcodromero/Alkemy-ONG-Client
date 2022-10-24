@@ -16,6 +16,7 @@ import { createTheme } from "@mui/material/styles";
 import Swal from "sweetalert2";
 import { DeleteForever, Error, PhotoCamera, Send } from "@mui/icons-material";
 import { convertToBase64 } from "../../features/utils";
+import { alertCreateError, alertCreateSucess, alertUpdateSucess } from "../../features/alert/Alert";
 
 export default function NewsForm() {
   const { id } = useParams();
@@ -35,10 +36,6 @@ export default function NewsForm() {
     setName(event.target.value);
   };
 
-  const imageChange = (event) => {
-    setImage(event.target.value);
-  };
-
   const showAlertCreate = () => {
     if ((name, image, content)) {
       Swal.fire({
@@ -49,25 +46,17 @@ export default function NewsForm() {
         denyButtonText: `No`,
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const res = await axios.post(`/news`, {
-            name: name,
-            content: content,
-            image: image,
-          });
-          if (res) {
-            getData();
-            Swal.fire(
-              "Publicado",
-              "La novedad ha sido publicada.",
-              "success"
-            ).then(() => navigate("/backoffice/news"));
-          } else {
-            Swal.fire(
-              "Hubo un problema",
-              "La novedad no se pudo publicar.",
-              "error"
-            );
-          }
+          try {
+	            const res = await axios.post(`/news`, {
+	            name: name,
+	            content: content,
+	            image: image,
+	            });
+	            getData();
+	            alertCreateSucess('novedad', navigate('/backoffice/news'))
+              } catch (error) {
+                alertCreateError('novedad')
+            }
         }
       });
     }
@@ -88,19 +77,11 @@ export default function NewsForm() {
             content: content,
             image: image,
           });
-          if (res) {
+          if (res.status === 200) {
             getData();
-            Swal.fire(
-              "Actualizada",
-              "La novedad ha sido actualizada.",
-              "success"
-            );
+            alertUpdateSucess('novedad', navigate('/backoffice/news'))
           } else {
-            Swal.fire(
-              "Hubo un problema",
-              "La novedad no se pudo actualizar.",
-              "error"
-            );
+            alertCreateError('novedad')
           }
         }
       });
