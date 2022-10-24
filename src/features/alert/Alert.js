@@ -2,7 +2,6 @@ import React from 'react';
 import SweetAlert from 'sweetalert2-react';
 import Swal from "sweetalert2";
 
-
 export function Alert({ type, title, text, show, methodConfirm }) {
     return (
         <SweetAlert
@@ -15,6 +14,53 @@ export function Alert({ type, title, text, show, methodConfirm }) {
 
     );
 }
+export const alertUpdateSucess = (type, cb) => {
+
+
+    Swal.fire(
+        "Actualizado",
+        `La ${type} ha sido actualizada.`,
+        "success"
+      ).then((result) => result.isConfirmed && cb());
+}
+export const alertUpdateError = (type) => {
+
+    Swal.fire(
+        "Ha ocurrido un error",
+        `La ${type} no se ha podido actualizar.`,
+        "error"
+      )
+}
+export const alertCreateSucess = (type, cb) => {
+    Swal.fire(
+        "Publicado",
+        `La ${type} ha sido publicada.`,
+        "success"
+      ).then((result) => result.isConfirmed && cb());
+}
+
+export const alertCreateError = (type) => {
+    Swal.fire(
+        "Ha ocurrido un error",
+        `La ${type} no se ha podido publicar.`,
+        "error"
+        )
+}
+export const alertDeleteSucess = (type, cb) => {
+    Swal.fire(
+        "Eliminado",
+        `La ${type} ha sido eliminada.`,
+        "success"
+        ).then((result) => result.isConfirmed && cb());
+}
+export const alertDeleteError = (type) => {
+    Swal.fire(
+        "Ha ocurrido un error",
+        `La ${type} no se ha podido eliminar.`,
+        "error"
+        )
+}
+
 
 export const alert = (title, text, icon, isShowConfirmButton = true) => {
     Swal.fire({
