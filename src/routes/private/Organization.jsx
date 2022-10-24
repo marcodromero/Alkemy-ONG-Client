@@ -19,6 +19,8 @@ export default function Organization(){
     const [red1Url, setRed1Url] = useState("");
     const [red2Url, setRed2Url] = useState("");
     const [red3Url, setRed3Url] = useState("");
+    const [welcomeImage, setWelcomeImage] = useState("");
+    const [welcomeTitle, setWelcomeTitle] = useState("");
     
     const titleChange = (event) => {
         setTitle(event.target.value);
@@ -27,6 +29,17 @@ export default function Organization(){
     const descriptionChange = (event) => {
         setDescription(event.target.value);
     };
+
+    const welcomeTitleChange = (event) => {
+        setWelcomeTitle(event.target.value);
+    };
+
+    const welcomeImageChange = (e) => {
+        convertToBase64(e.target.files[0]).then((base64) => {
+            setWelcomeImage(base64);
+            }  
+        );
+    }
 
     const logoChange = (e) => {
         convertToBase64(e.target.files[0]).then((base64) => {
@@ -56,8 +69,6 @@ export default function Organization(){
         );
     }
 
-   
-
     const red1UrlChange = (event) => {
         setRed1Url(event.target.value);
     };
@@ -80,7 +91,7 @@ export default function Organization(){
             denyButtonText: `No`,
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    const res = await axios.put(`/organizations`, {title: title, description: description, image: logo , facebook: red1Logo, linkedin: red2Logo, instagram: red3Logo, facebookUrl: red1Url, linkedinUrl: red2Url, instagramUrl: red3Url  });
+                    const res = await axios.put(`/organizations`, {title: title, welcomeTitle: welcomeTitle, description: description, image: logo , welcomeImage: welcomeImage, facebook: red1Logo, linkedin: red2Logo, instagram: red3Logo, facebookUrl: red1Url, linkedinUrl: red2Url, instagramUrl: red3Url  });
                     if(res){
                     Swal.fire('Actualizada', 'Los datos de la organización han sido actualizados.', 'success')
                     }else{
@@ -96,6 +107,8 @@ export default function Organization(){
                 .then((response)=>{
                     setTitle(response.data.title);
                     setDescription(response.data.description);
+                    setWelcomeTitle(response.data.welcomeTitle);
+                    setWelcomeImage(response.data.welcomeImage);
                     setLogo(response.data.image);
                     setRed1Logo(response.data.facebook);
                     setRed2Logo(response.data.linkedin);
@@ -118,6 +131,8 @@ export default function Organization(){
             mt: "25px",
             mx: "auto",
             maxWidth: "733px",
+            display: "flex",
+            flexDirection: "column"
             }}>
             
             <Typography align="center" variant="h4" component='h1' sx={{
@@ -137,7 +152,7 @@ export default function Organization(){
             <TextField
                 required
                 id="outlined-name"
-                label="Título"
+                label="Nombre de la Organización"
                 value={title}
                 onChange = {titleChange}
                 variant="outlined"
@@ -152,7 +167,33 @@ export default function Organization(){
             <TextField
                 required
                 id="outlined-name"
-                label="Descripción"
+                label="Título bienvenida"
+                value={welcomeTitle}
+                onChange = {welcomeTitleChange}
+                variant="outlined"
+                autoComplete="off"
+                InputLabelProps={{
+                    style: { color: '#000' },
+                }}
+                color = "secondary"
+                fullWidth = {true}
+                sx = {{mb: "1.5rem"}}
+                multiline
+                 />
+            
+            <Box component ="div" sx={{display:"flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center", alignItems: "center", columnGap: "15px", mb: "1.5rem"}}>
+                <Box component ="div" sx={{display:"flex", flexDirection: "row", justifyContent: "center", alignItems: "center", columnGap:"15px" ,mb: "1.5rem"}} >
+                    <Box component = "img" src ={welcomeImage} sx={{ width:"200px"}} alt="Imágen de Bienvenida"/>
+                    <Button variant="contained" component="label" onChange={welcomeImageChange} sx={{width: "70px", height: "30px"}}>
+                        Cargar
+                        <input hidden accept="image/jpg" type="file" />
+                    </Button>
+                </Box>
+                
+                <TextField
+                required
+                id="outlined-name"
+                label="Mensaje de bienvenida"
                 value={description}
                 onChange = {descriptionChange}
                 variant="outlined"
@@ -162,8 +203,10 @@ export default function Organization(){
                 }}
                 color = "secondary"
                 fullWidth = {true}
-                sx = {{mb: "1.5rem"}}
-            />
+                sx = {{mb: "1.5rem", maxWidth: "400px"}}
+                multiline
+                 />
+            </Box>
             <Box component ="div" sx={{display:"flex", flexDirection: "flex", justifyContent: "center", alignItems: "center", columnGap: "15px", mb: "1.5rem"}}>
                 <Box component ="div" sx={{display:"flex", flexDirection: "row", justifyContent: "center", alignItems: "center", columnGap:"15px" }}>
                     <Box component = "img" src ={red1Logo} sx={{ width:"44px", height: "44px"}}/>
@@ -243,7 +286,7 @@ export default function Organization(){
                     sx = {{mb: "auto"}}
                 />
             </Box>
-            <Button type="submit" variant="contained"  onClick = {showAlertUpdate} sx={{mx: "auto", mt: 4, width: "295px", height: "68px", borderRadius: "20px", backgroundColor: "#0038FF", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"}}>
+            <Button type="submit" variant="contained"  onClick = {showAlertUpdate} sx={{mx: "auto", mt: 4, mb: "10px" ,width: "295px", height: "68px", borderRadius: "20px", backgroundColor: "#0038FF", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"}}>
                     <Typography variant ="caption" sx ={{fontWeight : "600", fontSize: "32px", lineHeight: "48px", fontFamily: "Poppins, sans-serif", color: "#fff", textTransform: "none"}}>Enviar cambios</Typography>
             </Button>            
         </Box>
