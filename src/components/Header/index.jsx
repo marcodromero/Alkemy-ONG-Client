@@ -14,6 +14,7 @@ import {UserContext} from "../../context/UserProvider";
 import { useContext } from "react";
 import httpService from "../../services/httpService";
 import Logo from "./Logo";
+import '@fontsource/poppins';
 
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -25,6 +26,7 @@ const data = [
   { text: "Inicio", route: "/" },
   { text: "Nosotros", route: "/about" },
   { text: "Novedades", route: "/news" },
+  { text: "Actividades", route: "/activities" },
   { text: "Testimonios", route: "/testimonials" },
   { text: "Contacto", route: "/contact" },
 ];
@@ -83,7 +85,7 @@ console.log(user)
                   onClick={handleCloseNavMenu}
                   sx={{ textTransform: "capitalize" }}
                 >
-                  <Typography textAlign="center">
+                  <Typography textAlign="center" sx={{fontFamily: "Poppins, sans-serif"}}>
                     <NavLink className="header-links" to={page.route} end>
                       {page.text}
                     </NavLink>
