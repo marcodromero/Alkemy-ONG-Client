@@ -30,7 +30,7 @@ import About from "./routes/public/About";
 import Testimonials from "./routes/public/Testimonials";
 import Testimonial from "./routes/private/Testimonial";
 import Contacts from "./routes/private/Contacts";
-
+import Member from "./routes/private/Member"
 import Categories from "./routes/private/Categorie";
 import Slide from "./routes/private/Slide";
 import Organization from "./routes/private/Organization";
@@ -68,6 +68,9 @@ export default function App() {
             </Route>
             <Route path="/backoffice" element={<BackofficeLayout />}>
               <Route index element={<Auth> <BackOffice /> </Auth>} />
+            </Route>
+            <Route path="/backoffice/members" element={<BackofficeLayout />}>
+              <Route index element={<Auth> <Member /> </Auth>} />
             </Route>
             <Route path="/backoffice/slides" element={<BackofficeLayout />}>
               <Route index element={<Auth> <Slide /> </Auth>} />
