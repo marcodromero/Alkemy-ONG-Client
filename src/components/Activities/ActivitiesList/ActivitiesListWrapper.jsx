@@ -22,8 +22,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { alert } from "../../../features/alert/Alert";
+import { alertDeleteError, alertDeleteSucess } from "../../../features/alert/Alert";
 import httpService from "../../../services/httpService";
+import Swal from "sweetalert2";
 
 export default function ActivitiesListWrapper({ data, setData }) {
   const navigate = useNavigate();
@@ -39,9 +40,26 @@ export default function ActivitiesListWrapper({ data, setData }) {
   }));
 
   const handleDelete = async (id) => {
-    await httpService.delete(`/activities/${id}`);
-    setData(data.filter((activity) => activity.id !== id));
-    alert("¡Exitoso!", "Se ha eliminado el testimonio", "success", false);
+    
+    Swal.fire({
+      icon: "question",
+      title: '¿Quieres eliminar la actividad?',
+      showDenyButton: true,
+      confirmButtonText: `Si`,
+      denyButtonText: `No`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try{
+          const res = await httpService.delete(`/activities/${id}`);
+          console.log(res.AxiosError.code)
+          if(res.status === 200) {          
+            alertDeleteSucess('actividad', navigate('/backoffice/activities'))
+          }
+          setData(data.filter((activity) => activity.id !== id));
+      }catch(e) {
+        alertDeleteError('actividad')
+      }
+    }})
   };
 
   return (

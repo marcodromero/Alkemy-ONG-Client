@@ -6,10 +6,11 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import httpService from "../../../services/httpService";
 import "./Editor.css";
-import { Alert } from "../../../features/alert/Alert";
+import { Alert, alertCreateError, alertCreateSucess, alertUpdateError, alertUpdateSucess } from "../../../features/alert/Alert";
 import { useNavigate, useParams } from "react-router-dom";
 import { CheckCircle, Error,  } from "@mui/icons-material";
 import { convertToBase64 } from "../../../features/utils";
+import Swal from "sweetalert2";
 const validationSchema = yup.object({
   name: yup.string("Enter activity name").required("Name is required"),
   image: yup.string("Enter a image"),
@@ -66,24 +67,49 @@ export default function Editor() {
           return
         }
         if (id) {
-          const res = await httpService.put(`/activities/${data.id}`, {
-            name: values.name,
-            image: values.image,
-            content: values.content,
-          });
+          Swal.fire({
+            title: "¿Quieres actualizar la actividad?",
+            icon: "question",
+            showDenyButton: true,
+            confirmButtonText: "Si",
+            denyButtonText: `No`,
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              const res = await httpService.put(`/activities/${id}`, {
+                name: values.name,
+                content: values.content,
+                image: image,
+              });
+              if (res.status === 200) {
+                alertUpdateSucess('actividad', navigate("/backoffice/activities"))
+              }else{
+                alertUpdateError('actividad')
+              }
+            }
+          })
+
           
-          if (res.status === 200) {
-            setSucess(true);
-          }
         } else {
-          const res = await httpService.post("/activities", {
-            name: values.name,
-            image: values.image,
-            content: values.content,
-          });
-          if (res.status === 200) {
-            setSucess(true);
-          }
+          Swal.fire({
+            title: "¿Quieres publicar la actividad?",
+            icon: "question",
+            showDenyButton: true,
+            confirmButtonText: "Si",
+            denyButtonText: `No`,
+          }).then(async (result) => {
+            if(result.isConfirmed){
+              const res = await httpService.post("/activities", {
+                name: values.name,
+                image: image,
+                content: values.content,
+              });
+              if (res.status === 200) {
+                alertCreateSucess('actividad', navigate("/backoffice/activities"))
+              }else{
+                alertCreateError('actividad')
+              }
+            }
+          })
         }
       } catch (e) {
         console.error(e);
@@ -109,7 +135,6 @@ export default function Editor() {
       />
       <Alert
         type={"error"}
-        // methodConfirm={handleAlertClick}
         title={"Error"}
         text={"No se pudo realizar la petición"}
         icon={<CheckCircle />}
