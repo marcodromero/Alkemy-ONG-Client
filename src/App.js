@@ -36,6 +36,7 @@ import Slide from "./routes/private/Slide";
 import Organization from "./routes/private/Organization";
 import PublicActivities from "./routes/public/PublicActivities";
 import PublicActivity from "./routes/public/PublicActivity";
+import MemberForm from "./routes/private/MemberForm";
 let theme = createTheme({
   palette: {
     primary: {
@@ -71,6 +72,12 @@ export default function App() {
             </Route>
             <Route path="/backoffice/members" element={<BackofficeLayout />}>
               <Route index element={<Auth> <Member /> </Auth>} />
+            </Route>
+            <Route path="/backoffice/members/form/" element={<BackofficeLayout />}>
+              <Route index element={<Auth> <MemberForm /> </Auth>} />
+            </Route>
+            <Route path="/backoffice/members/form/:id" element={<BackofficeLayout />}>
+              <Route index element={<Auth> <MemberForm /> </Auth>} />
             </Route>
             <Route path="/backoffice/slides" element={<BackofficeLayout />}>
               <Route index element={<Auth> <Slide /> </Auth>} />
