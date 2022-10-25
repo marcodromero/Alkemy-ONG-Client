@@ -32,7 +32,7 @@ export default function LoginRegister() {
         <Button  component ={Link} to= {"/login"} sx={{ mr: 1 , borderRadius: "20px", border: "1px solid #000", boxShadow: "none"}} variant="contained">
             <Typography sx={{fontFamily: "Poppins, sans-serif"}}>Log in</Typography>
         </Button>
-        <Button variant="contained" component ={Link} to= {"/register"} sx={{ mr: 1 , borderRadius: "20px", boxShadow: "none", backgroundColor: "#ff0000", color: "#fff"}}>
+        <Button variant="contained" component ={Link} to= {"/register"}  color="secondary"  sx={{ mr: 1 , borderRadius: "20px", boxShadow: "none", color: "#fff"}}>
           <Typography sx={{fontFamily: "Poppins, sans-serif"}}>Registrate</Typography>
         </Button>
       </Box>

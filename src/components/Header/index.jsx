@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import {UserContext} from "../../context/UserProvider";
 import { useContext } from "react";
-import httpService from "../../services/httpService";
+
 import Logo from "./Logo";
 import '@fontsource/poppins';
 
@@ -20,7 +20,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import ProfileButton from "./ProfileButton";
 import LoginRegister from "./LoginRegister";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import "./Header.css";
 const data = [
   { text: "Inicio", route: "/" },
@@ -43,12 +43,13 @@ const ResponsiveAppBar = () => {
     setAnchorElNav(null);
   };
   useEffect(()=> {}, [user]) 
-console.log(user)
   return (
     <AppBar sx={{ mb: "1rem" }} position="static">
       <Container maxWidth="false">
         <Toolbar disableGutters>
-          <Logo sx={{ display: { xs: "none", md: "block" } }} />
+          <Logo sx={{ display: { xs: "none", md: "block" }, '& img' : {
+            maxHeight: '50px',
+          } }} />
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -97,7 +98,11 @@ console.log(user)
           <Logo
             sx={{
               display: { xs: "flex", md: "none" },
+              justifyContent: "center",
               flexGrow: 1,
+              '& img' : {
+                maxHeight: '50px',
+              } 
             }}
           />
           <Box
