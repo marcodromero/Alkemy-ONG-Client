@@ -56,7 +56,8 @@ const About = () => {
             onClick={() => navigate("/contact")}
             variant="contained"
             type="submit"
-            sx={{ marginTop: 3 , backgroundColor:"#ff0000", borderRadius: "20px", boxShadow:" 0px 4px 4px rgba(0, 0, 0, 0.25)", ':hover': {backgroundColor: "blue"} }}
+            color="secondary"
+            // sx={{ marginTop: 3 , backgroundColor:"#ff0000", borderRadius: "20px", boxShadow:" 0px 4px 4px rgba(0, 0, 0, 0.25)", ':hover': {backgroundColor: "blue"} }}
           >
             <Typography sx= {{color: "#fff", fontFamily:"Poppins, sans-serif", fontSize:"22px", fontWeight:"600", textTransform: "capitalize"}} >¡Quiero ser parte!</Typography>
           </Button>

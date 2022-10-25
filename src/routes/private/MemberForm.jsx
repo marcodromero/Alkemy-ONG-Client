@@ -170,21 +170,27 @@ export default function Organization(){
                     multiline
                  />
             </Box>
-            <Button
-                type="submit"
-                variant="contained"
-                component="label"
-                sx={{mt: '1.6rem'}}
-                endIcon={<Send/>}
-                onClick={
-                id ? () => {
-                        showAlertUpdate(id);
+            <Box sx={{
+                display: "flex",
+                justifyContent: "center",
+            }}>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="secondary"
+                    component="label"
+                    sx={{mt: '1.6rem'}}
+                    endIcon={<Send/>}
+                    onClick={
+                    id ? () => {
+                            showAlertUpdate(id);
+                        }
+                        : showAlertCreate
                     }
-                    : showAlertCreate
-                }
-            >
-                    Confirmar
-            </Button>
+                >
+                        Confirmar
+                </Button>
+            </Box>
         </Box>
 
     );
