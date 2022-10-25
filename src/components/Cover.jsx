@@ -1,10 +1,18 @@
 import { Button, Grid, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
-
+import React, { useEffect } from "react";
+import httpService from "../services/httpService";
 import { useNavigate } from "react-router-dom";
-
 export default function Cover() {
+  const [data, setData] = React.useState({});
+  const getData= async () => {
+    const res = await httpService.get('/organizations')
+    setData(res.data)
+  }
+  useEffect(()=>{
+    getData()
+    
+  },[])
   const navigate = useNavigate();
   return (
     <Paper
@@ -29,13 +37,14 @@ export default function Cover() {
             }}
           >
             <Typography  component="h2" variant="h2" mt={5} mb={5}>
-              <b>Hola, ¡Bienvenidx!</b>
+              {data.welcomeTitle}
             </Typography>
             <Typography component="p" variant="h6" mt={5} mb={5}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
+             {data.description}
+             {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
               repudiandae recusandae enim, atque consequatur placeat fugit
               voluptatem totam rem quidem nam laboriosam quas assumenda neque sunt
-              quasi aliquid quisquam impedit!
+              quasi aliquid quisquam impedit! */}
             </Typography>
             <Box>
               <Button
@@ -64,7 +73,8 @@ export default function Cover() {
             }}
           >
             <img
-              src={process.env.PUBLIC_URL + "/images/blog-img-02.jpg"}
+              // src={process.env.PUBLIC_URL + "/images/blog-img-02.jpg"}
+              src={data.welcomeImage}
               alt="cover image"
             />
           </Box>

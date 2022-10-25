@@ -13,7 +13,7 @@ import '@fontsource/poppins';
 import '@fontsource/mulish';
 import '@fontsource/montserrat';
 import { Link } from "react-router-dom";
-
+import Logo from '../../components/Header/Logo'
 export default function Footer(){
     const [data, setData] = useState("");
     useEffect(() => {
@@ -32,7 +32,8 @@ export default function Footer(){
                 <Box sx = {{mt: 2}}>
                     <Divider>
                         <Box>
-                            <Box component ="img" sx = {{width: 80, height: 80, mx: 6}} src = {data?.image} alt ="logo"/>
+                            <Box component ="img" sx = {{width: 'auto', height: 60, mx: 6}} src = {data?.image} alt ="logo"/>
+                            {/* <Logo/> */}
                             <Typography variant = "h6" sx= {{fontSize: 18, fontFamily: "Poppins, sans-serif"}}>{data?.title}</Typography>
                         </Box>
                     </Divider>
