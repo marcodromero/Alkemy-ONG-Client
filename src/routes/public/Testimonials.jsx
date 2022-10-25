@@ -17,7 +17,7 @@ import httpService from "../../services/httpService";
 import Modal from "../../components/Modal";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserProvider";
-
+import parse from "html-react-parser";
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [open, setOpen] = useState(false);
@@ -72,7 +72,7 @@ const Testimonials = () => {
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                  {testimonial.content}
+                  {parse(testimonial.content)}
                 </Typography>
               </CardContent>
             </Card>
