@@ -76,7 +76,7 @@ const Slide = () => {
             variant="contained"
             color="success"
             endIcon={<AddIcon />}
-            onClick={() => navigate("/backoffice/slides/create")}
+            onClick={() => navigate("/backoffice/formslides")}
           >
             Agregar
           </Button>
