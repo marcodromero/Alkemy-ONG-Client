@@ -23,6 +23,7 @@ import { styled } from "@mui/material/styles";
 import httpService from "../../services/httpService";
 import { useNavigate } from "react-router-dom";
 import { alert } from "../../features/alert/Alert";
+import Swal from "sweetalert2";
 
 const Testimonial = () => {
   const [members, setMembers] = useState([]);
@@ -50,11 +51,29 @@ const Testimonial = () => {
 
   const navigate = useNavigate();
   const widthMatches = useMediaQuery("(min-width:600px)");
-
-  const handleDelete = async (id) => {
-    await httpService.delete(`/members/${id}`);
-    setMembers(members.filter((testimonial) => testimonial.id !== id));
-    alert("¡Exitoso!", "Se ha eliminado el miembro", "success", false);
+   
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "¿Quieres eliminar al miembro?",
+      icon: "question",
+      showDenyButton: true,
+      confirmButtonText: "Si",
+      denyButtonText: `No`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await httpService.delete(`/members/${id}`);
+        if (res) {
+          setMembers(members.filter((testimonial) => testimonial.id !== id));
+          Swal.fire("Eliminado", "El miembro ha sido eliminado.", "success");
+        } else {
+          Swal.fire(
+            "Hubo un problema",
+            "El miembro no se pudo eliminar.",
+            "error"
+          );
+        }
+      }
+    });
   };
 
   return (
@@ -76,7 +95,7 @@ const Testimonial = () => {
             variant="contained"
             color="success"
             endIcon={<AddIcon />}
-            onClick={() => navigate("/backoffice/members/create")}
+            onClick={() => navigate("/backoffice/members/form")}
           >
             Agregar
           </Button>
@@ -89,9 +108,9 @@ const Testimonial = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>ID</StyledTableCell>
               <StyledTableCell>Nombre</StyledTableCell>
               <StyledTableCell>Acciones</StyledTableCell>
+           
             </TableRow>
           </TableHead>
           <TableBody>
@@ -100,8 +119,9 @@ const Testimonial = () => {
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell size="small">{row.id}</TableCell>
+               
                 <TableCell size="small">{row.name}</TableCell>
+            
                 <TableCell size="small">
                   <Tooltip title="Eliminar">
                     <IconButton onClick={() => handleDelete(row.id)}>
@@ -111,7 +131,7 @@ const Testimonial = () => {
                   <Tooltip title="Actualizar">
                     <IconButton
                       onClick={() =>
-                        navigate(`/backoffice/members/edit/${row.id}`)
+                        navigate(`/backoffice/members/form/${row.id}`)
                       }
                     >
                       <CreateIcon />

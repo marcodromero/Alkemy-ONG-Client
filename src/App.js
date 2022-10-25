@@ -26,7 +26,7 @@ import Users from "./routes/private/Users";
 import UserProvider from './context/UserProvider';
 import Auth from "./components/Auth";
 import About from "./routes/public/About";
-
+import SetTestimonial from "./routes/private/SetTestimonial";
 import Testimonials from "./routes/public/Testimonials";
 import Testimonial from "./routes/private/Testimonial";
 import Contacts from "./routes/private/Contacts";
@@ -37,6 +37,7 @@ import Organization from "./routes/private/Organization";
 import PublicActivities from "./routes/public/PublicActivities";
 import PublicActivity from "./routes/public/PublicActivity";
 import FormSlides from "./routes/private/FormSlides";
+import MemberForm from "./routes/private/MemberForm";
 let theme = createTheme({
   palette: {
     primary: {
@@ -73,6 +74,12 @@ export default function App() {
             <Route path="/backoffice/members" element={<BackofficeLayout />}>
               <Route index element={<Auth> <Member /> </Auth>} />
             </Route>
+            <Route path="/backoffice/members/form/" element={<BackofficeLayout />}>
+              <Route index element={<Auth> <MemberForm /> </Auth>} />
+            </Route>
+            <Route path="/backoffice/members/form/:id" element={<BackofficeLayout />}>
+              <Route index element={<Auth> <MemberForm /> </Auth>} />
+            </Route>
             <Route path="/backoffice/slides" element={<BackofficeLayout />}>
               <Route index element={<Auth> <FormSlides /> </Auth>} />
             </Route>
@@ -84,6 +91,12 @@ export default function App() {
             </Route>
             <Route path="/backoffice/testimonials" element={<BackofficeLayout />}>
               <Route index element={<Auth><Testimonial /></Auth>} />
+            </Route>
+            <Route path="/backoffice/testimonials/create" element={<BackofficeLayout />}>
+              <Route index element={<Auth><SetTestimonial /></Auth>} />
+            </Route>
+            <Route path="/backoffice/testimonials/edit/:id" element={<BackofficeLayout />}>
+              <Route index element={<Auth><SetTestimonial /></Auth>} />
             </Route>
             <Route path="/backoffice/activities" element={<BackofficeLayout />}>
               <Route index element={<Auth><Activities /></Auth>} />
