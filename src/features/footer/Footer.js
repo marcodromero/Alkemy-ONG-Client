@@ -5,7 +5,8 @@ import {
     Typography,
     Divider,
     Box,
-    Stack
+    Stack,
+    Paper
 }from "@mui/material";
 import httpService from '../../services/httpService';
 import '@fontsource/poppins';
@@ -27,7 +28,7 @@ export default function Footer(){
     }, [])
    
     return(
-            <Container  sx = {{backgroundColor: "#C0C0C0", display: "flex", flexDirection: "column", height: "450px", mt: '1.5rem'}} maxWidth ={false}>
+            <Container  component={Paper} elevation={6} sx = {{backgroundColor: '#ECECEC', display: "flex", flexDirection: "column", height: "450px", mt: '5rem'}} maxWidth ={false}>
                 <Box sx = {{mt: 2}}>
                     <Divider>
                         <Box>
