@@ -33,9 +33,9 @@ export default function New() {
       <Typography
         component="h2"
         variant="h4"
-        sx={{ textAlign: "center" }}
+        sx={{ textAlign: "center", fontFamily:"Poppins, sans-serif", fontSize:"38px", fontWeight:"600" }}
+        mb={widthMatches ? 6 : 3}
         mt={widthMatches ? 5 : 3}
-        mb={widthMatches ? 5 : 3}
       >
         Novedades
       </Typography>

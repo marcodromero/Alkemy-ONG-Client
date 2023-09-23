@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
-import {Box, Link} from '@mui/material'
+import React, { useState, useEffect } from "react";
+import { Box, Link } from "@mui/material";
 /*import axios from '../../services/httpService';*/
 
-export default function Logo({sx}) {
- /* const [logo, setLogo] = useState("");
+export default function Logo({ sx }) {
+  /* const [logo, setLogo] = useState("");
 
   const getData = ()=>{
     axios.get(`/organizations`)
@@ -18,7 +18,13 @@ export default function Logo({sx}) {
 */
   return (
     <Box sx={sx}>
-        <Link href="/"><img style={{width: '100%'}} src={process.env.PUBLIC_URL + '/images/assets/logo.png'} alt='ONG Logo'/></Link>
+      <Link href="/">
+        <img
+          style={{ width: "100px" }}
+          src={process.env.PUBLIC_URL + "/ong-assets/logo-somosmas3.png"}
+          alt="ONG Logo"
+        />
+      </Link>
     </Box>
-  )
+  );
 }

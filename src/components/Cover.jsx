@@ -10,6 +10,7 @@ export default function Cover() {
     <Paper
     elevation={8}
       sx={{
+        boxShadow: 0,
         width: "90%",
         m: '0 auto',
         boxSizing: "border-box",
@@ -25,26 +26,24 @@ export default function Cover() {
               height: "100%",
               display: "flex",
               flexDirection: "column",
-              justifyContent: 'space-around'
+            
+              alignItems: "flex-start"
             }}
           >
-            <Typography  component="h2" variant="h2" mt={5} mb={5}>
+            <Typography  component="h2"  mt={2} mb={4} sx ={{fontSize: "2.80rem", fontWeight: 600}}>
               <b>Hola, ¡Bienvenidx!</b>
             </Typography>
-            <Typography component="p" variant="h6" mt={5} mb={5}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-              repudiandae recusandae enim, atque consequatur placeat fugit
-              voluptatem totam rem quidem nam laboriosam quas assumenda neque sunt
-              quasi aliquid quisquam impedit!
+            <Typography component="p" variant="h6"  mb={5}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing dignissim ac et eleifend lacus, rhoncus, dignissim sagittis. Tellus ac a, elementum ut. Tellus a morbi tincidunt ultricies malesuada eget turpis. Lacus enim non enim, velit hac turpis interdum arcu. Suspendisse at vel ultrices amet orci enim lectus porttitor ut.
             </Typography>
             <Box>
               <Button
                 variant="contained"
                 color="secondary"
                 sx={{
-                  color: '#fff'
+                  backgroundColor:"#ff0000", borderRadius: "20px", boxShadow:" 0px 4px 4px rgba(0, 0, 0, 0.25)", ':hover': {backgroundColor: "#B20000"}
                 }}
-                onClick={() => navigate("/activities")}
+                onClick={() => navigate("/contact")}
               >
                 Contactanos
               </Button>
@@ -55,8 +54,8 @@ export default function Cover() {
           <Box
             sx={{
               "& img": {
-                width: "100%",
-                height: "100%",
+               
+                
                 aspectRatio: "3/2",
                 objectFit: "cover",
                 borderRadius: 4,
@@ -64,7 +63,7 @@ export default function Cover() {
             }}
           >
             <img
-              src={process.env.PUBLIC_URL + "/images/blog-img-02.jpg"}
+              src={process.env.PUBLIC_URL + "/images/join-us.png"}
               alt="cover image"
             />
           </Box>

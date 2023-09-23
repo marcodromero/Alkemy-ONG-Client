@@ -20,9 +20,9 @@ const LastNews = () => {
   return (
     <>
       <Typography
-        variant="h2"
+        
         sx={{
-          fontSize: "32px",
+          fontSize: "1.74rem",
           marginLeft: "10%",
           width: "80%",
           marginTop: 5,
@@ -31,7 +31,7 @@ const LastNews = () => {
           display:'flex'
         }}
       >
-        Ultimas novedades
+        Últimas novedades
         <Button
           onClick={() => navigate('/news')}
           variant="oultine"

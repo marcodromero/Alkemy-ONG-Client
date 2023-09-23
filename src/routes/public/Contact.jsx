@@ -183,7 +183,7 @@ const Contact = () => {
               variant="contained"
               type="submit"
               color="secondary"
-              sx={{backgroundColor:"#ff0000", borderRadius: "20px", boxShadow:" 0px 4px 4px rgba(0, 0, 0, 0.25)", ':hover': {backgroundColor: "blue"}}}
+              sx={{backgroundColor:"#ff0000", borderRadius: "20px", boxShadow:" 0px 4px 4px rgba(0, 0, 0, 0.25)", ':hover': {backgroundColor: "#B20000"}}}
             >
               Enviar consulta
             </Button>

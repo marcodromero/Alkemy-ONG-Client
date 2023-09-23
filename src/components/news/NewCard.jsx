@@ -14,12 +14,14 @@ export default function NewCard({  image, name, content, id }) {
       sx={{
         Width: "100%",
         Height: 233,
-        maxWidth: "500px",
+        backgroundColor: "#7E9AFD",
+        maxWidth: "430px",
         maxHeight: 233,
         padding: "2%",
         mt: '1%',
         mb: '1%',
         display: "flex",
+        borderColor: "#0038FF",
         borderRadius: 5,
         alignItems: "center",
         justifyContent: "center",
@@ -42,13 +44,13 @@ export default function NewCard({  image, name, content, id }) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          height: 201,
+          height: "200px",
         }}
       >
         <Typography variant="h5">
           {name}
         </Typography>
-        <Typography sx={{ fontSize: 12, color: "#000000" }}>
+        <Typography sx={{ fontSize: 12, color: "#000000" , overflow: "hidden" ,textOverflow: "ellipsis"}}>
           {parse(content)}
         </Typography>
         <Button
@@ -57,7 +59,7 @@ export default function NewCard({  image, name, content, id }) {
           sx={{
             marginTop: "auto",
             width: "100%",
-            backgroundColor: colors.lightBlue[500],
+            backgroundColor: "#0038FF",
             color: "#FFFFFF",
             fontSize: 12,
             '&:hover': {

@@ -7,6 +7,7 @@ import {
   CardMedia,
   Grid,
   Typography,  
+  useMediaQuery
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -20,14 +21,20 @@ export default function PublicActivities() {
     getData();
   }, []);
 
+  const widthMatches = useMediaQuery("(min-width:600px)");
+
   const getData = async () => {
     const res = await httpService.get("/activities");
     setActivities(res.data);
   };
   return (
     <Box>
-        <Typography component="h2" variant="h4" sx={{ textAlign: "center" }} mt={5} mb={5}>
-            Conoce nuestras actividades
+        <Typography component="h2"
+        variant="h4"
+        sx={{ textAlign: "center", fontFamily:"Poppins, sans-serif", fontSize:"38px", fontWeight:"600" }}
+        mb={widthMatches ? 6 : 3}
+        mt={widthMatches ? 5 : 3}>
+            Nuestras actividades
         </Typography>
     
     <Grid

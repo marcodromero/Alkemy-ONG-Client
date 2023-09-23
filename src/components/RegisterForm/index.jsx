@@ -39,11 +39,10 @@ export default function RegisterForm() {
     <Box
       sx={{
         maxWidth: "600px",
-        height: "400px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        margin: "0 auto",
+        margin: "0  auto 10px auto",
       }}
     >
       <form onSubmit={formik.handleSubmit}>
@@ -55,7 +54,7 @@ export default function RegisterForm() {
           component="h1"
           gutterBottom
         >
-          Join us!
+          ¡Únetenos!
         </Typography>
         <TextField
         color="secondary"

@@ -43,14 +43,14 @@ const ResponsiveAppBar = () => {
     setAnchorElNav(null);
   };
   useEffect(()=> {}, [user]) 
-console.log(user)
+
   return (
     <AppBar sx={{ mb: "1rem" }} position="static">
       <Container maxWidth="false">
         <Toolbar disableGutters>
-          <Logo sx={{ display: { xs: "none", md: "block" } }} />
+          <Logo sx={{ display: { xs: "none", md: "flex" }, height: '80px', alignItems: "center"}} />
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, alignItems: "center" }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -98,6 +98,7 @@ console.log(user)
             sx={{
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
+              justifyContent: "center"
             }}
           />
           <Box
