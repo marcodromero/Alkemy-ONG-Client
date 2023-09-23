@@ -4,7 +4,7 @@ axios.interceptors.request.use(
     function (config) {
 
         config.headers.Authorization = `Bearer ${sessionStorage.getItem('token')}`
-        config.baseURL = `http://localhost:5000`
+        config.baseURL = process.env.REACT_APP_SERVERIP
         return config
     },
     function (error) {
