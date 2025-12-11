@@ -1,30 +1,49 @@
-# Ong Client
+### 💻 Proyecto ONG - Frontend 🚀
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## ⚙️ Configuración del Entorno
+Sigue estos pasos para poner en marcha la interfaz de usuario en tu máquina local.
 
-## Available Scripts
+### 1. Prerrequisitos 🛠️
+Asegúrate de tener instalado lo siguiente:
 
-In the project directory, you can run:
+Node.js (se recomienda la versión LTS)
 
-### `yarn start`
+Servidor Backend: El servidor base (API) debe estar ejecutándose localmente para que el frontend pueda obtener datos.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 2. Instalación de Dependencias
+Clona el repositorio:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+git clone https://github.com/marcodromero/Alkemy-ONG-Client.git
 
-### `yarn test`
+```cd Alkemy-ONG-Client```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Instala todas las dependencias del proyecto:
+```npm install```
 
-### `yarn build`
+### 3. Configuración de Variables de Entorno
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Copia el archivo de ejemplo
+```cp .env.example .env ```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Asegúrate de que la variable que apunta a la API (REACT_APP_SERVERIP) esté configurada correctamente para http://localhost:5000.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## ▶️ Ejecución del Proyecto
+### 1. Iniciar el Backend (API)
+Asegúrate de que la API de tu proyecto esté ejecutándose en una terminal separada, siguiendo las instrucciones de su respectivo README.md.
+
+### 2. Iniciar el Frontend 🚀
+Para iniciar la aplicación de desarrollo del frontend, ejecuta el siguiente comando:
+```npm run start```
+
+La aplicación se abrirá automáticamente en tu navegador predeterminado.
+
+🔗 Acceso: El frontend estará disponible en http://localhost:3000
+
+## Credenciales
+El usuario admin tiene acceso al dashboard para administrar el sitio.
+
+Usuario admin de prueba:
+marco@mail.com 12345678
+
+Puedes registrarte como un usuario común.
