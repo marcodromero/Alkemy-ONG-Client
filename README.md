@@ -25,7 +25,7 @@ Instala todas las dependencias del proyecto:
 Copia el archivo de ejemplo
 ```cp .env.example .env ```
 
-Asegúrate de que la variable que apunta a la API (REACT_APP_SERVERIP) esté configurada correctamente para http://localhost:5000.
+Asegúrate de que la variable que apunta a la API (REACT_APP_SERVERIP) esté configurada correctamente con la url de la API.
 
 
 ## ▶️ Ejecución del Proyecto
