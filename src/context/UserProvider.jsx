@@ -58,7 +58,7 @@ const UserProvider = ({ children }) => {
       }
       setUser(data.user);
     } catch (e) {
-      console.log(e);
+      console.log(e.message);
     }
   };
 

@@ -14,6 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 import httpService from "../../services/httpService";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
+
 export default function PublicActivities() {
     const navigate = useNavigate();
   const [activities, setActivities] = useState([]);
@@ -24,8 +25,13 @@ export default function PublicActivities() {
   const widthMatches = useMediaQuery("(min-width:600px)");
 
   const getData = async () => {
-    const res = await httpService.get("/activities");
+    try {
+      const res = await httpService.get("/activities");
     setActivities(res.data);
+    } catch (error) {
+      console.error("Hubo un error en la petición: ", error.message)
+    }
+    
   };
   return (
     <Box>

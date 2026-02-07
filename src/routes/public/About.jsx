@@ -25,9 +25,14 @@ const About = () => {
   }, []);
 
   const getData = async () => {
-    const res = await httpService.get("/members");
+    try {
+      const res = await httpService.get("/members");
     setMembers(res.data);
     setFocusMember(res.data[0]);
+    } catch (error) {
+      console.error("Hubo un error en la petición: ", error.message)
+    }
+    
   };
   return (
     <Container maxWidth="xl">

@@ -20,8 +20,8 @@ export default function Footer(){
             try{
                 const res = await httpService.get('/organizations')
                 setData(res.data)
-            }catch(e) {
-                console.error(e)
+            }catch(error) {
+                console.error(error.message)
             }
         })()
     }, [])

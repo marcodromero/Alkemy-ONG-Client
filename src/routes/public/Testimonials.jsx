@@ -18,6 +18,7 @@ import Modal from "../../components/Modal";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserProvider";
 import parse from "html-react-parser";
+
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [open, setOpen] = useState(false);
@@ -31,8 +32,12 @@ const Testimonials = () => {
   }, []);
 
   const getData = async () => {
-    const res = await httpService.get("/testimonials");
-    setTestimonials(res.data);
+    try {
+      const res = await httpService.get("/testimonials");
+      setTestimonials(res.data);
+    } catch (error) {
+      console.error("Hubo un error en la petición: ", error.message)
+    }
   };
 
   return (

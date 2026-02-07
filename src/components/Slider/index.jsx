@@ -4,6 +4,7 @@ import Slide from "./Slide";
 import httpService from "../../services/httpService";
 import Carousel from "react-material-ui-carousel";
 import { useMediaQuery } from "@mui/material";
+
 export default function Slider() {
   const [data, setData] = useState([]);
   const widthMatches = useMediaQuery("(min-width:1150px)");
@@ -12,8 +13,12 @@ export default function Slider() {
   }, []);
 
   const getData = async () => {
-    const res = await httpService.get("/slides");
-    setData(res.data);
+    try{
+      const res = await httpService.get("/slides");
+      setData(res.data);
+    }catch(error){
+      console.error("Hubo un error en la petición: ", error.message)
+    }    
   };
 
   return (

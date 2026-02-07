@@ -12,8 +12,14 @@ const LastNews = () => {
   const [news, setNews] = React.useState([]);
   useEffect(() => {
     (async () => {
-     const res = await httpService.get('/news')
+    try {
+      const res = await httpService.get('/news')
       setNews(res.data)
+      
+    } catch (error) {
+      console.error("Hubo un problema con la petición: ",error.message)
+    }
+    
     })();
   }, [])
 

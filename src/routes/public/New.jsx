@@ -15,13 +15,18 @@ import axios from "../../services/httpService";
 import { useNavigate, Link } from "react-router-dom";
 import parse from "html-react-parser";
 import Slider from "../../components/Slider";
+
 export default function New() {
   const [data, setData] = useState(null);
   const widthMatches = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
   async function getData() {
-    const res = await axios.get("/news");
-    setData(res.data);
+    try{
+      const res = await axios.get("/news");
+      setData(res.data);
+    }catch(error){
+      console.log("Hubo un error en la petición: ", error.message)
+    }    
   }
 
   useEffect(() => {
