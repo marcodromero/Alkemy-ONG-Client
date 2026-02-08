@@ -50,7 +50,7 @@ const About = () => {
             {members.length !== 0 && focusMember.rol}
           </Typography>
       
-          <Typography variant="subtitle2" mt={{ xs: 1, md: 2 , fontFamily: "/400.css, sans-serif", fontSize: "16px" }} >
+          <Typography variant="subtitle2" mt={{ xs: 1, md: 2 , fontFamily: "sans-serif", fontSize: "16px" }} >
             {focusMember.description ||" "}
           </Typography>
           <Button
