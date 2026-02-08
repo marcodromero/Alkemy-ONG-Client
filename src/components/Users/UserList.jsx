@@ -2,16 +2,14 @@ import {
   Paper,
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableHead,
   TableRow,
   useMediaQuery,
   Box,
   Typography,
-  Button,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import httpService from "../../services/httpService";
 import UserTableItem from "./UserTableItem";
 

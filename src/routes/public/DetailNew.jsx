@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Container, Box, Typography, useMediaQuery, Button } from "@mui/material";
-import "@fontsource/mulish";
-import "@fontsource/poppins";
 import axios from "../../services/httpService";
 import { useNavigate, useParams } from "react-router-dom";
 import parse from "html-react-parser";

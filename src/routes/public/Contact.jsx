@@ -9,10 +9,8 @@ import {
   Container,
   ThemeProvider
 } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
 import httpService from "../../services/httpService";
 import { alert } from "../../features/alert/Alert";
-import "@fontsource/poppins";
 import { createTheme } from '@mui/material/styles';
 
 const Contact = () => {

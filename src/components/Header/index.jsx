@@ -12,15 +12,13 @@ import {
 } from "@mui/material";
 import {UserContext} from "../../context/UserProvider";
 import { useContext } from "react";
-import httpService from "../../services/httpService";
 import Logo from "./Logo";
-import '@fontsource/poppins';
 
 import MenuIcon from "@mui/icons-material/Menu";
 
 import ProfileButton from "./ProfileButton";
 import LoginRegister from "./LoginRegister";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Header.css";
 const data = [
   { text: "Inicio", route: "/" },

@@ -11,7 +11,7 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import httpService from "../../services/httpService";
 import ContactsTableItem from "./ContactsTableItem";
 import { styled } from "@mui/material/styles";

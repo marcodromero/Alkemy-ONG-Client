@@ -11,7 +11,6 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../../services/httpService";
-import "@fontsource/poppins";
 import { createTheme } from "@mui/material/styles";
 import Swal from "sweetalert2";
 import { DeleteForever, Error, PhotoCamera, Send } from "@mui/icons-material";

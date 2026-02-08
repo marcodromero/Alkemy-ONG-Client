@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import SkeletonImage from "./SkeletonImage";
 import "./Slider.css";
 export default function Slide({ imageUrl, text, index, next }) {
   const [imgLoaded, setImgLoaded] = React.useState(false);

@@ -22,7 +22,6 @@ import AddIcon from "@mui/icons-material/Add";
 import { styled } from "@mui/material/styles";
 import httpService from "../../services/httpService";
 import { useNavigate } from "react-router-dom";
-import { alert } from "../../features/alert/Alert";
 import Swal from "sweetalert2";
 
 const Testimonial = () => {

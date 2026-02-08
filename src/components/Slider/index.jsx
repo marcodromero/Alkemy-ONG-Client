@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import Slide from "./Slide";
 import httpService from "../../services/httpService";
 import Carousel from "react-material-ui-carousel";

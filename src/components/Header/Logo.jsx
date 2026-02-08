@@ -21,7 +21,7 @@ export default function Logo({ sx }) {
       <Link href="/">
         <img
           style={{ width: "100px" }}
-          src={process.env.PUBLIC_URL + "/ong-assets/logo-somosmas3.png"}
+          src={process.env.PUBLIC_URL + "/images/logo-somosmas3.png"}
           alt="ONG Logo"
         />
       </Link>

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Typography } from "@mui/material";
 import parser from 'html-react-parser';
 export default function ActivityWrapper({name, image, content}) {

@@ -1,7 +1,5 @@
 import { Button, Grid, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
-
 import { useNavigate } from "react-router-dom";
 
 export default function Cover() {
@@ -64,7 +62,7 @@ export default function Cover() {
           >
             <img
               src={process.env.PUBLIC_URL + "/images/join-us.png"}
-              alt="cover image"
+              alt="cover"
             />
           </Box>
         </Grid>

@@ -19,7 +19,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import CreateIcon from "@mui/icons-material/Create";
 import { styled } from "@mui/material/styles";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import httpService from "../../services/httpService";
 import { alert } from "../../features/alert/Alert";

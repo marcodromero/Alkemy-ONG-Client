@@ -1,5 +1,4 @@
 import { TableCell, TableRow } from "@mui/material";
-import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import httpService from "../../services/httpService";
 import { Tooltip, IconButton } from "@mui/material";

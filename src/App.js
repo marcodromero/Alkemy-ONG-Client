@@ -1,42 +1,46 @@
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/mulish/400.css";
 import { createTheme, ThemeProvider, colors, responsiveFontSizes } from "@mui/material";
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./routes/public/Home";
-import New from "./routes/public/New";
-import Layout from './components/Layout'
-import Contact from "./routes/public/Contact";
-import DetailNew from "./routes/public/DetailNew";
-import NewsForm from "./routes/private/NewsForm";
-
-import EditUser from './components/Users/EditUser'
-
-import Login from "./routes/public/Login";
-import Register from "./routes/public/Register";
+import { lazy, Suspense } from 'react';
+import Layout from './components/Layout';
 import FullWidthLayout from "./components/Layout/FullWidthLayout";
-import BackOffice from "./routes/private/BackOffice";
-import Activities from "./routes/public/Activities";
-import ActivityDetails from "./components/Activities/ActivityDetails";
-import NotFound from "./routes/public/NotFound";
-import News from "./routes/private/News";
-import BackofficeLayout from './components/Layout/BackofficeLayout'
-import SetActivity from "./routes/private/SetActivity";
-
-import Users from "./routes/private/Users";
-
+import BackofficeLayout from './components/Layout/BackofficeLayout';
 import UserProvider from './context/UserProvider';
 import Auth from "./components/Auth";
-import About from "./routes/public/About";
-import SetTestimonial from "./routes/private/SetTestimonial";
-import Testimonials from "./routes/public/Testimonials";
-import Testimonial from "./routes/private/Testimonial";
-import Contacts from "./routes/private/Contacts";
-import Member from "./routes/private/Member"
-import Categories from "./routes/private/Categorie";
-import Slide from "./routes/private/Slide";
-import Organization from "./routes/private/Organization";
-import PublicActivities from "./routes/public/PublicActivities";
-import PublicActivity from "./routes/public/PublicActivity";
-import MemberForm from "./routes/private/MemberForm";
+
+// Rutas Públicas
+const Home = lazy(() => import("./routes/public/Home"));
+const New = lazy(() => import("./routes/public/New"));
+const Contact = lazy(() => import("./routes/public/Contact"));
+const DetailNew = lazy(() => import("./routes/public/DetailNew"));
+const Login = lazy(() => import("./routes/public/Login"));
+const Register = lazy(() => import("./routes/public/Register"));
+const Activities = lazy(() => import("./routes/public/Activities"));
+const PublicActivities = lazy(() => import("./routes/public/PublicActivities"));
+const PublicActivity = lazy(() => import("./routes/public/PublicActivity"));
+const About = lazy(() => import("./routes/public/About"));
+const Testimonials = lazy(() => import("./routes/public/Testimonials"));
+const NotFound = lazy(() => import("./routes/public/NotFound"));
+
+// Rutas Privadas / BackOffice
+const BackOffice = lazy(() => import("./routes/private/BackOffice"));
+const News = lazy(() => import("./routes/private/News"));
+const NewsForm = lazy(() => import("./routes/private/NewsForm"));
+const SetActivity = lazy(() => import("./routes/private/SetActivity"));
+const Users = lazy(() => import("./routes/private/Users"));
+const EditUser = lazy(() => import('./components/Users/EditUser'));
+const SetTestimonial = lazy(() => import("./routes/private/SetTestimonial"));
+const Testimonial = lazy(() => import("./routes/private/Testimonial"));
+const Contacts = lazy(() => import("./routes/private/Contacts"));
+const Member = lazy(() => import("./routes/private/Member"));
+const MemberForm = lazy(() => import("./routes/private/MemberForm"));
+const Categories = lazy(() => import("./routes/private/Categorie"));
+const Slide = lazy(() => import("./routes/private/Slide"));
+const Organization = lazy(() => import("./routes/private/Organization"));
+const ActivityDetails = lazy(() => import("./components/Activities/ActivityDetails"));
+
 let theme = createTheme({
   palette: {
     primary: {
@@ -63,6 +67,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <UserProvider>
         <BrowserRouter>
+        <Suspense fallback = {<div>Cargando...</div>}>
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
@@ -161,6 +166,7 @@ export default function App() {
               <Route index element={<Auth><Organization /></Auth>} />
             </Route>
           </Routes>
+          </Suspense>
         </BrowserRouter>
       </UserProvider>
     </ThemeProvider>

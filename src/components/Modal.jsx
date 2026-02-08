@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { TextField, Button, Typography, Modal, Box } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import httpService from "../services/httpService";

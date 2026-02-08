@@ -1,16 +1,8 @@
-import React from "react";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
-import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
-import ReorderIcon from "@mui/icons-material/Reorder";
-import MessageIcon from "@mui/icons-material/Message";
-import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
-import AccountTreeRoundedIcon from "@mui/icons-material/AccountTreeRounded";
-import Person2RoundedIcon from "@mui/icons-material/Person2Rounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import { Button, Link } from "@mui/material";
 

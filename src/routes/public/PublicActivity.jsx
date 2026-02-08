@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import httpService from '../../services/httpService'
 import parse from 'html-react-parser'

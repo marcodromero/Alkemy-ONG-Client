@@ -1,18 +1,14 @@
-import {
-  Container,
-  Typography,
-  useMediaQuery,
-  Grid,
-  Box,
-  Button,
-  Card,
-  CardMedia,
-  CardActionArea,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
+import Container from "@mui/material/Container"
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActionArea from "@mui/material/CardActionArea";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import { useEffect, useState } from "react";
 import httpService from "../../services/httpService";
-import "@fontsource/poppins";
-import "@fontsource/mulish";
 import { useNavigate } from "react-router-dom";
 
 const About = () => {
@@ -27,8 +23,8 @@ const About = () => {
   const getData = async () => {
     try {
       const res = await httpService.get("/members");
-    setMembers(res.data);
-    setFocusMember(res.data[0]);
+      setMembers(res.data);
+      setFocusMember(res.data[0]);
     } catch (error) {
       console.error("Hubo un error en la petición: ", error.message)
     }
@@ -54,7 +50,7 @@ const About = () => {
             {members.length !== 0 && focusMember.rol}
           </Typography>
       
-          <Typography variant="subtitle2" mt={{ xs: 1, md: 2 , fontFamily: "Mulish, sans-serif", fontSize: "16px" }} >
+          <Typography variant="subtitle2" mt={{ xs: 1, md: 2 , fontFamily: "/400.css, sans-serif", fontSize: "16px" }} >
             {focusMember.description ||" "}
           </Typography>
           <Button
